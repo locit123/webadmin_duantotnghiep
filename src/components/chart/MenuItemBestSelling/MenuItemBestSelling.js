@@ -5,6 +5,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { getMenuitemBestSelling } from "../../../api/call_api/statistical/fetchApiStatistical";
 import FindStatistical from "../../findStatistical/FindStatistical";
 import { FcSearch } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const MenuItemBestSelling = () => {
   const [listMenuitem, setListMenuitem] = useState([]);
@@ -17,6 +18,8 @@ const MenuItemBestSelling = () => {
   const [starDate, setStarDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [runDate, setRunDate] = useState(false);
+  let start = new Date(starDate);
+  let end = new Date(endDate);
   /******************************************GET API MENU ITEM*************************** */
   const getMenuitemApi = useCallback(async () => {
     if (selectDate !== "find") {
@@ -159,14 +162,18 @@ const MenuItemBestSelling = () => {
   }, [menuitemSuccessData]);
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
-    setRunDate(true);
-    await getMenuitemBestSelling(
-      "day",
-      starDate,
-      endDate,
-      setListMenuitem,
-      setIsLoading
-    );
+    if (!starDate || !endDate) {
+      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
+    } else {
+      setRunDate(true);
+      await getMenuitemBestSelling(
+        "day",
+        starDate,
+        endDate,
+        setListMenuitem,
+        setIsLoading
+      );
+    }
   };
   return (
     <div className="layout-menuitem-best-selling">
@@ -224,6 +231,7 @@ const MenuItemBestSelling = () => {
                 onChangeStart={(e) => setStarDate(e.target.value)}
                 valueEnd={endDate}
                 onChangeEnd={(e) => setEndDate(e.target.value)}
+                disabled={end < start ? true : false}
               />
             </div>
           )}

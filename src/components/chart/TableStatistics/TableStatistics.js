@@ -8,6 +8,7 @@ import { FormatDay4, FormatDay5 } from "../../../utils/FormDay";
 import { LoadingOutlined } from "@ant-design/icons";
 import { FcSearch } from "react-icons/fc";
 import FindStatistical from "../../findStatistical/FindStatistical";
+import { toast } from "react-toastify";
 
 const TableStatistics = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,8 @@ const TableStatistics = () => {
   const [starDate, setStarDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [runDate, setRunDate] = useState(false);
-
+  let start = new Date(starDate);
+  let end = new Date(endDate);
   /***********************************************GET DATA TABLE****************** */
   const getTableApi = useCallback(async () => {
     if (selectDate !== "find") {
@@ -209,8 +211,12 @@ const TableStatistics = () => {
   }, [dataSuccess]);
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
-    setRunDate(true);
-    await getTable("day", starDate, endDate, dispatch, setIsLoading);
+    if (!starDate || !endDate) {
+      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
+    } else {
+      setRunDate(true);
+      await getTable("day", starDate, endDate, dispatch, setIsLoading);
+    }
   };
   return (
     <div className="layout-table-statistical">
@@ -267,6 +273,7 @@ const TableStatistics = () => {
                 valueStart={starDate}
                 onChangeStart={(e) => setStarDate(e.target.value)}
                 valueEnd={endDate}
+                disabled={end < start ? true : false}
                 onChangeEnd={(e) => setEndDate(e.target.value)}
               />
             </div>

@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { apiStatistical } from "../../../api/AxiosInstall";
 import { FormatDay4 } from "../../../utils/FormDay";
 import LoadingBanChay from "./LoadingBanChay";
+import PerfectScrollbar from "react-perfect-scrollbar";
+
 function CardBanChayNhat(props) {
   console.log("render CardBanChayNhat");
   const theme = useSelector(getThemeState);
@@ -91,43 +93,47 @@ function CardBanChayNhat(props) {
   }, [dataSuccess]);
 
   return (
-    <Card
-      className={`content-ban-chay-nhat ${theme ? "theme" : ""}`}
-      title={
-        <div className="box-title">
-          <div className="box-text">
-            <p>Món chạy nhất</p>
-            <span>| Hôm nay</span>
+    <div style={{ height: `calc(310px - 20px)` }}>
+      <PerfectScrollbar>
+        <Card
+          className={`content-ban-chay-nhat ${theme ? "theme" : ""}`}
+          title={
+            <div className="box-title">
+              <div className="box-text">
+                <p>Món chạy nhất</p>
+                <span>| Hôm nay</span>
+              </div>
+              <EllipsisOutlined className="icon-ellips" />
+            </div>
+          }
+          bordered={false}
+        >
+          <div className="content-body">
+            <table className="content-box">
+              <thead>
+                <tr>
+                  <th>Stt</th>
+                  <th>Tên món</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Ngày bán</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listDataSuccess && listDataSuccess.length > 0 ? (
+                  listDataSuccess.map((item, index) => (
+                    <LoadingBanChay item={item} index={index} key={index} />
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={4}>Không có dữ liệu món bán chạy</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
-          <EllipsisOutlined className="icon-ellips" />
-        </div>
-      }
-      bordered={false}
-    >
-      <div className="content-body">
-        <table className="content-box">
-          <thead>
-            <tr>
-              <th>Stt</th>
-              <th>Tên món</th>
-              <th>Số lượng đã bán</th>
-              <th>Ngày bán</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listDataSuccess && listDataSuccess.length > 0 ? (
-              listDataSuccess.map((item, index) => (
-                <LoadingBanChay item={item} index={index} key={index} />
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4}>Không có dữ liệu món bán chạy</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </Card>
+        </Card>
+      </PerfectScrollbar>
+    </div>
   );
 }
 

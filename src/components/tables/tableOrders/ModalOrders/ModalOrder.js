@@ -6,15 +6,9 @@ import Form from "react-bootstrap/Form";
 import { ConvertMoney } from "../../../../utils/convertMoney";
 import { useCallback, useEffect, useState } from "react";
 
-function ModalOrder({
-  show,
-  setShow,
-  listDataItem,
-  setListDataItem,
-  voucher,
-  setVoucher,
-}) {
+function ModalOrder({ show, setShow, listDataItem, setListDataItem, voucher }) {
   const [listNewDataItem, setListNewDataItem] = useState([]);
+  console.log(voucher, "voucher");
 
   const findElement = useCallback(() => {
     if (listDataItem && listDataItem.length > 0) {
@@ -165,7 +159,9 @@ function ModalOrder({
                   className="mb-3"
                 >
                   <Form.Control
-                    value={ConvertMoney(voucher[1] || 0)}
+                    value={
+                      voucher[1] === undefined ? 0 : ConvertMoney(voucher[1])
+                    }
                     type="text"
                     placeholder="name@example.com"
                     disabled

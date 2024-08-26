@@ -16,6 +16,8 @@ import { getThemeState } from "../../../store/selector";
 import { ConvertMoney } from "../../../utils/convertMoney";
 
 const LoadingPayment = ({ data, selectDate }) => {
+  console.log(data, "check data");
+
   const theme = useSelector(getThemeState);
 
   return (

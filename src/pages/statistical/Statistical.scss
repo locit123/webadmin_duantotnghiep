@@ -37,7 +37,7 @@
                 }
 
                 .box-find {
-
+                    color: #fff;
 
                     .ip-date {
 
@@ -64,7 +64,7 @@
 
             .box-table {
                 .box-find {
-
+                    color: #fff;
 
                     .ip-date {
 
@@ -93,7 +93,7 @@
 
             .box-revenue {
                 .box-find {
-
+                    color: #fff;
 
                     .ip-date {
 
@@ -122,8 +122,8 @@
 
             .box-menuitem {
                 .box-find {
-
-
+                  
+                    color: #fff;
                     .ip-date {
 
                         color: #2e2e3e;
@@ -151,8 +151,8 @@
 
             .content-menu-item {
                 .box-find {
-
-
+                  
+                    color: #fff;
                     .ip-date {
 
                         color: #2e2e3e;
@@ -181,6 +181,7 @@
             .content-order {
                 .box-find {
 
+                                    color: #fff;
 
                     .ip-date {
 
@@ -209,7 +210,7 @@
 
             .content-average {
                 .box-find {
-
+                                        color: #fff;
 
                     .ip-date {
 
@@ -251,6 +252,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -319,6 +322,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -391,6 +396,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -462,10 +469,12 @@
             }
 
             .box-revenue {
-                
+
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -482,19 +491,21 @@
                     padding: 0;
                     margin: 0;
                 }
-.select {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
 
-    select {
-        padding: 5px 15px;
-        color: #E8900C;
-        border: 1px solid #E8900C;
-        outline: none;
-    }
-}
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
                 .box-date {
                     display: flex;
                     justify-content: space-between;
@@ -536,6 +547,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -611,6 +624,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 
@@ -698,6 +713,8 @@
                 .box-find {
                     display: flex;
                     gap: 7px;
+                    align-items: center;
+                    color: #E8900C;
 
                     .ip-date {
 

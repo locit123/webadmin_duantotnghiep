@@ -5,6 +5,7 @@ import { FormatDay4, FormatDay5 } from "../../../utils/FormDay";
 import { LoadingOutlined } from "@ant-design/icons";
 import { FcSearch } from "react-icons/fc";
 import FindStatistical from "../../findStatistical/FindStatistical";
+import { toast } from "react-toastify";
 const RevenueStatistic = () => {
   const [listRevenue, setListRevenue] = useState([]);
   const [selectDate, setSelectDate] = useState("day");
@@ -16,6 +17,8 @@ const RevenueStatistic = () => {
   const [starDate, setStarDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [runDate, setRunDate] = useState(false);
+  let start = new Date(starDate);
+  let end = new Date(endDate);
   /****************************************GET API REVENUE*********************** */
   const getRevenueApi = useCallback(async () => {
     if (selectDate !== "find") {
@@ -134,8 +137,12 @@ const RevenueStatistic = () => {
   }, [getDataSuccess]);
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
-    setRunDate(true);
-    await getRevenue("day", starDate, endDate, setListRevenue, setIsLoading);
+    if (!starDate || !endDate) {
+      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
+    } else {
+      setRunDate(true);
+      await getRevenue("day", starDate, endDate, setListRevenue, setIsLoading);
+    }
   };
   console.log(runDate, "check");
 
@@ -196,6 +203,7 @@ const RevenueStatistic = () => {
                 valueStart={starDate}
                 onChangeStart={(e) => setStarDate(e.target.value)}
                 valueEnd={endDate}
+                disabled={end < start ? true : false}
                 onChangeEnd={(e) => setEndDate(e.target.value)}
               />
             </div>

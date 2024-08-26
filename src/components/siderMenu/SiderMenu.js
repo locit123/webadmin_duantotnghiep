@@ -59,7 +59,7 @@ const SiderMenu = () => {
         ),
         label: (
           <Link to="/" className={`item-link ${collapsed ? "collapsed" : ""}`}>
-            Home
+            Trang chủ
           </Link>
         ),
       },

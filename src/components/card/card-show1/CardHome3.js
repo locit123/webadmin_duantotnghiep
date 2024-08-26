@@ -18,7 +18,6 @@ function CardHome3(props) {
   const [totalUser, setTotalUser] = useState({});
   const [totalUserMonth, setTotalUserMonth] = useState("");
   const [listNewData, setListNewData] = useState([]);
-  console.log("aaaaaaaaaaaaaaaaaa");
 
   /*******************************************GET DATA ********************************************88*/
   const getDailyApi = useCallback(async () => {
@@ -99,7 +98,7 @@ function CardHome3(props) {
     >
       <div
         className="content-body-3"
-        title={`Tháng trước:${listNewData[0].totalUser} lượt đặt món`}
+        title={`Tháng trước:${listNewData[0]?.totalUser} lượt đặt món`}
       >
         <div className="icon-userGroup">
           <div className="ic-ne">

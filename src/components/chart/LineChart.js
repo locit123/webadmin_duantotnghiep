@@ -15,9 +15,22 @@ const LineChart2 = ({ data }) => {
 
   return (
     <ResponsiveContainer width={"100%"} height={350}>
-      <LineChart width={600} height={300} data={data}>
+      <LineChart
+        width={600}
+        height={300}
+        data={data}
+        margin={{ top: 20, left: 20, right: 10 }}
+      >
         <XAxis dataKey="date" />
-        <YAxis />
+        <YAxis
+          tickFormatter={(value) => {
+            if (value > 0) {
+              return ConvertMoney(value);
+            } else {
+              return value;
+            }
+          }}
+        />
         <Tooltip
           labelFormatter={(label) => `Ngày: ${FormatDay2(label)}`}
           formatter={(value, name) => {

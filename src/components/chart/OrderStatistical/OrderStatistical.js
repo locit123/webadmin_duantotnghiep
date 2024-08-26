@@ -5,6 +5,7 @@ import LoadingOrderStatistical from "./LoadingOrderStatistical";
 import { LoadingOutlined } from "@ant-design/icons";
 import { FcSearch } from "react-icons/fc";
 import FindStatistical from "../../findStatistical/FindStatistical";
+import { toast } from "react-toastify";
 
 const OrderStatistical = () => {
   const [listDataOrder, setListDataOrder] = useState([]);
@@ -17,6 +18,8 @@ const OrderStatistical = () => {
   const [starDate, setStarDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [runDate, setRunDate] = useState(false);
+  let start = new Date(starDate);
+  let end = new Date(endDate);
   /*****************************************GET DATA******************************* */
   const getOrderApi = useCallback(async () => {
     if (selectDate !== "find") {
@@ -126,8 +129,12 @@ const OrderStatistical = () => {
 
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
-    setRunDate(true);
-    await getOrder("day", starDate, endDate, setListDataOrder, setIsLoading);
+    if (!starDate || !endDate) {
+      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
+    } else {
+      setRunDate(true);
+      await getOrder("day", starDate, endDate, setListDataOrder, setIsLoading);
+    }
   };
   return (
     <div className="layout-order-statistical">
@@ -186,6 +193,7 @@ const OrderStatistical = () => {
                 onChangeStart={(e) => setStarDate(e.target.value)}
                 valueEnd={endDate}
                 onChangeEnd={(e) => setEndDate(e.target.value)}
+                disabled={end < start ? true : false}
               />
             </div>
           )}

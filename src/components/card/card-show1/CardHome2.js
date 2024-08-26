@@ -117,7 +117,7 @@ function CardHome2() {
         <div
           className="content-body-2"
           title={`Tổng doanh thu tháng trước:${ConvertMoney(
-            listDataSuccess[1].totalRevenue
+            listDataSuccess[1]?.totalRevenue
           )}`}
         >
           <div className="icon-dollar">

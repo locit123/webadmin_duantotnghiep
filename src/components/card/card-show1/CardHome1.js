@@ -174,7 +174,7 @@ function CardHome1(props) {
       ) : (
         <div
           className="content-body"
-          title={`Món đã bán hôm qua: ${listDataSuccess[0].totalQuantity} món`}
+          title={`Món đã bán hôm qua: ${listDataSuccess[0]?.totalQuantity} món`}
         >
           <div className="icon-cart">
             <div className="ic-ne">

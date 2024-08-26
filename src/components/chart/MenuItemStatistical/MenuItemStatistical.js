@@ -5,6 +5,7 @@ import LoadingMenuItemStatistical from "./LoadingMenuItemStatistical";
 import { LoadingOutlined } from "@ant-design/icons";
 import { FcSearch } from "react-icons/fc";
 import FindStatistical from "../../findStatistical/FindStatistical";
+import { toast } from "react-toastify";
 
 const MenuItemStatistical = () => {
   const [listDataMenuItem, setListDataMenuItem] = useState([]);
@@ -17,7 +18,8 @@ const MenuItemStatistical = () => {
   const [starDate, setStarDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [runDate, setRunDate] = useState(false);
-
+  let start = new Date(starDate);
+  let end = new Date(endDate);
   /********************************************GET API DATA***************************** */
   const getMenuItemApi = useCallback(async () => {
     if (selectDate !== "find") {
@@ -146,14 +148,18 @@ const MenuItemStatistical = () => {
   }, [getDataSuccess]);
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
-    setRunDate(true);
-    await getMenuItem(
-      "day",
-      starDate,
-      endDate,
-      setListDataMenuItem,
-      setIsLoading
-    );
+    if (!starDate || !endDate) {
+      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
+    } else {
+      setRunDate(true);
+      await getMenuItem(
+        "day",
+        starDate,
+        endDate,
+        setListDataMenuItem,
+        setIsLoading
+      );
+    }
   };
   return (
     <div className="layout-menu-item-statistical">
@@ -210,6 +216,7 @@ const MenuItemStatistical = () => {
                 valueStart={starDate}
                 onChangeStart={(e) => setStarDate(e.target.value)}
                 valueEnd={endDate}
+                disabled={end < start ? true : false}
                 onChangeEnd={(e) => setEndDate(e.target.value)}
               />
             </div>

@@ -4,7 +4,7 @@ import { getAllOrder } from "../../../api/call_api/orders/fetchApiOrder";
 import LoadingTableOrder from "./LoadingTableOrder";
 import ReactPaginate from "react-paginate";
 import { AiOutlineSwapRight } from "react-icons/ai";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 import _ from "lodash";
 import ModalOrder from "./ModalOrders/ModalOrder";
 import { checkDate, FormatDay2 } from "../../../utils/FormDay";
@@ -297,7 +297,7 @@ const TableOrder = () => {
           forcePage={currentPage}
         />
 
-        {currentImage && isOpen && (
+        {/* {currentImage && isOpen && (
           <Lightbox
             image={currentImage}
             title={title}
@@ -307,7 +307,7 @@ const TableOrder = () => {
               setTitle("");
             }}
           />
-        )}
+        )} */}
       </div>
     </>
   );

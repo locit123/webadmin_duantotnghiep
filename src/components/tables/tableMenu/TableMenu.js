@@ -14,7 +14,7 @@ import { getAllMenuItem } from "../../../api/call_api/menuItem/fetchApiMenuItem"
 import { getAllCategories } from "../../../api/call_api/categories/fetchApiCategory";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import _ from "lodash";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 
 const TableMenu = ({ setShow, setShowOption }) => {
   console.log("TABLE MENU");
@@ -194,7 +194,7 @@ const TableMenu = ({ setShow, setShowOption }) => {
           />
         </>
       )}
-      {currentImage && isOpen && (
+      {/* {currentImage && isOpen && (
         <Lightbox
           image={currentImage}
           title={title}
@@ -204,7 +204,7 @@ const TableMenu = ({ setShow, setShowOption }) => {
             setTitle("");
           }}
         />
-      )}
+      )} */}
     </div>
   );
 };

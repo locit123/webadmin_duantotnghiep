@@ -11,7 +11,7 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import _ from "lodash";
 import ModalHistoryUser from "./ModalUser/ModalHistoryUser";
 import { valueFormUsers } from "../../../store/valueForm/users/actions";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 
 const TableUser = ({ role, setRole, setShow }) => {
   console.log("render TableUser");
@@ -315,7 +315,7 @@ const TableUser = ({ role, setRole, setShow }) => {
           forcePage={currentPage}
         />
       )}
-      {currentImage && isOpen && (
+      {/* {currentImage && isOpen && (
         <Lightbox
           image={currentImage}
           title={caption}
@@ -325,7 +325,7 @@ const TableUser = ({ role, setRole, setShow }) => {
             setCaption("");
           }}
         />
-      )}
+      )} */}
     </div>
   );
 };

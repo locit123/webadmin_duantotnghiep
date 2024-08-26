@@ -4,7 +4,7 @@ import { FacebookFilled, InstagramFilled } from "@ant-design/icons";
 import "./CardProfileLeft.scss";
 import { useSelector } from "react-redux";
 import { getMeState, getThemeState } from "../../../store/selector";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 
 const CardProfileLeft = () => {
   console.log("render CardProfileLeft");
@@ -22,7 +22,7 @@ const CardProfileLeft = () => {
   console.log(currentImage, title);
   return (
     <>
-      {currentImage && isOpen && (
+      {/* {currentImage && isOpen && (
         <Lightbox
           image={currentImage}
           title={title}
@@ -32,7 +32,7 @@ const CardProfileLeft = () => {
             setTitle("");
           }}
         />
-      )}
+      )} */}
       <Card
         bordered={false}
         className={`card-profile-1 ${theme ? "theme" : ""}`}

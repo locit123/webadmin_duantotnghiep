@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { apiTables } from "../../../api/AxiosInstall";
 import LoadingCardBan from "./LoadingCardBan";
 import ModalCardBan from "./MoadlCardBan";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 
 const CardBan = (props) => {
   console.log("render CardBan");
@@ -118,13 +118,13 @@ const CardBan = (props) => {
           </div>
         )}
       </Card>
-      {isShow && (
+      {/* {isShow && (
         <Lightbox
           image={imageClick[1]}
           title={`Bàn ${imageClick[0]}`}
           onClose={() => setIsShow(false)}
         />
-      )}
+      )} */}
     </>
   );
 };

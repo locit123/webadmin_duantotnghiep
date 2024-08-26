@@ -12,7 +12,7 @@ import LoadingTable from "./LoadingTable";
 import { getAllTable } from "../../../api/call_api/tables/fetchApiTable";
 import { toast } from "react-toastify";
 import { AiOutlineSwapRight } from "react-icons/ai";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 
 import _ from "lodash";
 const TableTable = () => {
@@ -212,7 +212,7 @@ const TableTable = () => {
           ) : null}
         </>
       )}
-      {currentImage && isOpen && (
+      {/* {currentImage && isOpen && (
         <Lightbox
           image={currentImage}
           title={title}
@@ -222,7 +222,7 @@ const TableTable = () => {
             setTitle("");
           }}
         />
-      )}
+      )} */}
 
       <ModalDeleteTable
         show={show}

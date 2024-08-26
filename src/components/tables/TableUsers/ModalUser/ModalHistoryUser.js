@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { historyPaymentUser } from "../../../../api/call_api/auth/fetchApiAuth";
 import { FormatDay2 } from "../../../../utils/FormDay";
 import _ from "lodash";
-import Lightbox from "react-awesome-lightbox";
+// import Lightbox from "react-awesome-lightbox";
 import LoadingCash from "./LoadingCash";
 import LoadingBanking from "./LoadingBanking";
 
@@ -98,7 +98,7 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   };
   return (
     <>
-      {currentImage && isOpen && (
+      {/* {currentImage && isOpen && (
         <Lightbox
           image={currentImage}
           title={title}
@@ -108,7 +108,7 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
             setCurrentImage("");
           }}
         />
-      )}
+      )} */}
       <Modal show={show} onHide={handleClose} size="xl" backdrop={"static"}>
         <Modal.Header closeButton>
           <Modal.Title>

@@ -1,0 +1,173 @@
+.Row.theme {
+    .left-col {
+        .nice-admin {
+            color: #fff;
+        }
+    }
+
+    .right-col {
+        .icon-sun {
+            color: orange;
+        }
+
+        .item-box {
+
+            .item-span {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.Row {
+    flex: 2;
+    .left-col {
+        display: flex;
+        justify-content: flex-end;
+
+        .img {
+            max-width: 26px;
+        }
+
+        .nice-admin {
+            display: block;
+            font-size: 26px;
+            font-weight: 700;
+            color: #E8900C;
+        }
+    }
+
+    .right-col {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+
+        .icon-sun {
+            font-size: 26px;
+            display: block;
+            color: #FFA500;
+        }
+
+        .icon-moon {
+            font-size: 26px;
+            display: block;
+            color: #FFD700;
+        }
+
+        .item-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+
+            .item-span {
+                            color: #E8900C;
+                font-weight: bold;
+                position: relative;
+            }
+
+        }
+
+    }
+}
+
+.menu-header.theme {
+    background-color: #1e1e2e;
+
+    ul {
+
+        li {
+            color: #fff
+        }
+
+        .item-link {
+            color: #fff;
+
+            .item-icon {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.menu-header {
+    position: absolute;
+    z-index: 2;
+    margin: 0 !important;
+    top: 63px;
+    right: 20px;
+    width: 200px;
+    background-color: #ffffffff;
+    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        .menu-name {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-bottom: 1px solid #d2d2d2;
+            color: #E8900C;
+        }
+
+        .item-profile {
+            border-bottom: 1px solid #d2d2d2;
+        }
+
+        li {
+
+            list-style: none;
+            padding: 10px;
+            border-radius: 5px;
+
+            .item-link {
+                text-decoration: none;
+                color: #E8900C;
+                display: block;
+
+                span {
+                    margin-left: 10px;
+                }
+            }
+
+            .item-icon {
+                color: #E8900C;
+            }
+        }
+    }
+}
+
+//MOBILE
+@media (max-width: 768px) {
+    .Row {
+        .left-col {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 20px;
+
+            .nice-admin {
+                display: none;
+            }
+        }
+
+        .right-col {
+            .item-span {
+                display: none;
+            }
+        }
+
+    }
+}
+
+//TABLE
+@media (min-width: 768px) and (max-width: 991px) {
+    .Row {
+        .left-col {
+            display: flex;
+            justify-content: flex-start;
+            margin-left: 20px;
+        }
+    }
+}

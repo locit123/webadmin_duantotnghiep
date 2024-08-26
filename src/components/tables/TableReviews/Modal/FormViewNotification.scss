@@ -1,0 +1,21 @@
+.box-images {
+    border: 1px dashed #908c8c;
+    height:100px;
+    display: flex;
+    gap: 5px;
+    img {
+        width: 100px;
+        height: 100%;
+        object-fit: cover;
+        image-rendering: pixelated;
+    }
+
+    span {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 200px;
+        color: #908c8c;
+    }
+}

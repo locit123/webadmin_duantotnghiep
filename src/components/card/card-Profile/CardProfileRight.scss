@@ -1,0 +1,56 @@
+.card-profile2.theme {
+    background-color: #1e1e2e;
+
+    .ant-card-head {
+
+
+        .box-title {
+            border-bottom: 2px solid #fff;
+            color: #fff;
+            .li.click {
+                color: #fff;
+                border-bottom: 2px solid #fff;
+                background-color: #1e1e2e;
+                
+
+
+
+            }
+        }
+    }
+}
+
+.card-profile2 {
+    margin-bottom: 20px;
+
+    .ant-card-head {
+        padding-top: 20px;
+        border-bottom: none;
+
+        .box-title {
+            display: flex;
+            color: #C9AA05;
+            gap: 20px;
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: 2px solid #E8900C;
+
+            .li {
+                list-style: none;
+                padding-bottom: 10px;
+            }
+
+            .li.click {
+
+                background-color: #fff;
+                color: #E8900C;
+                border-bottom: 2px solid #E8900C;
+
+
+
+            }
+        }
+    }
+
+
+}

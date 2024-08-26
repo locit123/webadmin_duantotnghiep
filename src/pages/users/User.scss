@@ -1,0 +1,260 @@
+.layout-user.theme {
+    background-color: #2e2e3e;
+
+    .text-h1 {
+        color: #fff;
+    }
+.bt {
+    background-color: #1e1e2e !important;
+    border: 1px solid #1e1e2e;
+
+    &:hover {
+        opacity: .5;
+        border: 1px solid #1e1e2e;
+    }
+}
+
+
+
+
+    .table-users {
+        background-color: #1e1e2e;
+
+        .active {
+
+            .page-link {
+                background-color: #2e2e3e;
+                border: 1px solid #2e2e3e;
+            }
+        }
+
+        .box-h1-select {
+            span{
+                color: #fff;
+            }
+            .text-center {
+                color: #fff;
+            }
+
+            select {
+                border: 1px solid #fff !important;
+                color: #2e2e3e;
+            }
+        }
+
+        .dialog {
+
+
+            .loading {
+                color: #FFF;
+
+            }
+        }
+
+        h1 {
+            color: #FFF;
+        }
+
+        .table {
+
+            thead {
+                tr {
+                    th {
+                        background-color: #1e1e2e;
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        background-color: #1e1e2e;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-user {
+    min-height: 100%;
+
+    .bt {
+        background-color: #E8900C !important;
+        border: 1px solid #E8900C;
+
+        &:hover {
+            opacity: .5;
+            border: 1px solid #E8900C;
+        }
+    }
+
+    .text-h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        padding: 5px 20px;
+        font-weight: 600;
+        color: #E8900C;
+    }
+
+    
+    .form {
+        .custom-floating-label {
+                height: 2.5rem;
+                /* Thay đổi chiều cao theo ý muốn */
+            }
+        
+            .custom-floating-label .form-control {
+                height: calc(2.5rem - 1.5rem);
+                /* Điều chỉnh chiều cao của input bên trong */
+                padding-top: 0.75rem;
+                /* Điều chỉnh padding trên */
+                padding-bottom: 0.75rem;
+                /* Điều chỉnh padding dưới */
+            }
+        
+            .custom-floating-label label {
+                line-height: 2.5rem;
+                /* Điều chỉnh line-height để căn giữa label */
+            }
+    }
+
+
+    .table-users {
+        margin-right: 20px;
+        margin-left: 20px;
+
+        .active {
+
+            .page-link {
+                background-color: #E8900C;
+                border: 1px solid #E8900C;
+            }
+        }
+
+        .box-h1-select {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+span {
+        color: #E8900C;
+        font-size: 24px;
+        font-weight: 600;
+    }
+            .text-center {
+                color: #E8900C;
+            }
+
+            select {
+                display: block;
+                height: 30px;
+                border: 1px solid #E8900C !important;
+                color: #E8900C;
+                outline: none;
+            }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 10px;
+
+        }
+
+        .dialog {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .loading {
+                color: #E8900C;
+                align-self: center;
+                font-size: 50px;
+            }
+        }
+
+        h1 {
+            padding: 10px 0;
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #012970;
+        }
+
+        thead {
+            tr {
+                th {
+                    color: #E8900C;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                .img {
+                    max-width: 50px;
+                    max-height: 50px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                td {
+                    color: #C9AA05;
+                    text-align: center;
+                }
+
+                .bt {
+                    .btn-danger {
+                        margin-right: 10px;
+                    }
+                                        
+                }
+                
+            }
+        }
+
+        .avatar {
+            max-width: 50px;
+            max-height: 50px;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                image-rendering: auto;
+                height: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 540px) {
+    .layout-user {
+        .form {
+            margin: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .layout-user {
+
+        /* CSS cho thiết bị dưới 576px */
+        .text-h1 {
+            text-align: center;
+        }
+    }
+
+}
+
+
+@media (min-width:1200px) {
+    .layout-user {
+        min-width: 100vh;
+    }
+}

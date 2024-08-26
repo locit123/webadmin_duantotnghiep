@@ -1,0 +1,769 @@
+.layout-statistical.theme {
+    background-color: #2e2e3e;
+
+    .collapsed {
+        background-color: #1e1e2e;
+        color: white;
+    }
+
+    .show {
+        background-color: #2e2e3e;
+
+    }
+
+    .accordion-body {
+        background-color: #2e2e3e;
+    }
+
+    .accordion-button {
+        background-color: #1e1e2e;
+        color: #fff;
+
+        &::after {
+            background-color: white;
+        }
+    }
+
+    .box-row3 {
+
+        .layout-payment {
+
+            .box-payment {
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+
+            .find {
+                color: #fff;
+            }
+
+        }
+
+        .layout-table-statistical {
+            .find {
+                color: #fff;
+            }
+
+            .box-table {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+
+        .layout-revenue {
+            .find {
+                color: #fff;
+            }
+
+            .box-revenue {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+
+        .layout-menuitem-best-selling {
+            .find {
+                color: #fff;
+            }
+
+            .box-menuitem {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+
+        .layout-menu-item-statistical {
+            .find {
+                color: #fff;
+            }
+
+            .content-menu-item {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+
+        .layout-order-statistical {
+            .find {
+                color: #fff;
+            }
+
+            .content-order {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+
+        .layout-average-statistical {
+            .find {
+                color: #fff;
+            }
+
+            .content-average {
+                .box-find {
+
+
+                    .ip-date {
+
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+
+                .select {
+                    select {
+                        color: #2e2e3e;
+                        border: 1px solid #2e2e3e;
+                    }
+                }
+            }
+
+            .containerStyle {
+                background-color: #1e1e2e;
+            }
+        }
+    }
+}
+
+.layout-statistical {
+    min-height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .box-row3 {
+        .layout-average-statistical {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .content-average {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .box-date {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                position: relative;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+        }
+
+        .layout-menu-item-statistical {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .content-menu-item {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .box-menu {
+                    display: flex;
+                    justify-content: space-between;
+
+
+
+                }
+
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                position: relative;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+        }
+
+        .layout-order-statistical {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .content-order {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .box-date {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .box-month {
+                        display: flex;
+
+                    }
+                }
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                position: relative;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+
+        }
+
+        .layout-revenue {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .box-revenue {
+                
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+.select {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    select {
+        padding: 5px 15px;
+        color: #E8900C;
+        border: 1px solid #E8900C;
+        outline: none;
+    }
+}
+                .box-date {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .box-month {
+                        display: flex;
+
+                    }
+                }
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+        }
+
+        .layout-menuitem-best-selling {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .box-menuitem {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+
+                .box-date {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .box-month {
+                        display: flex;
+
+                    }
+                }
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+        }
+
+
+
+        .layout-table-statistical {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .box-table {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .select-table {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+
+            .box-2 {
+                display: flex;
+
+                .box-text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                }
+
+                .text-color {
+                    font-size: .9rem;
+                }
+            }
+
+
+
+        }
+
+        .layout-payment {
+            .find {
+                color: #E8900C;
+                font-weight: 600;
+            }
+
+            .box-payment {
+                .box-find {
+                    display: flex;
+                    gap: 7px;
+
+                    .ip-date {
+
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                .select {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    select {
+                        padding: 5px 15px;
+                        color: #E8900C;
+                        border: 1px solid #E8900C;
+                        outline: none;
+                    }
+                }
+
+                h1 {
+                    font-size: 1.2rem;
+                    color: #E8900C;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .find-data {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .box-date {
+                    display: flex;
+                    gap: 8px;
+
+                }
+            }
+
+            .containerStyle {
+                width: 100%;
+                height: fit-content;
+                border-radius: 10px;
+                background-color: #fff;
+                position: relative;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+            }
+
+            .box-loading {
+                .loading {
+                    color: #E8900C;
+                    font-size: 50px;
+                }
+
+                .loading.theme {
+                    color: #fff;
+                }
+            }
+
+
+        }
+    }
+
+
+}

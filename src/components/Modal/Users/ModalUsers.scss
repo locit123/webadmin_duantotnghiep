@@ -1,0 +1,24 @@
+.modal-body {
+    .form-user {
+        .form-eye{
+            position: relative;
+            .eye{
+                position: absolute;
+                right: 10px;
+                z-index: 999999999;
+                top: 15px;
+                cursor: pointer;
+            }
+        }
+
+    }
+    .authentication{
+        position: relative;
+        .tag-verify{
+            position: absolute;
+            top: 18px;
+            right: 10px;
+            cursor: pointer;
+        }
+    }
+}

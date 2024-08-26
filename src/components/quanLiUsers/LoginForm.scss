@@ -1,0 +1,132 @@
+.content-login-from {
+    width: 410px;
+    margin: 0 auto;
+    padding-top: 100px;
+    height: 100vh;
+    .logo-title {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        img {
+            width: 24.5px;
+            height: 26px;
+        }
+
+        h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #E8900C;
+            font-family: sans-serif;
+        }
+    }
+
+    .form-login {
+        background-color: white;
+        width: 100%;
+        padding: 0 20px 20px 20px;
+        border-radius: 7px;
+        box-shadow: 1px 2px 1px 2px #E8900C;
+
+        .box-title {
+            padding-top: 35px;
+
+            h5 {
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: #E8900C;
+                font-family: "Poppins", sans-serif;
+            }
+
+            p {
+                font-size: .875rem;
+                color: #E8900C;
+            }
+        }
+
+        .form-group {
+            .text-checkbox {
+                font-size: 1rem;
+
+                span {
+
+                    color: #E8900C;
+
+                }
+            }
+        }
+
+        .button {
+            button {
+                width: 100%;
+                background-color: #E8900C;
+                    border: 1px solid #E8900C;
+                &:hover{
+                    border: 1px solid #E8900C;
+                    opacity: .5;
+                }
+            }
+        }
+
+        .text-footer {
+            display: flex;
+            gap: 5px;
+
+            span {
+                    color: #E8900C;
+                    &:last-child{
+                        text-decoration: underline;
+                        cursor: pointer;
+                        &:hover{
+                        text-decoration: none;
+                        }
+                    }
+                }
+        }
+    }
+}
+
+/* Thiết lập bảng có thể cuộn ngang trên các thiết bị có màn hình nhỏ */
+@media screen and (max-width: 990px) {
+    .logo-title {
+        h3 {
+            display: none;
+        }
+    }
+}
+
+/* Định dạng cho giao diện trên điện thoại */
+@media screen and (max-width: 480px) {
+
+    /* Điều chỉnh kích thước hoặc khoảng cách các phần tử cho phù hợp với màn hình nhỏ hơn */
+    .content-login-from {
+        padding: 20px;
+
+        .logo-title {
+            text-align: center;
+
+            img {
+                max-width: 100px;
+                height: auto;
+            }
+
+            h3 {
+                display: none;
+            }
+        }
+
+        .form-login {
+            margin-top: 20px;
+        }
+
+        .button {
+            margin-top: 20px;
+        }
+    }
+
+
+
+
+
+
+}

@@ -1,0 +1,102 @@
+.custom-sider {
+    background-color: #f9fafc;
+    overflow: auto; // Cho phép cuộn nội dung nếu chiều cao vượt quá 100vh
+
+    .toggle-button {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    // Add styles for collapsed state
+    &.collapsed {
+        .menu {
+            .item-menu {
+                .item-link {
+                    display: none; // Hide the link text when collapsed
+                }
+
+                .item-icon {
+                    margin: 0 auto; // Center the icons
+                }
+            }
+        }
+    }
+}
+
+.menu.theme {
+    background-color: #1e1e2e;
+
+    .item-menu {
+        color: #fff;
+
+        &:hover {
+            color: #fff !important;
+            background-color: #2e2e3e !important;
+        }
+
+        .item-icon {}
+
+        .item-link {
+            text-decoration: none;
+            
+        }
+    }
+
+    .ant-menu-item-selected {
+        color: #fff !important;
+        background-color: #2e2e3e !important;
+
+        .item-link {}
+
+        .item-icon {}
+    }
+}
+
+.ant-menu {
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    position: sticky !important;
+    .item-menu {
+        margin-left: 23px !important;
+        color: #E8900C;
+
+        &:hover {
+            color: #E8900C !important;
+            background-color: #fee7c9 !important;
+            margin-left: 23px !important;
+        }
+
+        .item-icon {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .item-link {
+            text-decoration: none;
+        }
+    }
+
+    .ant-menu-item-selected {
+        color: #E8900C !important;
+        background-color: #fee7c9 !important;
+        margin-left: 23px !important;
+
+        .item-link {}
+
+        .item-icon {}
+    }
+}
+
+@media (min-width: 1200px) {
+
+    /* CSS cho thiết bị từ 1200px trở lên */
+    .layout-table {
+        height: 100%;
+    }
+}

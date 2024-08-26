@@ -1,0 +1,365 @@
+.layout-promotion.theme {
+    background-color: #2e2e3e;
+
+    .nav-item {
+        .nav-link {
+            color: white;
+
+            &.active {
+                background-color: #1e1e2e;
+                border: 1px solid #1e1e2e;
+                color: white;
+                border-bottom: 1px solid white;
+            }
+        }
+
+    }
+
+    .bt2 {
+        background-color: #1e1e2e !important;
+        border: 1px solid #1e1e2e;
+
+        &:hover {
+            opacity: .5;
+            border: 1px solid #1e1e2e;
+        }
+    }
+
+    .text-h1 {
+        color: #fff;
+    }
+
+    .form {
+        background-color: #1d1933;
+
+        .form-group {
+            .form-label {
+                color: #fff;
+            }
+
+            .ic-arrow {
+                background-color: #fff;
+            }
+
+        }
+
+        .text-center {
+            .btn {
+                background-color: #b0127b;
+                outline: none;
+                border: none;
+            }
+        }
+    }
+
+    .table-users {
+        background-color: #1e1e2e;
+.dialog {
+
+
+        .loading {
+            color: #FFF;
+
+        }
+    }
+        .isActive {
+            opacity: .1;
+        }
+
+        .select {
+
+
+            select {
+                color: #2e2e3e;
+                border: 1px solid #2e2e3e;
+            }
+        }
+
+        .box-select {
+
+
+            span {
+                color: white;
+
+            }
+
+
+        }
+
+        h1 {
+            color: #FFF;
+        }
+
+        .table {
+
+            thead {
+                tr {
+                    th {
+                        background-color: #1e1e2e;
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        background-color: #1e1e2e;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-promotion {
+    min-height: 100%;
+    overflow: hidden;
+
+    /* Đảm bảo không có tràn ngoài */
+    .nav-item {
+        .nav-link {
+            color: #2e2e3e;
+
+            &.active {
+                color: #E8900C;
+            }
+        }
+
+    }
+
+    .ant-layout-content {
+        height: 100%;
+        overflow: auto;
+        overflow: hidden;
+        /* Đảm bảo nội dung có thể cuộn */
+    }
+
+    .bt2 {
+        background-color: #E8900C !important;
+        border: 1px solid #E8900C;
+
+        &:hover {
+            opacity: .5;
+            border: 1px solid #E8900C;
+        }
+    }
+
+
+    .text-h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        padding: 5px 20px;
+        font-weight: 600;
+        color: #E8900C;
+    }
+
+    .form {
+        box-shadow: 0rem 0.125rem 1.25rem rgba(1, 41, 112, 0.1);
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+
+        .form-group {
+            .form-label {
+                color: #E8900C;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            .ic-arrow {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>') no-repeat right 1rem center;
+                background-size: 1rem;
+                padding-right: 2.5rem;
+            }
+
+        }
+
+        .text-center {
+            .btn {
+                width: 100%;
+            }
+        }
+    }
+
+    .table-users {
+        margin-right: 20px;
+        margin-left: 20px;
+
+        .select {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            select {
+                padding: 5px 15px;
+                color: #E8900C;
+                border: 1px solid #E8900C;
+                outline: none;
+            }
+        }
+                .dialog {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+        
+                    .loading {
+                        color: #E8900C;
+                        align-self: center;
+                        font-size: 50px;
+                    }
+                }
+
+        .box-progressBar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            justify-content: space-between;
+            margin: 0 20px;
+
+            .progressBar {
+                border: 1px solid #007bff;
+                border-radius: 10px;
+                height: 15px;
+                display: flex;
+                position: relative;
+
+                .totalCount {
+                    color: #E8900C;
+                    font-size: 9px;
+                    position: absolute;
+                    right: 5px;
+                }
+
+                .run-progressBar {
+                    position: relative;
+                    background-color: #007bff;
+                    height: 100%;
+                    border-radius: 10px;
+                    transition: width 1s ease-in-out;
+                }
+
+                .total-progressBar {
+                    color: white;
+                    font-size: 9px;
+                    position: absolute;
+                    left: 25%;
+                    font-weight: bold;
+                }
+            }
+
+
+        }
+
+        
+
+        .box-select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            span {
+                color: #E8900C;
+                font-size: 1.2rem;
+                font-weight: bold;
+                flex: 1;
+            }
+
+            h1 {
+                flex: 1;
+            }
+
+            .select {
+                flex: 1;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+
+                select {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    text-align: center;
+                }
+            }
+        }
+
+        h1 {
+            padding: 10px 0;
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #E8900C;
+        }
+
+        thead {
+            tr {
+                th {
+                    color: #E8900C;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    color: #C9AA05;
+                    text-align: center;
+                }
+
+                .bt {
+                    .btn-danger {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .avatar {
+            max-width: 50px;
+            max-height: 50px;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+/* Máy tính để bàn (lớn) */
+@media (min-width: 1200px) {
+
+    /* CSS cho thiết bị từ 1200px trở lên */
+    .layout-promotion {
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 540px) {
+    .layout-promotion {
+        .form {
+            margin: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .layout-promotion {
+
+        /* CSS cho thiết bị dưới 576px */
+        .text-h1 {
+            text-align: center;
+        }
+    }
+
+}

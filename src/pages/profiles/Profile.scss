@@ -1,0 +1,97 @@
+.layout-profile.theme {
+    background-color: #2e2e3e;
+    padding: 0 20px;
+
+    .text-h1 {
+        color: #fff;
+    }
+
+
+
+}
+
+.layout-profile {
+    height: 100vh;
+        overflow: hidden;
+        /* Đảm bảo không có tràn ngoài */
+    
+        .ant-layout-content {
+            height: 100%;
+            overflow: auto;
+            overflow: hidden;
+            /* Đảm bảo nội dung có thể cuộn */
+        }
+    .text-h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        padding: 5px 20px;
+        font-weight: 600;
+        color: #E8900C;
+    }
+
+    .card-profile {
+        display: flex;
+        gap: 20px;
+        .card-profile-left {
+            width: 350px;
+        }
+
+        .card-profile-right {
+            flex: 1;
+        }
+    }
+
+}
+/* Máy tính để bàn (lớn) */
+@media (min-width: 1200px) {
+
+    /* CSS cho thiết bị từ 1200px trở lên */
+    .layout-profile {
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 540px) {
+    .layout-profile {
+        .form {
+            margin: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .layout-profile {
+
+        /* CSS cho thiết bị dưới 576px */
+        .text-h1 {
+            text-align: center;
+        }
+    }
+
+}
+
+@media (max-width: 992px) {
+    .layout-profile {
+
+        .card-profile {
+            display: flex;
+            flex-direction: column;
+            .card-profile-left{
+                width: 100%;
+            }
+        }
+    }
+}
+@media (max-width: 1200px) {
+    .layout-profile {
+        height: 100vh;
+    }
+}
+
+/* Máy tính để bàn (lớn) */
+@media (min-width: 1200px) {
+    /* CSS cho thiết bị từ 1200px trở lên */
+    .layout-profile {
+        height: 100vh;
+    }
+}

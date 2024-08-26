@@ -1,0 +1,46 @@
+.content-error-page {
+    width: 100%;
+    height: 100%;
+    .h1 {
+        font-size: 180px;
+        font-weight: 700;
+        color: #4154f1;
+        margin-bottom: 0;
+        line-height: 150px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #012970;
+        margin-bottom: 30px;
+    }
+
+    button {
+        background: #51678f;
+        color: #fff;
+        padding: 8px 30px;
+        outline: none;
+        border: none;
+        border-radius: 7px;
+    }
+    .img{
+        padding: 48px 0;
+        width: 617.99px;
+        margin: 0 auto;
+        height: 525px;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .content-error-page{
+        .img{
+                max-width: 100%;
+                padding: 0 30px;
+        }
+    }
+}

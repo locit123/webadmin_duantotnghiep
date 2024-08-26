@@ -1,0 +1,101 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.loadingTableMenu {
+    .item-text {}
+
+    .img-table {
+        position: relative;
+
+        .menu.monChinh {
+            right: 100px;
+        }
+
+        .menu.monKhaiVi {
+            right: 108px;
+        }
+
+        .menu.monPhu {
+            right: 112px;
+        }
+
+        .menu.thucUong {
+            right: 114px;
+        }
+
+        .menu.theme {
+            background-color: #C55402;
+
+            h1 {
+                color: #fff;
+
+
+            }
+
+            .table {
+                margin: 0;
+
+                thead {
+                    tr {
+                        th {
+                            color: #fff;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        .img {}
+                    }
+                }
+            }
+        }
+
+        .menu {
+            animation: fadeIn 0.9s ease forwards;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            right: 96px;
+            width: 350px;
+            border: 1px solid white;
+            background-color: white; // Nền trắng với độ trong suốt 80%
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            h1 {
+                color: #E8900C;
+                padding: 0;
+                margin: 0;
+                font-size: 1.2rem;
+
+            }
+
+            .table {
+                margin: 0;
+
+                thead {
+                    tr {
+                        th {
+                            color: #E8900C;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        .img {}
+                    }
+                }
+            }
+
+        }
+    }
+}

@@ -1,0 +1,145 @@
+.content-dat-ban.theme {
+    background-color: #1e1e2e;
+
+    .box-title {
+        .box-text {
+            p {
+                color: #fff;
+            }
+
+            span {
+                color: #fff;
+            }
+        }
+
+        .icon-ellips {
+            color: #fff;
+        }
+    }
+
+    .box-loading {
+
+        .loading {
+            color: #fff;
+        }
+    }
+
+    .box-body {
+        span {
+            color: #E8900C;
+        }
+
+        table {
+            width: 100%;
+
+            thead {
+                tr {
+                    th {
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        color: #fff;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.content-dat-ban {
+    .box-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .box-text {
+            display: flex;
+            align-items: center;
+
+            p {
+                font-size: 1.125rem;
+                /* Adjust as needed (18px = 1.125rem) */
+                font-weight: 500;
+                color: #E8900C;
+                font-family: Poppins, sans-serif;
+                margin: 0;
+            }
+
+            span {
+                color: #C9AA05;
+                font-size: 0.875rem;
+                /* Adjust as needed (14px = 0.875rem) */
+                font-weight: 400;
+                margin-left: 0.375rem;
+                /* Adjust as needed (6px = 0.375rem) */
+            }
+        }
+
+        .icon-ellips {
+            color: #C9AA05;
+        }
+    }
+
+    .box-loading {
+        text-align: center;
+
+        .loading {
+            font-size: 30px;
+            color: #E8900C;
+        }
+    }
+
+    .box-body {
+        span {
+            color: #E8900C;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+
+            thead {
+                tr {
+                    color: #E8900C;
+
+                }
+            }
+
+            tbody {
+                text-align: center;
+
+                border-spacing: 10px;
+
+                tr {
+                    color: #C9AA05;
+
+                    th,
+                    td {
+                        padding: 5px;
+                        /* Khoảng cách bên trong các ô */
+                    }
+
+                    th {
+                        .img {
+                            img {
+                                max-width: 100px;
+                                border-radius: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

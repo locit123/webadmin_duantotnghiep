@@ -1,0 +1,27 @@
+.form-group{
+    label{
+        color: #E8900C;
+    }
+    .form-control{
+        color: #E8900C;
+        border: 1px solid #E8900C;
+    }
+    .box-ip-ic{
+        position: relative;
+        .icon-eye{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 11px;
+            cursor: pointer;
+        }
+    }
+}
+.box-forgot-password{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .link{
+        color: #E8900C;
+    }
+}

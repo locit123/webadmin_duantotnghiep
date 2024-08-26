@@ -1,0 +1,33 @@
+.layout-overview.theme{
+    h5{
+        
+            color: #fff;
+    }
+    .p{
+        p{
+            color: #fff
+           
+        }
+    }
+}
+.layout-overview{
+    h5{
+        font-size: 18px;
+            font-weight: 500;
+            color: #E8900C;
+            font-family:sans-serif;
+    }
+    .p{
+        display: flex;
+        p{
+            font-weight: 600;
+            color: #C9AA05;
+            &:first-child{
+                width: 25%;
+            }
+            &:last-child{
+                flex: 1;
+            }
+        }
+    }
+}

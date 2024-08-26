@@ -1,0 +1,123 @@
+.content-ban-chay-nhat.theme {
+    background-color: #1e1e2e;
+
+    .box-title {
+        .box-text {
+            p {
+                color: #fff;
+            }
+
+            span {
+                color: #fff;
+            }
+        }
+
+        .icon-ellips {
+            color: #fff;
+        }
+    }
+
+    .content-body {
+        .content-box {
+
+            thead {
+                tr {
+                    th {
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+
+                    th,
+                    td {
+                        color: #fff;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.content-ban-chay-nhat {
+    .box-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .box-text {
+            display: flex;
+            align-items: center;
+
+            p {
+                font-size: 1.125rem;
+                /* Adjust as needed (18px = 1.125rem) */
+                font-weight: 500;
+                color: #E8900C;
+                font-family: Poppins, sans-serif;
+                margin: 0;
+            }
+
+            span {
+                color: #C9AA05;
+                font-size: 0.875rem;
+                /* Adjust as needed (14px = 0.875rem) */
+                font-weight: 400;
+                margin-left: 0.375rem;
+                /* Adjust as needed (6px = 0.375rem) */
+            }
+        }
+                .icon-ellips {
+                    color: #C9AA05;
+                }
+    }
+
+    .content-body {
+        display: flex;
+        flex-direction: column;
+
+        .content-box {
+            border-collapse: collapse;
+
+            thead {
+                tr {
+                    color: #E8900C;
+
+                    th {
+                        padding-left: 5px;
+                    }
+                }
+            }
+
+            tbody {
+                text-align: center;
+                tr {
+                    .text-mt {
+                        color: #C9AA05;
+                        font-weight: bold;
+                    }
+
+                    .text-da-ban {
+                        color: #C9AA05;
+                        font-weight: bold;
+                    }
+
+                    th,
+                    td {
+                        padding: 5px;
+                                color: #C9AA05;
+                        .link-img {
+                            img {
+                                max-width: 60px;
+                                border-radius: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,143 @@
+.content-ban-gan-day.theme {
+    background-color: #1e1e2e;
+
+    .box-title {
+        .item-text {
+            p {
+                color: #fff;
+            }
+
+            span {
+                color: #fff;
+            }
+        }
+
+        .icon-ellips {
+            color: #fff;
+        }
+    }
+
+    .box-body {
+        .box-danh-muc {
+           
+            .item-1 {
+                span {
+                    color: #fff;
+                }
+            }
+
+           
+        }
+
+        .table-body {
+            thead {
+                tr {
+                    th {
+                        color: #fff;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.content-ban-gan-day {
+    height: 100%;
+    .box-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .item-text {
+            display: flex;
+            align-items: center;
+
+            p {
+                margin: 0;
+                font-size: 18px;
+                font-weight: 500;
+                color: #E8900C;
+                font-family: Poppins, sans-serif;
+            }
+
+            span {
+                margin-left: 6px;
+                color: #C9AA05;
+                font-size: 14px;
+                font-weight: 400;
+            }
+        }
+
+        .icon-ellips {
+            color: #C9AA05;
+        }
+    }
+
+    .box-body {
+        .box-danh-muc {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: space-between;
+
+            .item-1 {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+
+                select {
+                    padding: 6px 20px;
+                    outline: none;
+                    border: 1px solid #E8900C;
+                    color: #E8900C;
+
+                }
+
+                span {
+                    color: #E8900C;
+                }
+            }
+
+            .item-2 {
+                flex: 1;
+
+                input {
+                    padding: 6px 7px;
+                    width: 100%;
+                    color: #E8900C;
+                    border: 1px solid #E8900C;
+                    outline: none;
+                }
+            }
+        }
+
+        .table-body {
+            width: 100%;
+            margin-top: 10px;
+
+            thead {
+                tr {
+                    color: #E8900C;
+                }
+            }
+
+            tbody {
+                text-align: center;
+
+                tr {
+                    color: #C9AA05;
+
+                }
+            }
+        }
+    }
+}

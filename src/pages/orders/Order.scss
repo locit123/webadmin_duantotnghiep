@@ -1,0 +1,293 @@
+.layout-order.theme {
+    background-color: #2e2e3e;
+
+    .select {
+
+
+        select {
+            color: #2e2e3e;
+            border: 1px solid #2e2e3e;
+        }
+    }
+
+    .text-h1 {
+        color: #fff;
+    }
+
+    .bt2 {
+        background-color: #1e1e2e !important;
+        border: 1px solid #1e1e2e;
+
+        &:hover {
+            opacity: .5;
+            border: 1px solid #1e1e2e;
+        }
+    }
+
+    .form {
+        background-color: #1d1933;
+
+        .form-group {
+            .form-label {
+                color: #fff;
+            }
+
+            .ic-arrow {
+                background-color: #fff;
+            }
+
+        }
+
+        .text-center {
+            .btn {
+                background-color: #b0127b;
+                outline: none;
+                border: none;
+            }
+        }
+    }
+
+    .table-order {
+        background-color: #1e1e2e;
+
+        .box-top-order {
+
+            span {
+                color: #fff;
+            }
+
+
+        }
+
+        h1 {
+            color: #FFF;
+        }
+
+        .table {
+
+            thead {
+                tr {
+                    th {
+                        background-color: #1e1e2e;
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    .img_avatar {
+                        width: 100px;
+                        height: 100px;
+
+                        img {
+                            max-width: 100%;
+                            max-height: 100%;
+                        }
+                    }
+
+                    td {
+                        background-color: #1e1e2e;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-order {
+    min-height: 100%;
+    padding-top: 20px;
+
+    .select {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        select {
+            padding: 5px 15px;
+            color: #E8900C;
+            border: 1px solid #E8900C;
+            outline: none;
+        }
+    }
+
+    .bt2 {
+        background-color: #E8900C !important;
+        border: 1px solid #E8900C;
+
+        &:hover {
+            opacity: .5;
+            border: 1px solid #E8900C;
+        }
+    }
+
+
+    .text-h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        padding: 5px 20px;
+        font-weight: 600;
+        color: #E8900C;
+    }
+
+    .form {
+        box-shadow: 0rem 0.125rem 1.25rem rgba(1, 41, 112, 0.1);
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+
+        .form-group {
+            .form-label {
+                color: #E8900C;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            .ic-arrow {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url('data:image/svg+xml;utf8,<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>') no-repeat right 1rem center;
+                background-size: 1rem;
+                padding-right: 2.5rem;
+            }
+
+        }
+
+        .text-center {
+            .btn {
+                width: 100%;
+            }
+        }
+    }
+
+    .table-order {
+        margin-right: 20px;
+        margin-left: 20px;
+
+        .box-top-order {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                flex: 1;
+                color: #E8900C;
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                flex: 1;
+            }
+
+            .select {
+                flex: 1;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+            }
+        }
+
+        h1 {
+            padding: 10px 0;
+            font-size: 24px;
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #E8900C;
+        }
+
+        thead {
+            tr {
+                th {
+                    color: #E8900C;
+                }
+
+                .ic-swap {
+                    font-size: 15px;
+                    cursor: pointer;
+                    right: 3px;
+                    top: 4px;
+                    position: relative;
+
+                    .ic-up {
+                        position: absolute;
+                        left: 10px;
+                        transform: rotate(-270deg);
+                        display: inline-block;
+
+                        &.click {
+                            opacity: .5;
+                        }
+                    }
+
+                    .ic-down {
+                        position: absolute;
+                        left: 5px;
+                        display: inline-block;
+                        transform: rotate(-90deg);
+
+                        &.click {
+                            opacity: .5;
+                        }
+                    }
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    color: #C9AA05;
+                    text-align: center;
+                }
+
+                .bt {
+                    .btn-danger {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .img_avatar {
+            width: 100px;
+            height: 100px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 540px) {
+    .layout-order {
+        .form {
+            margin: 0 20px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .layout-order {
+
+        /* CSS cho thiết bị dưới 576px */
+        .text-h1 {
+            text-align: center;
+        }
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .layout-order {
+        min-height: 100vh;
+    }
+}

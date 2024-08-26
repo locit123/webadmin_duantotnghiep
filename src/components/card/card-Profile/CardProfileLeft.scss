@@ -1,0 +1,45 @@
+.card-profile-1.theme{
+    background-color: #1e1e2e;
+    .ant-card-body {
+        .p {
+            color: #fff;
+        }
+        .box-icon {
+            .ic-footer {
+                    color: #fff;
+            
+                    &:last-child {
+                        color: #fff;
+                    }
+                }
+        }
+    }
+}
+.card-profile-1 {
+    .ant-card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .p {
+            font-size: 24px;
+            font-weight: 700;
+            color: #E8900C;
+            font-family: sans-serif;
+            margin: 0 40px;
+        }
+        .box-icon{
+            gap: 10px;
+            display: flex;
+            .ic-footer{
+                font-size: 20px;
+                color: #1877F2;
+                &:last-child{
+                    color: #E4405F;
+                }
+            }
+        }
+    }
+
+}

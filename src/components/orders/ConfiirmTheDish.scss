@@ -1,0 +1,35 @@
+.bt-order{
+    display: flex !important;
+    align-items: center;
+    max-width: fit-content;
+    gap: 5px;
+    transition: opacity .7s ease-in-out;
+    &:hover{
+        opacity: .5;
+    }
+    .name{
+        color: #fff;
+        font-weight: 600;
+    }
+    .box-ic{
+        display: flex;
+        align-items: center;
+        border: 1px solid white;
+        padding: 5px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: relative;
+        .length-order{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: -13px;
+            right: -11px;
+            font-weight: 600;
+            z-index: 999;
+            color: #fff;
+        }
+    }
+
+
+}

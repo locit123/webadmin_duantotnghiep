@@ -1,0 +1,35 @@
+.modal-children {
+
+    .title-people {
+        display: flex;
+        align-items: center;
+        flex: 1;
+
+        .loading {
+            font-size: 18px;
+        }
+
+        .span {
+            color: black;
+        }
+
+        .span2 {
+            color: black;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+
+            .ic-user {}
+        }
+    }
+
+    .box-loading {
+        text-align: center;
+
+        .loading {
+            font-size: 35px;
+        }
+    }
+}

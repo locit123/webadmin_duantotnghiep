@@ -1,0 +1,35 @@
+.table-users {
+    .box-loading {
+        .loading {
+            color: #E8900C;
+            font-size: 50px;
+        }
+
+        .loading.theme {
+            color: #fff;
+        }
+    }
+
+    .box-users {
+        display: flex;
+        align-items: center;
+
+        h1 {
+            flex: 1;
+        }
+
+        .select {
+            flex: 1;
+            display: flex;
+            align-items: end;
+            justify-content: end;
+
+            select {
+                padding: 5px 15px;
+                color: #E8900C;
+                border: 1px solid #E8900C;
+                outline: none;
+            }
+        }
+    }
+}

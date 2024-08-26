@@ -1,0 +1,94 @@
+.layout-review-users.theme {
+    background-color: #2e2e3e;
+
+    .table-review-user {
+        background-color: #1e1e2e;
+
+        .box-loading {
+
+            .loading {
+                color: #ffff;
+            }
+        }
+
+        .box-select {
+            span {
+                color: #fff;
+
+            }
+        }
+
+        .table {
+
+            thead {
+                tr {
+                    th {
+                        background-color: #1e1e2e;
+                        color: #fff;
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        background-color: #1e1e2e;
+                        color: #FFF;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-review-users {
+    min-height: 100%;
+    padding: 20px;
+
+    .table-review-user {
+        padding: 10px;
+
+        .box-loading {
+            text-align: center;
+
+            .loading {
+                color: #E8900C;
+            }
+        }
+
+        .box-select {
+            span {
+                color: #E8900C;
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
+
+        thead {
+            tr {
+                th {
+                    color: #E8900C;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    color: #C9AA05;
+                    text-align: center;
+                }
+
+                .img-ne {
+                    width: 100px;
+                    height: 100px;
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

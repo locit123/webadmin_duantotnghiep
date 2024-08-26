@@ -19,7 +19,7 @@ const CardBan = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [idAndTableNumber, setIdAndTableNumber] = useState([]);
-  const [isShow, setIsShow] = useState(false);
+  // const [isShow, setIsShow] = useState(false);
   const [imageClick, setImageClick] = useState([]);
   /**********************************GET DATA********************** */
   useEffect(() => {
@@ -66,7 +66,7 @@ const CardBan = (props) => {
   };
 
   const handleClickImageQR = (item) => {
-    setIsShow(true);
+    // setIsShow(true);
     setImageClick([item.tableNumber, item.qrCode]);
   };
   console.log(imageClick, "check image click");

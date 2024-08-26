@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Avatar } from "antd";
 import { FacebookFilled, InstagramFilled } from "@ant-design/icons";
 import "./CardProfileLeft.scss";
@@ -10,16 +10,15 @@ const CardProfileLeft = () => {
   console.log("render CardProfileLeft");
   const theme = useSelector(getThemeState);
   const getMe = useSelector(getMeState);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [title, setTitle] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [title, setTitle] = useState("");
 
-  const handleClickImage = () => {
-    setIsOpen(true);
-    setCurrentImage(getMe?.isDataMe?.img_avatar_url);
-    setTitle(getMe?.isDataMe?.fullName);
-  };
-  console.log(currentImage, title);
+  // const handleClickImage = () => {
+  //   setIsOpen(true);
+  //   setCurrentImage(getMe?.isDataMe?.img_avatar_url);
+  //   setTitle(getMe?.isDataMe?.fullName);
+  // };
   return (
     <>
       {/* {currentImage && isOpen && (
@@ -39,7 +38,7 @@ const CardProfileLeft = () => {
       >
         <Avatar
           style={{ cursor: "pointer" }}
-          onClick={handleClickImage}
+          // onClick={handleClickImage}
           size={120}
           src={
             <img

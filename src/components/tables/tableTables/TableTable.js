@@ -25,9 +25,9 @@ const TableTable = () => {
   const [isClick, setIsClick] = useState("up");
   const [dataSort, setDataSort] = useState([]);
   const { isLoading, dataTable } = table;
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [title, setTitle] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [title, setTitle] = useState("");
   let data = dataTable?.data;
   const dispatch = useDispatch();
   const getApiTable = useCallback(async () => {
@@ -106,12 +106,11 @@ const TableTable = () => {
     }
   };
 
-  const handleClickImage = (qr, tableNumber) => {
-    setIsOpen(true);
-    setCurrentImage(qr);
-    setTitle(`Bàn ${tableNumber}`);
-  };
-  console.log(currentImage, title);
+  // const handleClickImage = (qr, tableNumber) => {
+  //   setIsOpen(true);
+  //   setCurrentImage(qr);
+  //   setTitle(`Bàn ${tableNumber}`);
+  // };
 
   return (
     <div className="mt-3 mb-3 layout">
@@ -170,9 +169,9 @@ const TableTable = () => {
                     handleClickDelete={handleClickDelete}
                     handleClickUpdateTable={handleClickUpdateTable}
                     status={status}
-                    onClick={() =>
-                      handleClickImage(item.qrCode, item.tableNumber)
-                    }
+                    // onClick={() =>
+                    //   handleClickImage(item.qrCode, item.tableNumber)
+                    // }
                   />
                 ))
               ) : (

@@ -29,9 +29,9 @@ const TableMenu = ({ setShow, setShowOption }) => {
   const categoriesState = useSelector(getCategoriesState);
   const { dataGetCategories } = categoriesState;
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [title, setTitle] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [title, setTitle] = useState("");
 
   const getApiMenuItem = useCallback(async () => {
     await getAllMenuItem(dispatch);
@@ -95,12 +95,11 @@ const TableMenu = ({ setShow, setShowOption }) => {
     }
   };
 
-  const handleClickImage = (image, name) => {
-    setIsOpen(true);
-    setCurrentImage(image);
-    setTitle(name);
-  };
-  console.log(currentImage, title);
+  // const handleClickImage = (image, name) => {
+  //   setIsOpen(true);
+  //   setCurrentImage(image);
+  //   setTitle(name);
+  // };
   return (
     <div className="mt-3 mb-3 table-users">
       {isLoadingMenuItem ? (
@@ -160,7 +159,7 @@ const TableMenu = ({ setShow, setShowOption }) => {
                     category={category}
                     setShow={setShow}
                     setShowOption={setShowOption}
-                    onClick={() => handleClickImage(item.image_url, item.name)}
+                    // onClick={() => handleClickImage(item.image_url, item.name)}
                   />
                 ))
               ) : (

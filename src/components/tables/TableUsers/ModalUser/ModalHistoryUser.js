@@ -16,9 +16,9 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   const [data, setData] = useState([]);
   const [listCash, setListCash] = useState({});
   const [listZaloPay, setListZaloPay] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [title, setTitle] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [title, setTitle] = useState("");
   const [isSelectDate, setIsSelectDate] = useState("");
   const [isDataTime, setIsDataTime] = useState([]);
 
@@ -91,11 +91,11 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
     setIsDataTime([]);
   };
 
-  const handleClickImage = () => {
-    setIsOpen(true);
-    setCurrentImage(item.img_avatar_url);
-    setTitle(item.fullName);
-  };
+  // const handleClickImage = () => {
+  //   setIsOpen(true);
+  //   setCurrentImage(item.img_avatar_url);
+  //   setTitle(item.fullName);
+  // };
   return (
     <>
       {/* {currentImage && isOpen && (
@@ -120,7 +120,10 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
             <Accordion.Item eventKey="0">
               <Accordion.Header>Thông tin</Accordion.Header>
               <Accordion.Body>
-                <div className="text-center mb-3" onClick={handleClickImage}>
+                <div
+                  className="text-center mb-3"
+                  // onClick={handleClickImage}
+                >
                   <Avatar
                     size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
                     icon={

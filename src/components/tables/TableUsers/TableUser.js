@@ -25,9 +25,9 @@ const TableUser = ({ role, setRole, setShow }) => {
   const { dataGetAllUsers } = allUsersState;
   const data = dataGetAllUsers?.data?.users;
   const [itemCount, setItemCount] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [caption, setCaption] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [caption, setCaption] = useState("");
   const [dataListConcat, setDataListConcat] = useState([]);
   /*************************GET DATA ************************** */
   const getApiUsers = useCallback(async () => {
@@ -138,11 +138,11 @@ const TableUser = ({ role, setRole, setShow }) => {
     dispatch(setStatusUsers.setStatus(["authentication", item]));
   };
 
-  const handleImageClick = (image, name) => {
-    setCurrentImage(image);
-    setCaption(name);
-    setIsOpen(true);
-  };
+  // const handleImageClick = (image, name) => {
+  //   setCurrentImage(image);
+  //   setCaption(name);
+  //   setIsOpen(true);
+  // };
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -224,9 +224,9 @@ const TableUser = ({ role, setRole, setShow }) => {
                     <td
                       className="img"
                       style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        handleImageClick(item.img_avatar_url, item.fullName)
-                      }
+                      // onClick={() =>
+                      //   handleImageClick(item.img_avatar_url, item.fullName)
+                      // }
                     >
                       <img
                         alt="avatar"

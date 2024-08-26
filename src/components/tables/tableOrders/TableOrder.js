@@ -15,9 +15,9 @@ const TableOrder = () => {
   const [listNewDataOrder, setListNewDataOrder] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isClick, setIsClick] = useState("up");
-  const [currentImage, setCurrentImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  // const [currentImage, setCurrentImage] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [listDataItem, setListDataItem] = useState([]);
   const [month, setMonth] = useState([]);
@@ -159,11 +159,11 @@ const TableOrder = () => {
     }
   };
 
-  const handleClickImage = (item) => {
-    setCurrentImage(item.userPay.img_avatar_url);
-    setTitle(item.userPay.fullName);
-    setIsOpen(true);
-  };
+  // const handleClickImage = (item) => {
+  //   setCurrentImage(item.userPay.img_avatar_url);
+  //   setTitle(item.userPay.fullName);
+  //   setIsOpen(true);
+  // };
 
   const handleClickView = (item) => {
     setShow(true);
@@ -263,7 +263,7 @@ const TableOrder = () => {
                   item={item}
                   index={index}
                   key={index}
-                  onClick={() => handleClickImage(item)}
+                  // onClick={() => handleClickImage(item)}
                   offset={offset}
                   handleClickView={handleClickView}
                 />

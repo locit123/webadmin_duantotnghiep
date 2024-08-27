@@ -17,6 +17,7 @@ import { ConvertMoney } from "../../../utils/convertMoney";
 
 const LoadingLineChart = ({ dataTable, selectDate }) => {
   const theme = useSelector(getThemeState);
+  console.log(dataTable, "check dataTable");
 
   return (
     <>

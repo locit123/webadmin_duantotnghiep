@@ -77,7 +77,7 @@ const LoadingTable = ({
           <button
             className="btn btn-danger mx-2"
             onClick={() => handleClickDelete(item)}
-            disabled={item.status === "open" ? true : false}
+            disabled={item.status ? true : false}
           >
             Xóa
           </button>

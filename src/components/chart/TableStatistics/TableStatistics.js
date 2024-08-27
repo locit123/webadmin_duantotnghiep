@@ -127,7 +127,18 @@ const TableStatistics = () => {
         } else {
           arr.push({ ...curr });
         }
-
+        //   const { tableNumber, totalRevenue, totalOrders, timePeriod } = curr;
+        //   if (!arr[timePeriod]) {
+        //     arr[timePeriod] = { timePeriod, totalOrders: 0 };
+        //   }
+        //   arr[timePeriod][tableNumber] = totalRevenue;
+        //   arr[timePeriod].totalOrders += totalOrders;
+        // }
+        // if (selectDate !== "month") {
+        // } else {
+        //   let result = Object.values(arr);
+        //   setDataFind(result);
+        // }
         setDataFind(arr);
         return arr;
       }, []);
@@ -209,6 +220,16 @@ const TableStatistics = () => {
   useEffect(() => {
     dataSuccess();
   }, [dataSuccess]);
+
+  // useEffect(() => {
+  //   if (
+  //     dataTableStatistic &&
+  //     dataTableStatistic.length > 0 &&
+  //     selectDate === "month"
+  //   ) {
+  //     dataTableStatistic.sort((a, b) => a - b);
+  //   }
+  // }, [dataTableStatistic, selectMonth, selectDate]);
   /************************************FIND DATA******************************** */
   const handleClickFind = async () => {
     if (!starDate || !endDate) {
@@ -218,6 +239,7 @@ const TableStatistics = () => {
       await getTable("day", starDate, endDate, dispatch, setIsLoading);
     }
   };
+
   return (
     <div className="layout-table-statistical">
       <div className="box-table">

@@ -8,8 +8,6 @@ import ModalReviews from "./ModalReviews";
 import { LoadingOutlined } from "@ant-design/icons";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
-import { FormatDay2 } from "../../../utils/FormDay";
-import { StarRating } from "../../../utils/Rating";
 const TableReviewsUsers = () => {
   const [listDataReviews, setListDataReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);

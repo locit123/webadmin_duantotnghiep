@@ -25,6 +25,30 @@
     }
 
     .box-row3 {
+        .layout-customer {
+                .box-customer {
+                    .find-data {
+                        color: #fff;
+        
+                        .ip-date {
+        
+                            color: #2e2e3e;
+                            border: 1px solid #2e2e3e;
+                        }
+                    }
+        
+                    .select {
+                        select {
+                            color: #2e2e3e;
+                            border: 1px solid #2e2e3e;
+                        }
+                    }
+                }
+        
+                .containerStyle {
+                    background-color: #1e1e2e;
+                }
+            }
 
         .layout-payment {
 
@@ -242,6 +266,72 @@
     gap: 20px;
 
     .box-row3 {
+        .layout-customer {
+                
+        
+                .box-customer {
+                    .find-data {
+                        display: flex;
+                        gap: 7px;
+                        align-items: center;
+                        color: #E8900C;
+        
+                        .ip-date {
+        
+                            padding: 5px 15px;
+                            color: #E8900C;
+                            border: 1px solid #E8900C;
+                            outline: none;
+                        }
+                    }
+        
+                    .select {
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content:space-between;
+        
+                        select {
+                            padding: 5px 15px;
+                            color: #E8900C;
+                            border: 1px solid #E8900C;
+                            outline: none;
+                        }
+                    }
+        
+                    h1 {
+                        font-size: 1.2rem;
+                        color: #E8900C;
+                        padding: 0;
+                        margin: 0;
+                    }
+        
+                    .box-date {
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                }
+        
+                .box-loading {
+                    .loading {
+                        color: #E8900C;
+                        font-size: 50px;
+                    }
+        
+                    .loading.theme {
+                        color: #fff;
+                    }
+                }
+        
+                .containerStyle {
+                    width: 100%;
+                    height: fit-content;
+                    border-radius: 10px;
+                    background-color: #fff;
+                    position: relative;
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15)
+                }
+            }
         .layout-average-statistical {
             .find {
                 color: #E8900C;

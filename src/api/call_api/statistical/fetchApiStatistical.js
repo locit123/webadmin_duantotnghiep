@@ -181,6 +181,23 @@ const getAverage = async (
     toast.error(status || message);
   }
 };
+const getCustomer = async (type, setListDataCustomer, setIsLoading) => {
+  try {
+    setIsLoading(true);
+    const res = await apiStatistical.getApiCustomerStatistical(type);
+    if (res && res.data && res.data.status === "success") {
+      setListDataCustomer(res.data.data);
+      setIsLoading(false);
+    }
+  } catch (error) {
+    setIsLoading(false);
+
+    const status = error?.response?.data?.status;
+    const message = error?.response?.data?.message;
+    toast.error(status || message);
+  }
+};
+
 export {
   getPayment,
   getRevenue,
@@ -189,4 +206,5 @@ export {
   getMenuItem,
   getOrder,
   getAverage,
+  getCustomer,
 };

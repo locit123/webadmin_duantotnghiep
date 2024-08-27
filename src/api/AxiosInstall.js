@@ -175,6 +175,8 @@ const apiStatistical = {
   },
   getApiDailyStatistical: () =>
     axiosInstance.get(`statistics/daily-statistics`),
+  getApiCustomerStatistical: (type) =>
+    axiosInstance.get(`statistics/most-valuable-customer?type=${type}`),
 };
 
 const apiNotifications = {

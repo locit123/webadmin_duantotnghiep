@@ -10,6 +10,7 @@ import AverageStatistical from "../../components/chart/AverageStatistical/Averag
 import Accordion from "react-bootstrap/Accordion";
 import { useSelector } from "react-redux";
 import { getThemeState } from "../../store/selector";
+import CustomerStatistical from "../../components/chart/CustommerStatistical/CustomerStatistical";
 const Statistical = () => {
   const theme = useSelector(getThemeState);
 
@@ -57,6 +58,12 @@ const Statistical = () => {
             <Accordion.Header>Thống kê trung bình tổng tiền</Accordion.Header>
             <Accordion.Body>
               <AverageStatistical />
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="7">
+            <Accordion.Header>Thống kê khách hàng</Accordion.Header>
+            <Accordion.Body>
+              <CustomerStatistical />
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

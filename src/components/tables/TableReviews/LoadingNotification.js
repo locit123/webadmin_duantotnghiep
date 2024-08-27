@@ -33,7 +33,9 @@ const LoadingNotification = ({
   return (
     <tr>
       <td>{offset + index + 1}</td>
-      <td>{item.title}</td>
+      <td>
+        <ToolTip text={item.title}>{cutString(item.title)}</ToolTip>
+      </td>
       <td>
         <ToolTip text={item.content}>{cutString(item.content)}</ToolTip>
       </td>

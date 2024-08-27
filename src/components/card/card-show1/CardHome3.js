@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { EllipsisOutlined } from "@ant-design/icons";
+import { EllipsisOutlined, LoadingOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import "./CardHome3.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,15 +18,20 @@ function CardHome3(props) {
   const [totalUser, setTotalUser] = useState({});
   const [totalUserMonth, setTotalUserMonth] = useState("");
   const [listNewData, setListNewData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   /*******************************************GET DATA ********************************************88*/
   const getDailyApi = useCallback(async () => {
     try {
+      setIsLoading(true);
       const res = await apiStatistical.getApiDailyStatistical();
       if (res && res.data && res.data.status === "success") {
         dispatch(setDataDailyStatistics(res.data.data));
+        setIsLoading(false);
       }
     } catch (error) {
+      setIsLoading(false);
+
       const status = error?.response?.data?.status;
       const message = error?.response?.data?.message;
       toast.error(status || message);
@@ -83,37 +88,45 @@ function CardHome3(props) {
   }, [listNewData]);
 
   return (
-    <Card
-      className={`card-3 ${theme ? "theme" : ""}`}
-      title={
-        <div className="content-title">
-          <div className="content-title-box-1">
-            <p className="text-banHang">khách hàng đặt món</p>
-            <span className="text-homNay">| tháng này</span>
+    <>
+      <Card
+        className={`card-3 ${theme ? "theme" : ""}`}
+        title={
+          <div className="content-title">
+            <div className="content-title-box-1">
+              <p className="text-banHang">khách hàng đặt món</p>
+              <span className="text-homNay">| tháng này</span>
+            </div>
+            <EllipsisOutlined className="icon-ellips" />
           </div>
-          <EllipsisOutlined className="icon-ellips" />
-        </div>
-      }
-      bordered={false}
-    >
-      <div
-        className="content-body-3"
-        title={`Tháng trước:${listNewData[0]?.totalUser} lượt đặt món`}
+        }
+        bordered={false}
       >
-        <div className="icon-userGroup">
-          <div className="ic-ne">
-            <FaUsers className="ic" />
+        {isLoading ? (
+          <div className="box-loading">
+            <LoadingOutlined className="loading" />
           </div>
-        </div>
-        <div className="content-body-box-2">
-          <h6 className="h6">{totalUser.totalUser}</h6>
-          <div className="span">
-            <span>{totalUserMonth > 0 ? "Tăng" : "Giảm"}</span>
-            <span>{Math.abs(totalUserMonth)} lượt đặt món</span>
+        ) : (
+          <div
+            className="content-body-3"
+            title={`Tháng trước:${listNewData[0]?.totalUser} lượt đặt món`}
+          >
+            <div className="icon-userGroup">
+              <div className="ic-ne">
+                <FaUsers className="ic" />
+              </div>
+            </div>
+            <div className="content-body-box-2">
+              <h6 className="h6">{totalUser.totalUser}</h6>
+              <div className="span">
+                <span>{totalUserMonth > 0 ? "Tăng" : "Giảm"}</span>
+                <span>{Math.abs(totalUserMonth)} lượt đặt món</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </Card>
+        )}
+      </Card>
+    </>
   );
 }
 

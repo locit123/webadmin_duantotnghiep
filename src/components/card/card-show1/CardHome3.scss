@@ -17,6 +17,12 @@
         }
     }
 
+        .box-loading {
+    
+            .loading {
+                color: #fff;
+            }
+        }
     .content-body-3 {
         .icon-userGroup {
             border: 1px solid #fff;
@@ -86,7 +92,14 @@
             color: #C9AA05;
         }
     }
+.box-loading {
+    text-align: center;
 
+    .loading {
+        font-size: 30px;
+        color: #E8900C;
+    }
+}
     .content-body-3 {
         display: flex;
         gap: 15px;

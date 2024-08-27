@@ -2,13 +2,25 @@ import React from "react";
 import { FormatDay2, FormatTimeNow } from "../../../utils/FormDay";
 import { StarRating } from "../../../utils/Rating";
 
-const LoadingReviews = ({ data, index, offset, handleClick }) => {
+const LoadingReviews = ({
+  data,
+  index,
+  offset,
+  handleClick,
+  handleClickImage,
+}) => {
   return (
     <tr>
       <td>{offset + index + 1}</td>
       <td>{data.userId.fullName}</td>
       <td className="img-ne">
-        <img src={data.userId.img_avatar_url} loading="lazy" alt="a" />
+        <img
+          style={{ cursor: "pointer" }}
+          src={data.userId.img_avatar_url}
+          loading="lazy"
+          alt="a"
+          onClick={handleClickImage}
+        />
       </td>
       <td>
         <StarRating rating={data.rating} />

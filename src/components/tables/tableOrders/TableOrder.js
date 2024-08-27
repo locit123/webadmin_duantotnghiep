@@ -4,10 +4,11 @@ import { getAllOrder } from "../../../api/call_api/orders/fetchApiOrder";
 import LoadingTableOrder from "./LoadingTableOrder";
 import ReactPaginate from "react-paginate";
 import { AiOutlineSwapRight } from "react-icons/ai";
-// import Lightbox from "react-awesome-lightbox";
 import _ from "lodash";
 import ModalOrder from "./ModalOrders/ModalOrder";
 import { checkDate, FormatDay2 } from "../../../utils/FormDay";
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 const TableOrder = () => {
   const [idOption, setIdOption] = useState([]);
   const [selectOption, setSelectOption] = useState("");
@@ -15,9 +16,9 @@ const TableOrder = () => {
   const [listNewDataOrder, setListNewDataOrder] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [isClick, setIsClick] = useState("up");
-  // const [currentImage, setCurrentImage] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [isOpen, setIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
   const [listDataItem, setListDataItem] = useState([]);
   const [month, setMonth] = useState([]);
@@ -159,11 +160,11 @@ const TableOrder = () => {
     }
   };
 
-  // const handleClickImage = (item) => {
-  //   setCurrentImage(item.userPay.img_avatar_url);
-  //   setTitle(item.userPay.fullName);
-  //   setIsOpen(true);
-  // };
+  const handleClickImage = (item) => {
+    setCurrentImage(item.userPay.img_avatar_url);
+    setTitle(item.userPay.fullName);
+    setIsOpen(true);
+  };
 
   const handleClickView = (item) => {
     setShow(true);
@@ -263,7 +264,7 @@ const TableOrder = () => {
                   item={item}
                   index={index}
                   key={index}
-                  // onClick={() => handleClickImage(item)}
+                  onClick={() => handleClickImage(item)}
                   offset={offset}
                   handleClickView={handleClickView}
                 />
@@ -297,17 +298,25 @@ const TableOrder = () => {
           forcePage={currentPage}
         />
 
-        {/* {currentImage && isOpen && (
-          <Lightbox
-            image={currentImage}
-            title={title}
-            onClose={() => {
-              setIsOpen(false);
-              setCurrentImage("");
-              setTitle("");
-            }}
-          />
-        )} */}
+        {isOpen && (
+          <div className="lightbox-wrapper">
+            <Lightbox
+              open={isOpen}
+              close={() => setIsOpen(false)}
+              carousel={{ finite: true }}
+              className="lightbox"
+              plugins={[Captions]}
+              slides={[
+                {
+                  src: currentImage,
+                  width: 3840,
+                  height: 2560,
+                  title: <span className="ban">Họ và tên: {title}</span>,
+                },
+              ]}
+            />
+          </div>
+        )}
       </div>
     </>
   );

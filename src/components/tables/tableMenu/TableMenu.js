@@ -14,8 +14,8 @@ import { getAllMenuItem } from "../../../api/call_api/menuItem/fetchApiMenuItem"
 import { getAllCategories } from "../../../api/call_api/categories/fetchApiCategory";
 import { AiOutlineSwapRight } from "react-icons/ai";
 import _ from "lodash";
-// import Lightbox from "react-awesome-lightbox";
-
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 const TableMenu = ({ setShow, setShowOption }) => {
   console.log("TABLE MENU");
   const [category, setCategory] = useState("Món khai vị");
@@ -29,9 +29,9 @@ const TableMenu = ({ setShow, setShowOption }) => {
   const categoriesState = useSelector(getCategoriesState);
   const { dataGetCategories } = categoriesState;
   const dispatch = useDispatch();
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [currentImage, setCurrentImage] = useState("");
-  // const [title, setTitle] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+  const [title, setTitle] = useState("");
 
   const getApiMenuItem = useCallback(async () => {
     await getAllMenuItem(dispatch);
@@ -95,11 +95,11 @@ const TableMenu = ({ setShow, setShowOption }) => {
     }
   };
 
-  // const handleClickImage = (image, name) => {
-  //   setIsOpen(true);
-  //   setCurrentImage(image);
-  //   setTitle(name);
-  // };
+  const handleClickImage = (image, name) => {
+    setIsOpen(true);
+    setCurrentImage(image);
+    setTitle(name);
+  };
   return (
     <div className="mt-3 mb-3 table-users">
       {isLoadingMenuItem ? (
@@ -159,7 +159,7 @@ const TableMenu = ({ setShow, setShowOption }) => {
                     category={category}
                     setShow={setShow}
                     setShowOption={setShowOption}
-                    // onClick={() => handleClickImage(item.image_url, item.name)}
+                    onClick={() => handleClickImage(item.image_url, item.name)}
                   />
                 ))
               ) : (
@@ -193,17 +193,25 @@ const TableMenu = ({ setShow, setShowOption }) => {
           />
         </>
       )}
-      {/* {currentImage && isOpen && (
-        <Lightbox
-          image={currentImage}
-          title={title}
-          onClose={() => {
-            setIsOpen(false);
-            setCurrentImage("");
-            setTitle("");
-          }}
-        />
-      )} */}
+      {isOpen && (
+        <div className="lightbox-wrapper">
+          <Lightbox
+            open={isOpen}
+            close={() => setIsOpen(false)}
+            carousel={{ finite: true }}
+            className="lightbox"
+            plugins={[Captions]}
+            slides={[
+              {
+                src: currentImage,
+                width: 3840,
+                height: 2560,
+                title: <span className="ban">Món: {title}</span>,
+              },
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "nprogress/nprogress.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
-// import "react-awesome-lightbox/build/style.css";
+import "yet-another-react-lightbox/styles.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

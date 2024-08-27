@@ -12,8 +12,8 @@ import LoadingTable from "./LoadingTable";
 import { getAllTable } from "../../../api/call_api/tables/fetchApiTable";
 import { toast } from "react-toastify";
 import { AiOutlineSwapRight } from "react-icons/ai";
-// import Lightbox from "react-awesome-lightbox";
-
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 import _ from "lodash";
 const TableTable = () => {
   console.log("render TableTable");
@@ -25,9 +25,9 @@ const TableTable = () => {
   const [isClick, setIsClick] = useState("up");
   const [dataSort, setDataSort] = useState([]);
   const { isLoading, dataTable } = table;
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [currentImage, setCurrentImage] = useState("");
-  // const [title, setTitle] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+  const [title, setTitle] = useState("");
   let data = dataTable?.data;
   const dispatch = useDispatch();
   const getApiTable = useCallback(async () => {
@@ -38,10 +38,8 @@ const TableTable = () => {
     getApiTable();
   }, [getApiTable]);
 
-  //XU LI PHAN TRANG
   const itemsPerPage = 5;
   const offset = currentPage * itemsPerPage;
-  // Filter currentItems based on status
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -106,11 +104,11 @@ const TableTable = () => {
     }
   };
 
-  // const handleClickImage = (qr, tableNumber) => {
-  //   setIsOpen(true);
-  //   setCurrentImage(qr);
-  //   setTitle(`Bàn ${tableNumber}`);
-  // };
+  const handleClickImage = (qr, tableNumber) => {
+    setIsOpen(true);
+    setCurrentImage(qr);
+    setTitle(`Bàn ${tableNumber}`);
+  };
 
   return (
     <div className="mt-3 mb-3 layout">
@@ -169,9 +167,9 @@ const TableTable = () => {
                     handleClickDelete={handleClickDelete}
                     handleClickUpdateTable={handleClickUpdateTable}
                     status={status}
-                    // onClick={() =>
-                    //   handleClickImage(item.qrCode, item.tableNumber)
-                    // }
+                    onClick={() =>
+                      handleClickImage(item.qrCode, item.tableNumber)
+                    }
                   />
                 ))
               ) : (
@@ -211,17 +209,25 @@ const TableTable = () => {
           ) : null}
         </>
       )}
-      {/* {currentImage && isOpen && (
-        <Lightbox
-          image={currentImage}
-          title={title}
-          onClose={() => {
-            setIsOpen(false);
-            setCurrentImage("");
-            setTitle("");
-          }}
-        />
-      )} */}
+      {isOpen && (
+        <div className="lightbox-wrapper">
+          <Lightbox
+            open={isOpen}
+            close={() => setIsOpen(false)}
+            carousel={{ finite: true }}
+            className="lightbox"
+            plugins={[Captions]}
+            slides={[
+              {
+                src: currentImage,
+                width: 3840,
+                height: 2560,
+                title: <span className="ban">Họ và tên: {title}</span>,
+              },
+            ]}
+          />
+        </div>
+      )}
 
       <ModalDeleteTable
         show={show}

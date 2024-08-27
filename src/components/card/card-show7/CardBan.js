@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 import { apiTables } from "../../../api/AxiosInstall";
 import LoadingCardBan from "./LoadingCardBan";
 import ModalCardBan from "./MoadlCardBan";
-// import Lightbox from "react-awesome-lightbox";
-
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 const CardBan = (props) => {
   console.log("render CardBan");
   const theme = useSelector(getThemeState);
@@ -19,8 +19,9 @@ const CardBan = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [idAndTableNumber, setIdAndTableNumber] = useState([]);
-  // const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
   const [imageClick, setImageClick] = useState([]);
+
   /**********************************GET DATA********************** */
   useEffect(() => {
     getTableApi();
@@ -66,11 +67,9 @@ const CardBan = (props) => {
   };
 
   const handleClickImageQR = (item) => {
-    // setIsShow(true);
+    setIsShow(true);
     setImageClick([item.tableNumber, item.qrCode]);
   };
-  console.log(imageClick, "check image click");
-
   return (
     <>
       <ModalCardBan
@@ -118,13 +117,25 @@ const CardBan = (props) => {
           </div>
         )}
       </Card>
-      {/* {isShow && (
-        <Lightbox
-          image={imageClick[1]}
-          title={`Bàn ${imageClick[0]}`}
-          onClose={() => setIsShow(false)}
-        />
-      )} */}
+      {isShow && (
+        <div className="lightbox-wrapper">
+          <Lightbox
+            open={isShow}
+            close={() => setIsShow(false)}
+            carousel={{ finite: true }}
+            className="lightbox"
+            plugins={[Captions]}
+            slides={[
+              {
+                src: imageClick[1],
+                width: 3840,
+                height: 2560,
+                title: <span className="ban">bàn: {imageClick[0]}</span>,
+              },
+            ]}
+          />
+        </div>
+      )}
     </>
   );
 };

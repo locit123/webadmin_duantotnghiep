@@ -11,8 +11,8 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import _ from "lodash";
 import ModalHistoryUser from "./ModalUser/ModalHistoryUser";
 import { valueFormUsers } from "../../../store/valueForm/users/actions";
-// import Lightbox from "react-awesome-lightbox";
-
+import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 const TableUser = ({ role, setRole, setShow }) => {
   console.log("render TableUser");
   const [showHistory, setShowHistory] = useState(false);
@@ -25,9 +25,9 @@ const TableUser = ({ role, setRole, setShow }) => {
   const { dataGetAllUsers } = allUsersState;
   const data = dataGetAllUsers?.data?.users;
   const [itemCount, setItemCount] = useState([]);
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [currentImage, setCurrentImage] = useState("");
-  // const [caption, setCaption] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+  const [caption, setCaption] = useState("");
   const [dataListConcat, setDataListConcat] = useState([]);
   /*************************GET DATA ************************** */
   const getApiUsers = useCallback(async () => {
@@ -138,11 +138,11 @@ const TableUser = ({ role, setRole, setShow }) => {
     dispatch(setStatusUsers.setStatus(["authentication", item]));
   };
 
-  // const handleImageClick = (image, name) => {
-  //   setCurrentImage(image);
-  //   setCaption(name);
-  //   setIsOpen(true);
-  // };
+  const handleImageClick = (image, name) => {
+    setCurrentImage(image);
+    setCaption(name);
+    setIsOpen(true);
+  };
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -224,9 +224,9 @@ const TableUser = ({ role, setRole, setShow }) => {
                     <td
                       className="img"
                       style={{ cursor: "pointer" }}
-                      // onClick={() =>
-                      //   handleImageClick(item.img_avatar_url, item.fullName)
-                      // }
+                      onClick={() =>
+                        handleImageClick(item.img_avatar_url, item.fullName)
+                      }
                     >
                       <img
                         alt="avatar"
@@ -315,17 +315,25 @@ const TableUser = ({ role, setRole, setShow }) => {
           forcePage={currentPage}
         />
       )}
-      {/* {currentImage && isOpen && (
-        <Lightbox
-          image={currentImage}
-          title={caption}
-          onClose={() => {
-            setIsOpen(false);
-            setCurrentImage("");
-            setCaption("");
-          }}
-        />
-      )} */}
+      {isOpen && (
+        <div className="lightbox-wrapper">
+          <Lightbox
+            open={isOpen}
+            close={() => setIsOpen(false)}
+            carousel={{ finite: true }}
+            className="lightbox"
+            plugins={[Captions]}
+            slides={[
+              {
+                src: currentImage,
+                width: 3840,
+                height: 2560,
+                title: <span className="ban">Họ và tên: {caption}</span>,
+              },
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 };

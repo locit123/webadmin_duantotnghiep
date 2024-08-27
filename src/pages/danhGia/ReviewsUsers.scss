@@ -57,6 +57,8 @@
         }
 
         .box-select {
+            display: flex;
+            justify-content: space-between;
             span {
                 color: #E8900C;
                 font-size: 1.2rem;

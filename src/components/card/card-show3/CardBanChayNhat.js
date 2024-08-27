@@ -93,7 +93,14 @@ function CardBanChayNhat(props) {
   }, [dataSuccess]);
 
   return (
-    <div style={{ height: `calc(310px - 20px)` }}>
+    <div
+      style={{
+        height:
+          listDataSuccess && listDataSuccess.length > 0
+            ? `calc(310px - 20px)`
+            : "",
+      }}
+    >
       <PerfectScrollbar>
         <Card
           className={`content-ban-chay-nhat ${theme ? "theme" : ""}`}

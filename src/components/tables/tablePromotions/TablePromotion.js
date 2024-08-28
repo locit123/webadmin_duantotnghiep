@@ -183,7 +183,7 @@ const TablePromotion = ({
   const handleClickOn = async () => {
     await postResetAllPromotion(setListDataPromotion);
   };
-  console.log(isLoadingPromotion, "<<<<<<<<<<<<<<<<");
+  console.log(newListData, "check<<<<<<<<<<<<<<<<PROMOTION");
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -261,6 +261,7 @@ const TablePromotion = ({
                 <th>Trạng thái</th>
                 <th>Loại mã</th>
                 <th>{title}</th>
+                <th>Giới hạn sử dụng</th>
                 <th>Lượt dùng mã</th>
                 <th>đã sử dụng</th>
                 <th>Lựa chọn</th>
@@ -301,6 +302,10 @@ const TablePromotion = ({
                       </td>
                       <td>{item.discountType}</td>
                       <td>{formatDiscount(item.discount)}</td>
+                      <td>
+                        {item.usageLimitPerUser ? item.usageLimitPerUser : 0}
+                      </td>
+
                       <td>{item.maxUsage ? item.maxUsage : 0}</td>
 
                       <td>{item.usedCount}</td>

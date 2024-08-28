@@ -11,7 +11,7 @@ const LoadingKMVaTB = ({ data }) => {
       </th>
       <td>
         <Tag className="tag" color="#E8900C">
-          {data.maxUsage}
+          {data.maxUsage ? data.maxUsage : 0}
         </Tag>
       </td>
       <td>

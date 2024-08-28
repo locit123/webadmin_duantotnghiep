@@ -72,6 +72,7 @@ const LoadingTableMenu = ({
         <button
           className="btn btn-danger mx-3"
           onClick={() => handleClickXoaMenuItem(item)}
+          disabled={true}
         >
           Xóa
         </button>

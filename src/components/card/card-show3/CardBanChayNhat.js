@@ -96,7 +96,7 @@ function CardBanChayNhat(props) {
     <div
       style={{
         height:
-          listDataSuccess && listDataSuccess.length > 0
+          listDataSuccess && listDataSuccess.length > 4
             ? `calc(310px - 20px)`
             : "",
       }}

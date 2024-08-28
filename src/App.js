@@ -24,6 +24,7 @@ function App() {
     "/profile",
     "/statistical",
     "/reviews",
+    "/reset-password/:token",
   ];
   let checkPath = path.includes(location.pathname);
 

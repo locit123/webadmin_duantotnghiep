@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { store } from "../store/store";
-const baseUrl = `https://pro2052-restaurant-api.onrender.com/v1/`;
+const baseUrl = `https://ngon-api.dangtai.id.vn/v1/`;
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {

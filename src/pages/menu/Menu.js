@@ -7,6 +7,7 @@ import { setStatusMenuItem } from "../../store/menuItem/setStatusMenuItem/action
 import ModalMenuItem from "../../components/Modal/menu/ModalMenuItem";
 import { valueFormMenu } from "../../store/valueForm/menu/actions";
 import ModalOption from "../../components/tables/tableMenu/ModalOption";
+import { Helmet } from "react-helmet";
 function Menu(props) {
   console.log("render Menu");
   const [show, setShow] = useState(false);
@@ -32,6 +33,11 @@ function Menu(props) {
   };
   return (
     <div className={`layout-menu ${theme ? "theme" : ""}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Quản Lý Món Ăn - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <ModalMenuItem show={show} handleClose={handleClose} setShow={setShow} />
       <ModalOption show={showOption} setShow={setShowOption} />
       <button

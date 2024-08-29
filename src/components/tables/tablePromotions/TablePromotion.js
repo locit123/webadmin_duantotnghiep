@@ -26,6 +26,8 @@ const TablePromotion = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [title, setTitle] = useState("Số tiền giảm");
 
+  console.log(isSelected, "check");
+
   const getApiPromotions = useCallback(async () => {
     await getPromotion(setListDataPromotion, setIsLoadingPromotion);
   }, [setListDataPromotion, setIsLoadingPromotion]);
@@ -110,9 +112,14 @@ const TablePromotion = ({
 
   const newDataFilter = [
     ...new Set(
-      listDataPromotion?.data?.promotions?.map((item) => item.discountType)
+      listDataPromotion?.data?.promotions?.map((item) => item.discountType) ||
+        []
     ),
   ];
+  console.log(
+    listDataPromotion?.data?.promotions,
+    "listDataPromotion?.data?.promotions"
+  );
 
   const handleClickView = (item) => {
     setItemPromotion({ item });
@@ -183,7 +190,7 @@ const TablePromotion = ({
   const handleClickOn = async () => {
     await postResetAllPromotion(setListDataPromotion);
   };
-  console.log(newListData, "check<<<<<<<<<<<<<<<<PROMOTION");
+  console.log(newDataFilter, "newDataFilter");
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -305,7 +312,6 @@ const TablePromotion = ({
                       <td>
                         {item.usageLimitPerUser ? item.usageLimitPerUser : 0}
                       </td>
-
                       <td>{item.maxUsage ? item.maxUsage : 0}</td>
 
                       <td>{item.usedCount}</td>

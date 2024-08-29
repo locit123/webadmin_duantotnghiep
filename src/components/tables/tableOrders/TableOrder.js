@@ -3,19 +3,18 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { getAllOrder } from "../../../api/call_api/orders/fetchApiOrder";
 import LoadingTableOrder from "./LoadingTableOrder";
 import ReactPaginate from "react-paginate";
-import { AiOutlineSwapRight } from "react-icons/ai";
-import _ from "lodash";
 import ModalOrder from "./ModalOrders/ModalOrder";
 import { checkDate, FormatDay2 } from "../../../utils/FormDay";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
+import MenuItemLi from "../../menuItem/MenuItemLi";
+import _ from "lodash";
 const TableOrder = () => {
   const [idOption, setIdOption] = useState([]);
   const [selectOption, setSelectOption] = useState("");
   const [listDataOrder, setListDataOrder] = useState([]);
   const [listNewDataOrder, setListNewDataOrder] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isClick, setIsClick] = useState("up");
   const [currentImage, setCurrentImage] = useState("");
   const [title, setTitle] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +23,12 @@ const TableOrder = () => {
   const [month, setMonth] = useState([]);
   const [voucher, setVoucher] = useState([]);
   const [selectVoucher] = useState(true);
+  const [isClick, setIsClick] = useState(null);
+  const itemLi = useMemo(() => {
+    return ["Mặc định", "Tăng dần", "Giảm dần"];
+  }, []);
+  const [arrowValue, setArrowValue] = useState("");
+
   /********************************************GET DATA****************** */
 
   useEffect(() => {
@@ -130,36 +135,6 @@ const TableOrder = () => {
   };
   /********************************************SORT DATA****************** */
 
-  const getDataOrder = useCallback(() => {
-    if (listNewDataOrder && listNewDataOrder.length > 0 && isClick) {
-      let dataClone = _.cloneDeep(listNewDataOrder);
-      if (dataClone && dataClone.length > 0) {
-        if (isClick === "up") {
-          dataClone.sort((a, b) => a.amount - b.amount);
-        } else {
-          dataClone.sort((a, b) => b.amount - a.amount);
-        }
-      }
-      if (JSON.stringify(dataClone) !== JSON.stringify(listNewDataOrder)) {
-        setListNewDataOrder(dataClone);
-      }
-    }
-  }, [isClick, listNewDataOrder]);
-  useEffect(() => {
-    getDataOrder();
-  }, [getDataOrder]);
-
-  const handleClickSort = () => {
-    if (isClick === "up") {
-      setIsClick("down");
-      return;
-    }
-    if (isClick === "down") {
-      setIsClick("up");
-      return;
-    }
-  };
-
   const handleClickImage = (item) => {
     setCurrentImage(item.userPay.img_avatar_url);
     setTitle(item.userPay.fullName);
@@ -179,6 +154,39 @@ const TableOrder = () => {
       setListDataItem([]);
     }
   };
+  useEffect(() => {
+    if (itemLi && !arrowValue) {
+      setArrowValue(itemLi[0]);
+      setIsClick(0);
+    }
+  }, [itemLi, arrowValue]);
+
+  const handleClick = (item, index) => {
+    setIsClick(index);
+    setArrowValue(item);
+  };
+
+  useEffect(() => {
+    if (
+      arrowValue &&
+      isClick !== undefined &&
+      listNewDataOrder &&
+      listNewDataOrder.length > 0
+    ) {
+      let dataClone = _.cloneDeep(listNewDataOrder);
+      if (arrowValue === "Mặc định" && isClick === 0) {
+        dataClone.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      } else if (arrowValue === "Tăng dần" && isClick === 1) {
+        dataClone.sort((a, b) => a.amount - b.amount);
+      } else if (arrowValue === "Giảm dần" && isClick === 2) {
+        dataClone.sort((a, b) => b.amount - a.amount);
+      }
+
+      if (JSON.stringify(dataClone) !== JSON.stringify(listNewDataOrder)) {
+        setListNewDataOrder(dataClone);
+      }
+    }
+  }, [arrowValue, isClick, listNewDataOrder]);
 
   return (
     <>
@@ -240,15 +248,16 @@ const TableOrder = () => {
               <th>Stt</th>
               <th>Số bàn</th>
               <th>
-                Tổng tiền
-                <span className="ic-swap" onClick={handleClickSort}>
-                  <AiOutlineSwapRight
-                    className={`ic-up ${isClick === "up" ? "click" : ""}`}
-                  />
-                  <AiOutlineSwapRight
-                    className={`ic-down ${isClick === "down" ? "click" : ""}`}
-                  />
-                </span>
+                <div className="th-order">
+                  <span>Tổng tiền</span>
+                  <div className="menu">
+                    <MenuItemLi
+                      data={itemLi}
+                      onClick={handleClick}
+                      isClick={isClick}
+                    />
+                  </div>
+                </div>
               </th>
               <th>Tên</th>
               <th>Phương thức thanh toán</th>

@@ -203,39 +203,69 @@
 
         thead {
             tr {
+                .th-order {
+                    gap: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+
+                    .menu {
+                        &:hover .menu-sort {
+                            display: block;
+                                cursor: pointer;
+                            }
+                            
+
+                        .icon-arrow {
+                            cursor: pointer;
+                            font-weight: bold;
+
+                        }
+
+                        .menu-sort {
+                            padding: 0;
+                            position: absolute;
+                            background-color: #1d1933;
+                            top: 20px;
+                            display: none;
+                            width: 100px;
+                            z-index: 1000;
+                            left: 0px;
+                            &::before{
+                                content: "";
+                                width: 100px;
+                                height: 20px;
+                                display: block;
+                                position: absolute;
+                                top: -15px;
+                            }
+                            li {
+                                list-style: none;
+                                width: 100%;
+                                padding: 5px;
+                                border: 1px solid #fff;
+                                transition: opacity .2s ease-in-out;
+                                color: #FFF;
+                                opacity: .4;
+                                &:hover {
+                                    opacity: 1;
+                                }
+
+                            }
+                            .click{
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                }
+
                 th {
                     color: #E8900C;
                 }
 
-                .ic-swap {
-                    font-size: 15px;
-                    cursor: pointer;
-                    right: 3px;
-                    top: 4px;
-                    position: relative;
-
-                    .ic-up {
-                        position: absolute;
-                        left: 10px;
-                        transform: rotate(-270deg);
-                        display: inline-block;
-
-                        &.click {
-                            opacity: .5;
-                        }
-                    }
-
-                    .ic-down {
-                        position: absolute;
-                        left: 5px;
-                        display: inline-block;
-                        transform: rotate(-90deg);
-
-                        &.click {
-                            opacity: .5;
-                        }
-                    }
-                }
+                
             }
         }
 

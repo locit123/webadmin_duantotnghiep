@@ -8,7 +8,6 @@ import { useCallback, useEffect, useState } from "react";
 
 function ModalOrder({ show, setShow, listDataItem, setListDataItem, voucher }) {
   const [listNewDataItem, setListNewDataItem] = useState([]);
-  console.log(voucher, "voucher");
 
   const findElement = useCallback(() => {
     if (listDataItem && listDataItem.length > 0) {

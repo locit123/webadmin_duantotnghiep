@@ -7,7 +7,7 @@ NProgress.configure({
   trickleSpeed: 100,
 });
 
-const getAllOrder = async (setListDataOrder) => {
+const getAllOrder = async (setListDataOrder, itemRef) => {
   NProgress.start();
   try {
     const res = await apiOrder.getOrder();

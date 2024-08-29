@@ -10,6 +10,8 @@ import LoadingCardBan from "./LoadingCardBan";
 import ModalCardBan from "./MoadlCardBan";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
+import PerfectScrollbar from "react-perfect-scrollbar";
+
 const CardBan = (props) => {
   console.log("render CardBan");
   const theme = useSelector(getThemeState);
@@ -72,70 +74,82 @@ const CardBan = (props) => {
   };
   return (
     <>
-      <ModalCardBan
-        show={show}
-        setShow={setShow}
-        idAndTableNumber={idAndTableNumber}
-        setIdAndTableNumber={setIdAndTableNumber}
-      />
-      <Card
-        className={`card-ban ${theme ? "theme" : ""}`}
-        title={
-          <div className="box-title">
-            <div className="box-text">
-              <p>Bàn đang hoạt động</p>
-              <span>| Hôm nay</span>
-            </div>
-            <EllipsisOutlined className="icon-ellips" />
-          </div>
-        }
-        bordered={false}
+      <div
+        className="mb-2"
+        style={{
+          height:
+            listDataTableSuccess && listDataTableSuccess.length > 2
+              ? `calc(310px - 20px)`
+              : "",
+        }}
       >
-        {isLoading ? (
-          <div className="box-loading">
-            <LoadingOutlined className="loading" />
-          </div>
-        ) : (
-          <div className="box-body">
-            <span className="mb-1">
-              Hiện có {listDataTableSuccess.length} bàn đang hoạt động
-            </span>
-            {listDataTableSuccess && listDataTableSuccess.length > 0 ? (
-              listDataTableSuccess.map((item, index) => (
-                <LoadingCardBan
-                  key={index}
-                  data={item}
-                  handleClickTag={() =>
-                    handleClickTag(item._id, item.tableNumber)
-                  }
-                  handleClickImageQR={() => handleClickImageQR(item)}
-                />
-              ))
-            ) : (
-              <span className="sp">Không có bàn nào hoạt động</span>
-            )}
-          </div>
-        )}
-      </Card>
-      {isShow && (
-        <div className="lightbox-wrapper">
-          <Lightbox
-            open={isShow}
-            close={() => setIsShow(false)}
-            carousel={{ finite: true }}
-            className="lightbox"
-            plugins={[Captions]}
-            slides={[
-              {
-                src: imageClick[1],
-                width: 3840,
-                height: 2560,
-                title: <span className="ban">bàn: {imageClick[0]}</span>,
-              },
-            ]}
+        <PerfectScrollbar>
+          <ModalCardBan
+            show={show}
+            setShow={setShow}
+            idAndTableNumber={idAndTableNumber}
+            setIdAndTableNumber={setIdAndTableNumber}
           />
-        </div>
-      )}
+          <Card
+            className={`card-ban ${theme ? "theme" : ""}`}
+            title={
+              <div className="box-title">
+                <div className="box-text">
+                  <p>Bàn đang hoạt động</p>
+                  <span>| Hôm nay</span>
+                </div>
+                <EllipsisOutlined className="icon-ellips" />
+              </div>
+            }
+            bordered={false}
+          >
+            {isLoading ? (
+              <div className="box-loading">
+                <LoadingOutlined className="loading" />
+              </div>
+            ) : (
+              <div className="box-body">
+                <span className="mb-1">
+                  Hiện có {listDataTableSuccess.length} bàn đang hoạt động
+                </span>
+                {listDataTableSuccess && listDataTableSuccess.length > 0 ? (
+                  listDataTableSuccess.map((item, index) => (
+                    <LoadingCardBan
+                      key={index}
+                      data={item}
+                      handleClickTag={() =>
+                        handleClickTag(item._id, item.tableNumber)
+                      }
+                      handleClickImageQR={() => handleClickImageQR(item)}
+                    />
+                  ))
+                ) : (
+                  <span className="sp">Không có bàn nào hoạt động</span>
+                )}
+              </div>
+            )}
+          </Card>
+          {isShow && (
+            <div className="lightbox-wrapper">
+              <Lightbox
+                open={isShow}
+                close={() => setIsShow(false)}
+                carousel={{ finite: true }}
+                className="lightbox"
+                plugins={[Captions]}
+                slides={[
+                  {
+                    src: imageClick[1],
+                    width: 3840,
+                    height: 2560,
+                    title: <span className="ban">bàn: {imageClick[0]}</span>,
+                  },
+                ]}
+              />
+            </div>
+          )}
+        </PerfectScrollbar>
+      </div>
     </>
   );
 };

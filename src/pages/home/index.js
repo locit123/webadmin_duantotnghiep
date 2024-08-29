@@ -10,12 +10,17 @@ import CardKM from "../../components/card/card-show6/CardKhuyenMaiVaThongBao";
 import CardBan from "../../components/card/card-show7/CardBan";
 import { useSelector } from "react-redux";
 import { getThemeState } from "../../store/selector";
-
+import { Helmet } from "react-helmet";
 const Home = () => {
   const theme = useSelector(getThemeState);
 
   return (
     <div className={`layout-home ${theme ? "theme" : ""}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Trang Chủ - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="row">
         <div className="col-8">
           <div className="left-cart-1">

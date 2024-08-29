@@ -11,11 +11,17 @@ import Accordion from "react-bootstrap/Accordion";
 import { useSelector } from "react-redux";
 import { getThemeState } from "../../store/selector";
 import CustomerStatistical from "../../components/chart/CustommerStatistical/CustomerStatistical";
+import { Helmet } from "react-helmet";
 const Statistical = () => {
   const theme = useSelector(getThemeState);
 
   return (
     <div className={`layout-statistical ${theme ? "theme" : ""}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Quản Lý Thống Kê - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="box-row3">
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">

@@ -6,6 +6,7 @@ import { getThemeState } from "../../store/selector";
 import ModalUsers from "../../components/Modal/Users/ModalUsers";
 import { setStatusUsers } from "../../store/auth/setStatusUsers/actions";
 import { valueFormUsers } from "../../store/valueForm/users/actions";
+import { Helmet } from "react-helmet";
 
 // Hàm viết hoa chữ cái đầu tiên
 const capitalizeFirstLetter = (string) => {
@@ -37,6 +38,11 @@ const User = () => {
 
   return (
     <div className={`layout-user ${theme ? "theme" : ""}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Quản Lý Người Dùng - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <button
         className="mx-3 btn btn-primary bt mt-3"
         onClick={handleClickAddNewUser}

@@ -15,6 +15,7 @@ import { AiOutlineSwapRight } from "react-icons/ai";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import _ from "lodash";
+import { Helmet } from "react-helmet";
 const TableTable = () => {
   console.log("render TableTable");
   const [currentPage, setCurrentPage] = useState(0);
@@ -112,6 +113,11 @@ const TableTable = () => {
 
   return (
     <div className="mt-3 mb-3 layout">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Quản Lý Bàn - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {isLoading ? (
         <div className="dialog">
           <LoadingOutlined className="loading" />
@@ -222,7 +228,7 @@ const TableTable = () => {
                 src: currentImage,
                 width: 3840,
                 height: 2560,
-                title: <span className="ban">Họ và tên: {title}</span>,
+                title: <span className="ban">{title}</span>,
               },
             ]}
           />

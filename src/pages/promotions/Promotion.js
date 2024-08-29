@@ -7,6 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import FormPromotion from "../../components/form/formPromotions/FormPromotion";
 import ModalPromotion from "./Modal/Modal";
+import { Helmet } from "react-helmet";
 function Promotion(props) {
   console.log("render Promotion");
   const [listDataPromotion, setListDataPromotion] = useState([]);
@@ -49,6 +50,11 @@ function Promotion(props) {
 
   return (
     <div className={`layout-promotion ${theme ? "theme" : ""}`}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Quản Lý Khuyến Mãi - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <ModalPromotion
         show={show}
         setShow={setShow}

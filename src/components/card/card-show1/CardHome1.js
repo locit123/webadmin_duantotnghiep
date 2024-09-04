@@ -107,7 +107,7 @@ function CardHome1(props) {
       year
     ) {
       listDataMenuItemStatistical.reduce((arr, curr) => {
-        let findData = arr.find(
+        let findData = arr?.find(
           (item) =>
             item.timePeriod === curr.timePeriod &&
             FormatDay5(curr.timePeriod) === chooseMonth &&
@@ -115,7 +115,7 @@ function CardHome1(props) {
         );
 
         if (findData) {
-          findData?.totalQuantity += curr?.totalQuantity;
+          findData.totalQuantity += curr?.totalQuantity;
         } else {
           arr.push({ ...curr });
         }
@@ -151,7 +151,7 @@ function CardHome1(props) {
       setQuantity("");
     }
   }, [listDataSuccess]);
-  console.log(resultPercentage, "check");
+  console.log(listDataSuccess, "check");
 
   return (
     <Card

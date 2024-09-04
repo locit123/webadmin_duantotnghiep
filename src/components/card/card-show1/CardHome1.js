@@ -115,7 +115,7 @@ function CardHome1(props) {
         );
 
         if (findData) {
-          findData.totalQuantity += curr.totalQuantity;
+          findData?.totalQuantity += curr?.totalQuantity;
         } else {
           arr.push({ ...curr });
         }
@@ -144,7 +144,7 @@ function CardHome1(props) {
     if (listDataSuccess && listDataSuccess.length > 0) {
       setQuantity(listDataSuccess[listDataSuccess.length - 1]);
       let newTotalPercentage =
-        listDataSuccess[1].totalQuantity - listDataSuccess[0].totalQuantity;
+        listDataSuccess[1]?.totalQuantity - listDataSuccess[0]?.totalQuantity;
       setResultPercentage(newTotalPercentage);
     }
     if (listDataSuccess.length === 0) {

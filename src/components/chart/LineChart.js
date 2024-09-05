@@ -25,7 +25,11 @@ const LineChart2 = ({ data }) => {
         data={data}
         margin={{ top: 20, left: 20, right: 10 }}
       >
-        <XAxis dataKey="date" stroke={theme ? "white" : ""} />
+        <XAxis
+          dataKey="date"
+          stroke={theme ? "white" : ""}
+          tickFormatter={(value) => FormatDay2(value)}
+        />
         <YAxis
           stroke={theme ? "white" : ""}
           tickFormatter={(value) => {

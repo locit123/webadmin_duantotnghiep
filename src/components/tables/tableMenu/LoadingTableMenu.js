@@ -50,7 +50,9 @@ const LoadingTableMenu = ({
         <Tooltip text={item.engName}> {cutString(item?.engName)}</Tooltip>
       </td>
       <td>
-        <Tooltip text={item.description}>{cutString(item.description)}</Tooltip>
+        <Tooltip text={item.description}>
+          {cutString(item.description) || "Ngon Restaurant"}
+        </Tooltip>
       </td>
       <td>{ConvertMoney(item.price)}</td>
       <td className="img-table" onClick={onClick}>
@@ -72,7 +74,6 @@ const LoadingTableMenu = ({
         <button
           className="btn btn-danger mx-3"
           onClick={() => handleClickXoaMenuItem(item)}
-          disabled={true}
         >
           Xóa
         </button>

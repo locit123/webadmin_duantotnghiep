@@ -8,7 +8,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { historyPaymentUser } from "../../../../api/call_api/auth/fetchApiAuth";
 import { FormatDay2 } from "../../../../utils/FormDay";
 import _ from "lodash";
-// import Lightbox from "react-awesome-lightbox";
 import LoadingCash from "./LoadingCash";
 import LoadingBanking from "./LoadingBanking";
 
@@ -16,9 +15,6 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   const [data, setData] = useState([]);
   const [listCash, setListCash] = useState({});
   const [listZaloPay, setListZaloPay] = useState({});
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [currentImage, setCurrentImage] = useState("");
-  // const [title, setTitle] = useState("");
   const [isSelectDate, setIsSelectDate] = useState("");
   const [isDataTime, setIsDataTime] = useState([]);
 
@@ -34,6 +30,9 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   useEffect(() => {
     getApiHistoryPayment();
   }, [getApiHistoryPayment]);
+
+  console.log(data, "check data");
+
   /**********************************LAY NGAY*************************** */
   const dateTime = useMemo(() => {
     return [...new Set(data.map((item) => FormatDay2(item.createdAt)) || [])];
@@ -91,24 +90,8 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
     setIsDataTime([]);
   };
 
-  // const handleClickImage = () => {
-  //   setIsOpen(true);
-  //   setCurrentImage(item.img_avatar_url);
-  //   setTitle(item.fullName);
-  // };
   return (
     <>
-      {/* {currentImage && isOpen && (
-        <Lightbox
-          image={currentImage}
-          title={title}
-          onClose={() => {
-            setIsOpen(false);
-            setTitle("");
-            setCurrentImage("");
-          }}
-        />
-      )} */}
       <Modal show={show} onHide={handleClose} size="xl" backdrop={"static"}>
         <Modal.Header closeButton>
           <Modal.Title>

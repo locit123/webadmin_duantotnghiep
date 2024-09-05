@@ -21,6 +21,7 @@ const FormUser = () => {
   const role = useSelector(roleState);
   const getStatusUsers = useSelector(getSetStatusUsersState);
   const status = getStatusUsers[0];
+  console.log(role, "check role");
 
   return (
     <div className="form-user">
@@ -45,38 +46,46 @@ const FormUser = () => {
           disabled={status === "update" ? true : false}
         />
       </FloatingLabel>
-      <div className="form-eye">
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Mật khẩu"
-          className="mb-3"
-        >
-          <Form.Control
-            type={eye ? "text" : "password"}
-            placeholder="name@example.com"
-            value={password}
-            onChange={(e) =>
-              dispatch(valueFormUsers.setPassword(e.target.value))
-            }
-            disabled={status === "update" ? true : false}
-          />
+      {status !== "update" && (
+        <div className="form-eye">
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Mật khẩu"
+            className="mb-3"
+          >
+            <Form.Control
+              type={eye ? "text" : "password"}
+              placeholder="name@example.com"
+              value={password}
+              onChange={(e) =>
+                dispatch(valueFormUsers.setPassword(e.target.value))
+              }
+              disabled={status === "update" ? true : false}
+            />
+          </FloatingLabel>
+          {eye ? (
+            <TfiEye size={25} className="eye" onClick={() => setEye(false)} />
+          ) : (
+            <RxEyeClosed
+              size={25}
+              className="eye"
+              onClick={() => setEye(true)}
+            />
+          )}
+        </div>
+      )}
+      {role !== "client" && (
+        <FloatingLabel controlId="floatingSelect" label="Vai trò">
+          <Form.Select
+            aria-label="Floating label select example"
+            onChange={(e) => dispatch(valueFormUsers.setRole(e.target.value))}
+            value={role}
+          >
+            <option value={"staff"}>Nhân viên</option>
+            <option value={"admin"}>Admin</option>
+          </Form.Select>
         </FloatingLabel>
-        {eye ? (
-          <TfiEye size={25} className="eye" onClick={() => setEye(false)} />
-        ) : (
-          <RxEyeClosed size={25} className="eye" onClick={() => setEye(true)} />
-        )}
-      </div>
-      <FloatingLabel controlId="floatingSelect" label="Vai trò">
-        <Form.Select
-          aria-label="Floating label select example"
-          onChange={(e) => dispatch(valueFormUsers.setRole(e.target.value))}
-          value={role}
-        >
-          <option value={"staff"}>Nhân viên</option>
-          <option value={"admin"}>Admin</option>
-        </Form.Select>
-      </FloatingLabel>
+      )}
     </div>
   );
 };

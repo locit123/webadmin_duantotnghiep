@@ -151,7 +151,6 @@ function CardHome1(props) {
       setQuantity("");
     }
   }, [listDataSuccess]);
-  console.log(listDataSuccess, "check");
 
   return (
     <Card
@@ -185,7 +184,7 @@ function CardHome1(props) {
             <h6 className="h6">{quantity.totalQuantity}</h6>
             <div className="span">
               <span>{resultPercentage > 0 ? "tăng" : "giảm"}</span>
-              <span className="a">{Math.abs(resultPercentage)}</span>
+              <span className="a">{Math.abs(resultPercentage) || 0}</span>
               <span className="a">món</span>
             </div>
           </div>

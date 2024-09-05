@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   getPromotion,
   patchStatusPromotion,
@@ -24,10 +24,11 @@ const TablePromotion = ({
   const [filteredPromotions, setFilteredPromotions] = useState([]);
   const [isSelected, setIsSelected] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
-  const [title, setTitle] = useState("Số tiền giảm");
+  const [selectPromotions, setSelectPromotions] = useState([]);
+  let data = listDataPromotion?.data?.promotions;
+  console.log(isSelected, "isSelected");
 
-  console.log(isSelected, "check");
-
+  /*********************************************************GET DATA********************************************* */
   const getApiPromotions = useCallback(async () => {
     await getPromotion(setListDataPromotion, setIsLoadingPromotion);
   }, [setListDataPromotion, setIsLoadingPromotion]);
@@ -35,41 +36,65 @@ const TablePromotion = ({
   useEffect(() => {
     getApiPromotions();
   }, [getApiPromotions]);
+  /*********************************************************GET DATA SELECTED********************************************* */
 
-  const filterPromotions = useCallback(() => {
-    if (listDataPromotion?.data?.promotions?.length > 0) {
-      const filtered = listDataPromotion.data.promotions.filter((item) => {
-        if (isSelected === "") {
-          return true;
-        }
-        if (isSelected === "true" || isSelected === "false") {
-          return item.isActive === (isSelected === "true");
-        } else {
-          return item.discountType === isSelected;
-        }
-      });
+  let dataIsActive = useMemo(() => {
+    return [
+      ...new Set(
+        listDataPromotion?.data?.promotions.map((item) =>
+          item.isActive.toString()
+        ) || []
+      ),
+    ];
+  }, [listDataPromotion?.data?.promotions]);
 
-      setFilteredPromotions(filtered);
-    }
-  }, [isSelected, listDataPromotion?.data?.promotions]);
-
-  useEffect(() => {
-    filterPromotions();
-  }, [filterPromotions]);
-
+  const newDataFilter = useMemo(() => {
+    return [
+      ...new Set(
+        listDataPromotion?.data?.promotions?.map((item) => item.discountType) ||
+          []
+      ),
+    ];
+  }, [listDataPromotion?.data?.promotions]);
   useEffect(() => {
     if (
-      listDataPromotion &&
-      listDataPromotion?.data &&
-      listDataPromotion?.data?.promotions
+      dataIsActive &&
+      dataIsActive.length > 0 &&
+      newDataFilter &&
+      newDataFilter.length > 0
     ) {
-      const dataClone = _.cloneDeep(listDataPromotion?.data?.promotions);
-      if (dataClone && dataClone.length > 0) {
-        dataClone.reverse();
-      }
-      setFilteredPromotions(dataClone);
+      setSelectPromotions(newDataFilter.concat(dataIsActive));
+    } else if (dataIsActive.length === 0 && newDataFilter.length === 0) {
+      setSelectPromotions([]);
     }
-  }, [listDataPromotion]);
+  }, [dataIsActive, newDataFilter]);
+
+  useEffect(() => {
+    if (selectPromotions && selectPromotions.length > 0 && !isSelected) {
+      setIsSelected(selectPromotions[selectPromotions.length - 1]);
+    } else if (selectPromotions.length === 0) {
+      setIsSelected("");
+    }
+  }, [selectPromotions, isSelected]);
+  /*********************************************************GET DATA SELECTED********************************************* */
+  const dataSuccess = useCallback(() => {
+    if (data && data.length > 0 && isSelected) {
+      let newData = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].discountType === isSelected) {
+          newData.push(data[i]);
+        }
+        if (data[i].isActive.toString() === isSelected) {
+          newData.push(data[i]);
+        }
+      }
+      setFilteredPromotions(newData);
+    }
+  }, [data, isSelected]);
+
+  useEffect(() => {
+    dataSuccess();
+  }, [dataSuccess]);
 
   let limit = 5;
   let offset = currentPage * limit;
@@ -110,17 +135,6 @@ const TablePromotion = ({
     }
   };
 
-  const newDataFilter = [
-    ...new Set(
-      listDataPromotion?.data?.promotions?.map((item) => item.discountType) ||
-        []
-    ),
-  ];
-  console.log(
-    listDataPromotion?.data?.promotions,
-    "listDataPromotion?.data?.promotions"
-  );
-
   const handleClickView = (item) => {
     setItemPromotion({ item });
     setStatusPromotion(["chiTiet"]);
@@ -143,44 +157,6 @@ const TablePromotion = ({
     }
   };
 
-  const filterTitle = useCallback(() => {
-    let hasFixed = false;
-    let hasPercentage = false;
-    let hasMaxPercentage = false;
-
-    for (let i = 0; i < newListData.length; i++) {
-      const { discountType } = newListData[i];
-      if (discountType === "fixed") {
-        hasFixed = true;
-      } else if (discountType === "percentage") {
-        hasPercentage = true;
-      } else if (discountType === "maxPercentage") {
-        hasMaxPercentage = true;
-      }
-    }
-
-    if (hasFixed && hasPercentage && hasMaxPercentage) {
-      setTitle("Giảm tiền & phần trăm");
-      return;
-    } else if (hasFixed && hasPercentage) {
-      setTitle("Giảm tiền & phần trăm");
-      return;
-    } else if (hasFixed && hasMaxPercentage) {
-      setTitle("Giảm tiền & phần trăm");
-      return;
-    } else if (hasFixed) {
-      setTitle("Giảm theo tiền");
-      return;
-    } else if (hasPercentage || hasMaxPercentage) {
-      setTitle("Giảm theo phần trăm");
-      return;
-    }
-  }, [newListData]);
-
-  useEffect(() => {
-    filterTitle();
-  }, [filterTitle]);
-
   const totalUsedCount =
     listDataPromotion?.data?.promotions?.length > 0 &&
     listDataPromotion?.data?.promotions?.reduce((a, b) => {
@@ -190,7 +166,8 @@ const TablePromotion = ({
   const handleClickOn = async () => {
     await postResetAllPromotion(setListDataPromotion);
   };
-  console.log(newDataFilter, "newDataFilter");
+
+  console.log(newListData, "newListData");
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -203,38 +180,29 @@ const TablePromotion = ({
           <div className="box-select">
             <span>Hiện có : {filteredPromotions.length} </span>
             <h1 className="text-center">
-              {isSelected.toUpperCase() === ""
-                ? "Tất cả khuyến mãi"
-                : isSelected === "true"
-                ? "Khuyến mãi khả dụng"
+              {isSelected === "true"
+                ? "Tất cả mã khuyến mãi khả dụng"
                 : isSelected === "false"
-                ? "Khuyến mãi không khả dụng"
-                : isSelected === "fixed"
-                ? "Khuyến mãi theo tiền"
-                : "Khuyến mãi theo phần trăm"}
+                ? "Tất cả mã khuyến mãi không khả dụng"
+                : `Tất cả mã khuyến mãi ${isSelected}`}
             </h1>
             <div className="select">
               <select
                 value={isSelected}
                 onChange={(e) => handleChangeOption(e.target.value)}
               >
-                <option value={""}>Tất cả</option>
-                <option value={"true"}>Khả dụng</option>
-                <option value={"false"}>Không khả dụng</option>
-                {newDataFilter.length > 0 ? (
-                  newDataFilter.map((item, index) => {
-                    return (
-                      <option key={index} value={item}>
-                        {item}
-                      </option>
-                    );
-                  })
+                {selectPromotions && selectPromotions.length > 0 ? (
+                  selectPromotions.map((item, index) => (
+                    <option key={index} value={item}>
+                      {item === "true"
+                        ? "Khả dụng"
+                        : item === "false"
+                        ? "Không khả dụng"
+                        : item}
+                    </option>
+                  ))
                 ) : (
-                  <>
-                    <option value={"fixed"}>fixed</option>
-                    <option value={"percentage"}>percentage</option>
-                    <option value={"maxPercentage"}>maxPercentage</option>
-                  </>
+                  <option>Không có dữ liệu</option>
                 )}
               </select>
             </div>
@@ -267,7 +235,7 @@ const TablePromotion = ({
                 <th>Mã giảm giá</th>
                 <th>Trạng thái</th>
                 <th>Loại mã</th>
-                <th>{title}</th>
+                <th>Số tiền giảm</th>
                 <th>Giới hạn sử dụng</th>
                 <th>Lượt dùng mã</th>
                 <th>đã sử dụng</th>
@@ -315,23 +283,31 @@ const TablePromotion = ({
                       <td>{item.maxUsage ? item.maxUsage : 0}</td>
 
                       <td>{item.usedCount}</td>
-                      <td>
+                      <td
+                        style={{
+                          display: "flex",
+                          gap: "10px",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
                         <button
-                          className="btn btn-secondary"
+                          className={`btn btn-secondary`}
                           onClick={() => handleClickView(item)}
                         >
                           Chi Tiết
                         </button>
 
-                        <button
-                          className="btn btn-danger mx-2"
-                          onClick={() => handleClickDelete(item._id, item.code)}
-                          disabled={
-                            item.usedCount && item.isActive ? true : false
-                          }
-                        >
-                          Xóa
-                        </button>
+                        {!item.isActive && (
+                          <button
+                            className="btn btn-danger"
+                            onClick={() =>
+                              handleClickDelete(item._id, item.code)
+                            }
+                          >
+                            Xóa
+                          </button>
+                        )}
                         <button
                           className="btn btn-primary"
                           onClick={() => handleClickSua(item)}

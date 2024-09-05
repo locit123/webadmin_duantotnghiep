@@ -12,18 +12,14 @@ import { LoadingOutlined } from "@ant-design/icons";
 import ReactPaginate from "react-paginate";
 import { getAllMenuItem } from "../../../api/call_api/menuItem/fetchApiMenuItem";
 import { getAllCategories } from "../../../api/call_api/categories/fetchApiCategory";
-import { AiOutlineSwapRight } from "react-icons/ai";
-import _ from "lodash";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 const TableMenu = ({ setShow, setShowOption }) => {
   console.log("TABLE MENU");
   const [category, setCategory] = useState("Món khai vị");
   const [currentPage, setCurrentPage] = useState(0);
-  const [isClick, setIsClick] = useState("up");
   const theme = useSelector(getThemeState);
   const getMenuItemState = useSelector(getAllMenuItemState);
-  const [dataSort, setDataSort] = useState([]);
   const { dataMenuItem, isLoadingMenuItem } = getMenuItemState;
   const data = dataMenuItem?.data;
   const categoriesState = useSelector(getCategoriesState);
@@ -51,24 +47,10 @@ const TableMenu = ({ setShow, setShowOption }) => {
   const itemPage = 5;
   const offset = currentPage * itemPage;
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      let dataClone = _.cloneDeep(data);
-      if (isClick === "up") {
-        dataClone.sort((a, b) => a.price - b.price);
-      } else {
-        dataClone.sort((a, b) => b.price - a.price);
-      }
-      setDataSort(dataClone);
-    }
-  }, [data, isClick]);
-
-  const itemList = dataSort
+  const itemList = data
     ?.filter((item) => category === item.category)
     .slice(offset, offset + itemPage);
-  const pageCount = dataSort?.filter(
-    (item) => category === item.category
-  ).length;
+  const pageCount = data?.filter((item) => category === item.category).length;
   const totalPage = Math?.ceil(pageCount / itemPage);
 
   const handlePageChange = useCallback((selectedPage) => {
@@ -83,17 +65,6 @@ const TableMenu = ({ setShow, setShowOption }) => {
       setCurrentPage(totalPage - 1);
     }
   }, [totalPage, currentPage]);
-  /************************************************************************************* */
-  const handleClickSort = () => {
-    if (isClick === "up") {
-      setIsClick("down");
-      return;
-    }
-    if (isClick === "down") {
-      setIsClick("up");
-      return;
-    }
-  };
 
   const handleClickImage = (image, name) => {
     setIsOpen(true);
@@ -131,17 +102,7 @@ const TableMenu = ({ setShow, setShowOption }) => {
                 <th>Tên Món</th>
                 <th>Tên Tiếng Anh</th>
                 <th>Mô Tả</th>
-                <th>
-                  Giá Tiền
-                  <span className="ic-swap" onClick={handleClickSort}>
-                    <AiOutlineSwapRight
-                      className={`ic-up ${isClick === "up" ? "click" : ""}`}
-                    />
-                    <AiOutlineSwapRight
-                      className={`ic-down ${isClick === "down" ? "click" : ""}`}
-                    />
-                  </span>
-                </th>
+                <th>Giá Tiền</th>
                 <th>Ảnh Món</th>
                 <th>Đánh Giá</th>
                 <th>Thể Loại</th>

@@ -74,13 +74,15 @@ const LoadingTable = ({
           </div>
         </td>
         <td>
-          <button
-            className="btn btn-danger mx-2"
-            onClick={() => handleClickDelete(item)}
-            disabled={item.status ? true : false}
-          >
-            Xóa
-          </button>
+          {item.status !== "open" && (
+            <button
+              className="btn btn-danger mx-2"
+              onClick={() => handleClickDelete(item)}
+            >
+              Xóa
+            </button>
+          )}
+
           <button
             className="btn btn-primary"
             onClick={() => handleClickUpdateTable(item._id, item.tableNumber)}

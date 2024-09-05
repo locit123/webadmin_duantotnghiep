@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { apiReviews } from "../../../api/AxiosInstall";
 import LoadingReviews from "./LoadingReviews";
 import ReactPaginate from "react-paginate";
-import ModalReviews from "./ModalReviews";
 import { LoadingOutlined } from "@ant-design/icons";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
@@ -13,8 +12,6 @@ const TableReviewsUsers = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageCount, setPageCount] = useState("");
   const [listDataPage, setListDataPage] = useState([]);
-  const [show, setShow] = useState(false);
-  const [menuItem, setMenuItem] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
@@ -125,11 +122,6 @@ const TableReviewsUsers = () => {
     }
   }, [currentPage, pageCount]);
 
-  const handleClick = (item) => {
-    setShow(true);
-    setMenuItem(item);
-  };
-
   const handleClickImage = (image, name) => {
     setIsOpen(true);
     setCurrentImage(image);
@@ -138,7 +130,6 @@ const TableReviewsUsers = () => {
 
   return (
     <div className="table-review-user">
-      <ModalReviews show={show} setShow={setShow} menuItem={menuItem} />
       {isLoading ? (
         <div className="box-loading">
           <LoadingOutlined className="loading" />
@@ -168,11 +159,11 @@ const TableReviewsUsers = () => {
               <tr>
                 <th>Stt</th>
                 <th>Họ và tên</th>
-                <th>Hình ảnh</th>
+                <th>Ảnh món</th>
+                <th>Tên món</th>
                 <th>Đánh giá</th>
                 <th>Bình luận</th>
                 <th>Ngày tạo</th>
-                <th>Lựa chọn</th>
               </tr>
             </thead>
             <tbody>
@@ -183,11 +174,10 @@ const TableReviewsUsers = () => {
                     index={index}
                     key={index}
                     offset={offset}
-                    handleClick={() => handleClick(item.menuItemId)}
                     handleClickImage={() =>
                       handleClickImage(
-                        item.userId.img_avatar_url,
-                        item.userId.fullName
+                        item.menuItemId.image_url,
+                        item.menuItemId.name
                       )
                     }
                   />
@@ -235,7 +225,7 @@ const TableReviewsUsers = () => {
                 src: currentImage,
                 width: 3840,
                 height: 2560,
-                title: <span className="ban">Họ và tên: {title}</span>,
+                title: <span className="ban">Tên món: {title}</span>,
               },
             ]}
           />

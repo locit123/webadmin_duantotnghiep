@@ -10,7 +10,6 @@ import ReactPaginate from "react-paginate";
 import { BiToggleRight, BiToggleLeft } from "react-icons/bi";
 import { BsToggle2On, BsToggle2Off } from "react-icons/bs";
 import ProgressBar from "../../progressBar/ProgressBar";
-import _ from "lodash";
 import { LoadingOutlined } from "@ant-design/icons";
 const TablePromotion = ({
   listDataPromotion,

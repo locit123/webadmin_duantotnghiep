@@ -74,7 +74,7 @@ const FormUser = () => {
           )}
         </div>
       )}
-      {role !== "client" && (
+      {role === "staff" && (
         <FloatingLabel controlId="floatingSelect" label="Vai trò">
           <Form.Select
             aria-label="Floating label select example"

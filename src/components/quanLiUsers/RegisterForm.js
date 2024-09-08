@@ -9,6 +9,7 @@ import { CaretUpOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { hideScrollTop, showScrollTop } from "../../store/scrollTop/actions";
 import { getScrollState } from "../../store/selector";
+import { Helmet } from "react-helmet";
 const RegisterForm = (props) => {
   console.log("render RegisterForm");
   const navigate = useNavigate();
@@ -39,6 +40,11 @@ const RegisterForm = (props) => {
   }, []);
   return (
     <div className="content-login-from form-register">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Đăng ký - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="logo-title mb-3">
         <img src={logo} alt="logo" loading="lazy" />
         <h3>NiceAdmin</h3>

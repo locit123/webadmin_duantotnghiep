@@ -106,6 +106,12 @@ const TableUser = ({ role, setRole, setShow }) => {
     setCurrentPage(0);
   };
 
+  useEffect(() => {
+    if (currentPage >= totalPage && currentPage > 0) {
+      setCurrentPage(totalPage - 1);
+    }
+  }, [totalPage, currentPage]);
+
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
   };

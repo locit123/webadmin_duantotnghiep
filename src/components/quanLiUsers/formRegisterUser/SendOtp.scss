@@ -1,0 +1,15 @@
+.box-send-otp{
+    position: relative;
+    .send-otp{
+        position: absolute;
+        right: 8px;
+        top: 18px;
+        font-weight: 600;
+        font-size: .9rem;
+        color: #7f7c7c;
+        cursor: pointer;
+        .time-count{
+            margin-left: 5px;
+        }
+    }
+}

@@ -39,13 +39,13 @@ const ResetPassword = () => {
   return (
     <div className="form-reset-password">
       <div className="form">
-        <h1>Enter Your New Password</h1>
+        <h1>Nhập mật khẩu mới của bạn</h1>
         <div className="form-group">
-          <label className="mb-1">New Password</label>
+          <label className="mb-1">Mật khẩu mới</label>
           <div className="box-eye">
             <input
               type={eyeNewPassword ? "text" : "password"}
-              placeholder="enter your new password"
+              placeholder="Nhập mật khẩu mới"
               className="form-control"
               onChange={(e) => setNewPassword(e.target.value)}
             />
@@ -63,11 +63,11 @@ const ResetPassword = () => {
           </div>
         </div>
         <div className="form-group mt-2 mb-2">
-          <label className="mb-1">Re-Password</label>
+          <label className="mb-1">Nhập lại mật khẩu</label>
           <div className="box-eye">
             <input
               type={eyeRePassword ? "text" : "password"}
-              placeholder="enter your new re-password"
+              placeholder="Nhập lại mật khẩu"
               className="form-control"
               onChange={(e) => setReNewPassword(e.target.value)}
             />

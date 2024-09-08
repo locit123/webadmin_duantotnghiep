@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dataForgotPasswordState } from "../../store/selector";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const dataForgot = useSelector(dataForgotPasswordState);
@@ -19,14 +20,19 @@ const ForgotPassword = () => {
   };
   return (
     <div className="forgot-password">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Lấy lại mật khẩu - Ngon Restaurant</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="form">
-        <h1>Enter your email to reset password</h1>
+        <h1>Nhập email của bạn để đặt lại mật khẩu</h1>
         <div className="form-group mt-3 mb-3">
-          <label className="mb-2">Email</label>
+          <label className="mb-2">E-mail</label>
           <input
             value={email}
             onChange={handleChangePassword}
-            placeholder="enter your email"
+            placeholder="Nhập email của bạn"
             className="form-control"
           />
         </div>
@@ -35,12 +41,12 @@ const ForgotPassword = () => {
             className="btn btn-primary"
             onClick={handleClickResetPassword}
           >
-            {isLoadingForgotPassword ? <LoadingOutlined /> : "Reset Password"}
+            {isLoadingForgotPassword ? <LoadingOutlined /> : "Tiếp tục"}
           </button>
         </div>
         <div className="text-center mt-1">
           <Link to={"/login"} style={{ color: "#E8900C" }}>
-            Back
+            Quay lại
           </Link>
         </div>
       </div>

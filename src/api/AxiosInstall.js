@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { store } from "../store/store";
-const baseUrl = `https://ngon-api.dangtai.id.vn/v1/`;
+const baseUrl = `https://pro2052-restaurant-api.onrender.com/v1/`;
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
@@ -32,7 +32,7 @@ export default axiosInstance;
 
 //*******************************USERS********************************* */
 const api = {
-  loginUser: (payload) => axiosInstance.post(`users/login`, payload),
+  loginUser: (payload) => axiosInstance.post(`users/login-admin`, payload),
   getMe: () => axiosInstance.get(`users/me`),
   getUser: () => axiosInstance.get(`users`),
   createUser: (data) => axiosInstance.post(`users/register`, data),

@@ -140,7 +140,10 @@ const patchStatusPromotion = async (
   } catch (error) {
     let mess = error?.response?.data?.message;
     let status = error?.response?.data?.status;
-    let newMess = mess.match(Regex());
+    let newMess = mess?.match(Regex());
+
+    console.log(newMess, "newMess");
+
     toast.error(
       mess
         ? `Khuyến mãi đã hết hạn vào ${FormatDay(

@@ -8,7 +8,6 @@ import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { FormatDay } from "../../../utils/FormDay";
 import { Tag } from "antd";
-import { ConvertMoney } from "../../../utils/convertMoney";
 function ModalPromotion({
   show,
   setShow,
@@ -121,72 +120,7 @@ function ModalPromotion({
                   />
                 </FloatingLabel>
               </div>
-              <div className="mt-3 mb-3">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Số tiền giảm"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    defaultValue={
-                      ConvertMoney(itemPromotion?.item?.discount) || ""
-                    }
-                    type="text"
-                    placeholder="name@example.com"
-                    disabled
-                    readOnly
-                  />
-                </FloatingLabel>
-              </div>
-              <div className="mt-3 mb-3">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Loại mã"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    defaultValue={itemPromotion?.item?.discountType || ""}
-                    type="text"
-                    placeholder="name@example.com"
-                    disabled
-                    readOnly
-                  />
-                </FloatingLabel>
-              </div>
-              <div className="mt-3 mb-3">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Trạng thái"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    value={
-                      itemPromotion?.item?.isActive
-                        ? "Khả dụng"
-                        : "Không khả dụng"
-                    }
-                    type="text"
-                    placeholder="name@example.com"
-                    disabled
-                    readOnly
-                  />
-                </FloatingLabel>
-              </div>
-              <div className="mt-3 mb-3">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Lượt sử dụng"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    value={itemPromotion?.item?.maxUsage || ""}
-                    type="text"
-                    placeholder="name@example.com"
-                    disabled
-                    readOnly
-                  />
-                </FloatingLabel>
-              </div>
+
               <div className="mt-3 mb-3">
                 <FloatingLabel
                   controlId="floatingInput"

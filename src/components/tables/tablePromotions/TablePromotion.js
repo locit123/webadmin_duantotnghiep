@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   getPromotion,
   patchStatusPromotion,
@@ -11,6 +11,8 @@ import { BiToggleRight, BiToggleLeft } from "react-icons/bi";
 import { BsToggle2On, BsToggle2Off } from "react-icons/bs";
 import ProgressBar from "../../progressBar/ProgressBar";
 import { LoadingOutlined } from "@ant-design/icons";
+import { NO_POINT, POINT } from "../../../utils/contants";
+import { ConvertMoney } from "../../../utils/convertMoney";
 const TablePromotion = ({
   listDataPromotion,
   setListDataPromotion,
@@ -24,8 +26,9 @@ const TablePromotion = ({
   const [isSelected, setIsSelected] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [selectPromotions, setSelectPromotions] = useState([]);
+  const [isPoints, setIsPoints] = useState(POINT);
+  const [checkPoint, setCheckPoint] = useState();
   let data = listDataPromotion?.data?.promotions;
-  console.log(isSelected, "isSelected");
 
   /*********************************************************GET DATA********************************************* */
   const getApiPromotions = useCallback(async () => {
@@ -35,65 +38,54 @@ const TablePromotion = ({
   useEffect(() => {
     getApiPromotions();
   }, [getApiPromotions]);
-  /*********************************************************GET DATA SELECTED********************************************* */
 
-  let dataIsActive = useMemo(() => {
-    return [
-      ...new Set(
-        listDataPromotion?.data?.promotions.map((item) =>
-          item.isActive.toString()
-        ) || []
-      ),
-    ];
-  }, [listDataPromotion?.data?.promotions]);
-
-  const newDataFilter = useMemo(() => {
-    return [
-      ...new Set(
-        listDataPromotion?.data?.promotions?.map((item) => item.discountType) ||
-          []
-      ),
-    ];
-  }, [listDataPromotion?.data?.promotions]);
-  useEffect(() => {
-    if (
-      dataIsActive &&
-      dataIsActive.length > 0 &&
-      newDataFilter &&
-      newDataFilter.length > 0
-    ) {
-      setSelectPromotions(newDataFilter.concat(dataIsActive));
-    } else if (dataIsActive.length === 0 && newDataFilter.length === 0) {
-      setSelectPromotions([]);
-    }
-  }, [dataIsActive, newDataFilter]);
-
-  useEffect(() => {
-    if (selectPromotions && selectPromotions.length > 0 && !isSelected) {
-      setIsSelected(selectPromotions[selectPromotions.length - 1]);
-    } else if (selectPromotions.length === 0) {
-      setIsSelected("");
-    }
-  }, [selectPromotions, isSelected]);
   /*********************************************************GET DATA SELECTED********************************************* */
   const dataSuccess = useCallback(() => {
-    if (data && data.length > 0 && isSelected) {
+    if (data && data.length > 0) {
       let newData = [];
+      let optionData = [];
+      let isCheckPoints;
       for (let i = 0; i < data.length; i++) {
-        if (data[i].discountType === isSelected) {
-          newData.push(data[i]);
-        }
-        if (data[i].isActive.toString() === isSelected) {
-          newData.push(data[i]);
+        if (isPoints === POINT && data[i].requiredPoints) {
+          optionData.push(data[i]);
+          isCheckPoints = !!data[i].requiredPoints;
+          if (data[i].discountType === isSelected) {
+            newData.push(data[i]);
+          }
+          if (data[i].isActive.toString() === isSelected) {
+            newData.push(data[i]);
+          }
+        } else if (isPoints === NO_POINT && !data[i].requiredPoints) {
+          optionData.push(data[i]);
+          if (data[i].discountType === isSelected) {
+            newData.push(data[i]);
+          }
+          if (data[i].isActive.toString() === isSelected) {
+            newData.push(data[i]);
+          }
         }
       }
+      setCheckPoint(isCheckPoints);
       setFilteredPromotions(newData);
-    }
-  }, [data, isSelected]);
 
+      if (optionData && optionData.length > 0) {
+        let isActive = new Set(
+          optionData.map((item) => item.isActive.toString())
+        );
+        let isType = new Set(optionData.map((item) => item.discountType));
+        setSelectPromotions([...isActive, ...isType]);
+      }
+    }
+  }, [data, isSelected, isPoints]);
   useEffect(() => {
     dataSuccess();
   }, [dataSuccess]);
+
+  useEffect(() => {
+    if (selectPromotions && selectPromotions.length > 0 && !isSelected) {
+      setIsSelected(selectPromotions[0]);
+    }
+  }, [selectPromotions, isSelected]);
 
   let limit = 5;
   let offset = currentPage * limit;
@@ -145,13 +137,15 @@ const TablePromotion = ({
       await patchStatusPromotion(
         id,
         setListDataPromotion,
-        setIsLoadingPromotion
+        setIsLoadingPromotion,
+        setIsSelected
       );
     } else {
       await patchStatusPromotion(
         id,
         setListDataPromotion,
-        setIsLoadingPromotion
+        setIsLoadingPromotion,
+        setIsSelected
       );
     }
   };
@@ -165,8 +159,6 @@ const TablePromotion = ({
   const handleClickOn = async () => {
     await postResetAllPromotion(setListDataPromotion);
   };
-
-  console.log(newListData, "newListData");
 
   return (
     <div className="mt-3 mb-3 table-users">
@@ -185,7 +177,15 @@ const TablePromotion = ({
                 ? "Tất cả mã khuyến mãi không khả dụng"
                 : `Tất cả mã khuyến mãi ${isSelected}`}
             </h1>
+
             <div className="select">
+              <select
+                value={isPoints}
+                onChange={(e) => setIsPoints(e.target.value)}
+              >
+                <option value={POINT}>Có tích điểm</option>
+                <option value={NO_POINT}>Không tích điểm</option>
+              </select>
               <select
                 value={isSelected}
                 onChange={(e) => handleChangeOption(e.target.value)}
@@ -235,9 +235,14 @@ const TablePromotion = ({
                 <th>Trạng thái</th>
                 <th>Loại mã</th>
                 <th>Số tiền giảm</th>
-                <th>Giới hạn sử dụng</th>
-                <th>Lượt dùng mã</th>
-                <th>đã sử dụng</th>
+                <th>
+                  {checkPoint === true
+                    ? "Số tiền tối thiểu"
+                    : "Giới hạn sử dụng"}
+                </th>
+                <th>{checkPoint === true ? "Điểm thưởng" : "Lượt dùng mã"}</th>
+                <th>{checkPoint === true ? "Phiên bản" : "đã sử dụng"}</th>
+                {checkPoint === undefined && <th>Phiên bản</th>}
                 <th>Lựa chọn</th>
               </tr>
             </thead>
@@ -277,11 +282,22 @@ const TablePromotion = ({
                       <td>{item.discountType}</td>
                       <td>{formatDiscount(item.discount)}</td>
                       <td>
-                        {item.usageLimitPerUser ? item.usageLimitPerUser : 0}
+                        {item.usageLimitPerUser
+                          ? item.usageLimitPerUser
+                          : ConvertMoney(item.minOrderValue) || 0}
                       </td>
-                      <td>{item.maxUsage ? item.maxUsage : 0}</td>
+                      <td>
+                        {item.maxUsage
+                          ? item.maxUsage
+                          : item.requiredPoints || 0}
+                      </td>
 
-                      <td>{item.usedCount}</td>
+                      <td>
+                        {checkPoint === true
+                          ? item.version
+                          : item.usedCount || 0}
+                      </td>
+                      <td>{item.version}</td>
                       <td
                         style={{
                           display: "flex",
@@ -294,7 +310,7 @@ const TablePromotion = ({
                           className={`btn btn-secondary`}
                           onClick={() => handleClickView(item)}
                         >
-                          Chi Tiết
+                          Xem thêm
                         </button>
 
                         {!item.isActive && (

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import {
+  createPromotionWithPoint,
   postPromotion,
   updatePromotions,
 } from "../../../api/call_api/promotions/fetchApiPromotions";
@@ -7,6 +8,7 @@ import FormatDate from "../../../utils/FormatDate";
 import { LoadingOutlined } from "@ant-design/icons";
 import { FloatingLabel, Form } from "react-bootstrap";
 import _ from "lodash";
+import { NO_POINT, POINT } from "../../../utils/contants";
 const FormPromotion = ({
   setListDataPromotion,
   statusPromotion,
@@ -29,9 +31,12 @@ const FormPromotion = ({
   setStatusPromotion,
   setEventKey,
   setIsLoadingPromotion,
+  valuePoint,
+  setValuePoint,
 }) => {
   console.log("render FormPromotion");
   const [isLoading, setIsLoading] = useState(false);
+  const [point, setPoint] = useState(NO_POINT);
   const newSetArray = [
     ...new Set(
       listDataPromotion?.data?.promotions?.map((item) => item.discountType) ||
@@ -40,39 +45,57 @@ const FormPromotion = ({
   ];
 
   const handleClickCreatePromotion = async () => {
-    if (statusPromotion[0] === "create") {
-      await postPromotion(
-        parseInt(discount),
+    if (point === NO_POINT) {
+      if (statusPromotion[0] === "create") {
+        await postPromotion(
+          parseInt(discount),
+          discountType,
+          parseInt(maxUsage),
+          parseInt(minOrderValue),
+          parseInt(maxDiscount),
+          startDate,
+          endDate,
+          setListDataPromotion,
+          setDiscountType,
+          setIsLoading,
+          setDiscount,
+          setMaxUsage,
+          setStartDate,
+          setEndDate,
+          setEventKey,
+          setMinOrderValue,
+          setMaxDiscount,
+          setIsLoadingPromotion
+        );
+      }
+      if (statusPromotion[0] === "update") {
+        await updatePromotions(
+          id,
+          maxUsage,
+          startDate,
+          endDate,
+          setListDataPromotion,
+          setStatusPromotion,
+          setDiscountType,
+          setIsLoading,
+          setIsLoadingPromotion
+        );
+      }
+    } else {
+      await createPromotionWithPoint(
+        discount,
         discountType,
-        parseInt(maxUsage),
-        parseInt(minOrderValue),
-        parseInt(maxDiscount),
-        startDate,
-        endDate,
+        valuePoint,
+        minOrderValue,
+        maxDiscount,
         setListDataPromotion,
-        setDiscountType,
-        setIsLoading,
         setDiscount,
-        setMaxUsage,
-        setStartDate,
-        setEndDate,
-        setEventKey,
-        setMinOrderValue,
-        setMaxDiscount,
-        setIsLoadingPromotion
-      );
-    }
-    if (statusPromotion[0] === "update") {
-      await updatePromotions(
-        id,
-        maxUsage,
-        startDate,
-        endDate,
-        setListDataPromotion,
-        setStatusPromotion,
         setDiscountType,
+        setMaxDiscount,
+        setMinOrderValue,
+        setEventKey,
         setIsLoading,
-        setIsLoadingPromotion
+        setValuePoint
       );
     }
   };
@@ -85,7 +108,6 @@ const FormPromotion = ({
         let findItem = dataClone?.find(
           (item) => item.discountType === discountType
         );
-        console.log(findItem, "check find");
 
         if (findItem) {
           setDiscount(findItem.discount);
@@ -119,13 +141,30 @@ const FormPromotion = ({
   useEffect(() => {
     dataFind();
   }, [dataFind]);
+
   return (
     <div className="form mb-3">
-      <h1 className="text-h1 text-center mt-3 mb-3">
-        {statusPromotion[0] === "update"
-          ? "Cập nhật Khuyến Mãi"
-          : "Tạo Khuyến Mãi"}
-      </h1>
+      <div className="select">
+        <h1 className="text-h1 text-center mt-3 mb-3">
+          {statusPromotion[0] === "update"
+            ? "Cập nhật Khuyến Mãi"
+            : "Tạo Khuyến Mãi"}
+        </h1>
+        <FloatingLabel
+          className="mb-3"
+          controlId="floatingSelect"
+          label="Chế độ"
+        >
+          <Form.Select
+            value={point}
+            onChange={(e) => setPoint(e.target.value)}
+            aria-label="Floating label select example"
+          >
+            <option value={NO_POINT}>Không tích điểm</option>
+            <option value={POINT}>Tích điểm</option>
+          </Form.Select>
+        </FloatingLabel>
+      </div>
       <FloatingLabel
         controlId="floatingInput"
         label="Số tiền giảm"
@@ -171,42 +210,63 @@ const FormPromotion = ({
         </Form.Select>
       </FloatingLabel>
 
-      <FloatingLabel
-        controlId="floatingInput"
-        label="lượt sử dụng mã"
-        className="mb-3 mt-3"
-      >
-        <Form.Control
-          type="text"
-          onChange={(e) => setMaxUsage(e.target.value)}
-          value={maxUsage}
-          placeholder="name@example.com"
-        />
-      </FloatingLabel>
-      <FloatingLabel
-        controlId="floatingInput"
-        label="Ngày bắt đầu"
-        className="mb-3 mt-3"
-      >
-        <Form.Control
-          type="date"
-          onChange={(e) => setStartDate(e.target.value)}
-          value={startDate}
-          placeholder="name@example.com"
-        />
-      </FloatingLabel>
-      <FloatingLabel
-        controlId="floatingInput"
-        label="Ngày kết thúc"
-        className="mb-3 mt-3"
-      >
-        <Form.Control
-          type="date"
-          onChange={(e) => setEndDate(e.target.value)}
-          value={endDate}
-          placeholder="name@example.com"
-        />
-      </FloatingLabel>
+      {point === POINT ? (
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Điểm thưởng"
+          className="mb-3 mt-3"
+        >
+          <Form.Control
+            type="text"
+            onChange={(e) => setValuePoint(e.target.value)}
+            value={valuePoint}
+            placeholder="name@example.com"
+          />
+        </FloatingLabel>
+      ) : (
+        <FloatingLabel
+          controlId="floatingInput"
+          label="lượt sử dụng mã"
+          className="mb-3 mt-3"
+        >
+          <Form.Control
+            type="text"
+            onChange={(e) => setMaxUsage(e.target.value)}
+            value={maxUsage}
+            placeholder="name@example.com"
+          />
+        </FloatingLabel>
+      )}
+      {point === NO_POINT ? (
+        <>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Ngày bắt đầu"
+            className="mb-3 mt-3"
+          >
+            <Form.Control
+              type="date"
+              onChange={(e) => setStartDate(e.target.value)}
+              value={startDate}
+              placeholder="name@example.com"
+            />
+          </FloatingLabel>
+          <FloatingLabel
+            controlId="floatingInput"
+            label="Ngày kết thúc"
+            className="mb-3 mt-3"
+          >
+            <Form.Control
+              type="date"
+              onChange={(e) => setEndDate(e.target.value)}
+              value={endDate}
+              placeholder="name@example.com"
+            />
+          </FloatingLabel>
+        </>
+      ) : (
+        <></>
+      )}
 
       {discountType === "" || discountType !== "fixed" ? (
         <>

@@ -25,6 +25,8 @@ function Promotion(props) {
   const [maxUsage, setMaxUsage] = useState("");
   const [eventKey, setEventKey] = useState("khuyến mãi");
   const [isLoadingPromotion, setIsLoadingPromotion] = useState(false);
+  const [valuePoint, setValuePoint] = useState("");
+
   const handleSelect = (key) => {
     if (key === "khuyến mãi") {
       setStatusPromotion(["create"]);
@@ -119,6 +121,8 @@ function Promotion(props) {
             setStatusPromotion={setStatusPromotion}
             setEventKey={setEventKey}
             setIsLoadingPromotion={setIsLoadingPromotion}
+            valuePoint={valuePoint}
+            setValuePoint={setValuePoint}
           />
         </Tab>
       </Tabs>

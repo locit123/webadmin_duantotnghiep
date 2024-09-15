@@ -129,21 +129,20 @@ const updatePromotions = async (
 const patchStatusPromotion = async (
   id,
   setListDataPromotion,
-  setIsLoadingPromotion
+  setIsLoadingPromotion,
+  setIsSelected
 ) => {
   try {
     const res = await apiPromotion.updateStatusPromotion(id);
     if (res && res.data && res.data.status === "success") {
       toast.success(res.data.status);
+      setIsSelected("");
       await getPromotion(setListDataPromotion, setIsLoadingPromotion);
     }
   } catch (error) {
     let mess = error?.response?.data?.message;
     let status = error?.response?.data?.status;
     let newMess = mess?.match(Regex());
-
-    console.log(newMess, "newMess");
-
     toast.error(
       mess
         ? `Khuyến mãi đã hết hạn vào ${FormatDay(
@@ -167,6 +166,52 @@ const postResetAllPromotion = async (setListDataPromotion) => {
     toast.error(mess || status);
   }
 };
+
+const createPromotionWithPoint = async (
+  discount,
+  discountType,
+  valuePoint,
+  minOrderValue,
+  maxDiscount,
+  setListDataPromotion,
+  setDiscount,
+  setDiscountType,
+  setMaxDiscount,
+  setMinOrderValue,
+  setEventKey,
+  setIsLoading,
+  setValuePoint
+) => {
+  try {
+    const data = {
+      discount,
+      discountType,
+      requiredPoints: valuePoint,
+      minOrderValue,
+      maxDiscount,
+    };
+    const res = await apiPromotion.postPromotionWithPoint(data);
+
+    setIsLoading(true);
+
+    if (res && res.data && res.data.status === "success") {
+      toast.success(res.data.status);
+      setDiscountType("");
+      setDiscount("");
+      setEventKey("form khuyến mãi");
+      setMinOrderValue("");
+      setMaxDiscount("");
+      setIsLoading(false);
+      setValuePoint("");
+      await getPromotion(setListDataPromotion);
+    }
+  } catch (error) {
+    setIsLoading(false);
+    let mess = error?.response?.data?.message;
+    let status = error?.response?.data?.status;
+    toast.error(mess || status);
+  }
+};
 export {
   getPromotion,
   postPromotion,
@@ -174,4 +219,5 @@ export {
   updatePromotions,
   patchStatusPromotion,
   postResetAllPromotion,
+  createPromotionWithPoint,
 };

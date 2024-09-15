@@ -30,3 +30,8 @@ export const STATISTICAL_PAYMENT = "STATISTICAL_PAYMENT";
 export const SET_DATA_LIST_NOTIFICATIONS = "set_data_list_notifications";
 //----------------DAILY-STATISTICS-------------------
 export const SET_DAILY_STATISTICS = "set_daily_statistics";
+
+//----------------POINTS-------------------
+
+export const NO_POINT = "no_point";
+export const POINT = "point";

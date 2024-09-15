@@ -103,6 +103,8 @@ const apiPromotion = {
   updateStatusPromotion: (id) =>
     axiosInstance.patch(`promotions/update-status/${id}`),
   resetAllPromotion: () => axiosInstance.post(`promotions/reset-promotion`),
+  postPromotionWithPoint: (data) =>
+    axiosInstance.post(`promotions/create-promotion-with-points`, data),
 };
 //*******************************Statistical********************************* */
 const apiStatistical = {

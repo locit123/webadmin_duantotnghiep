@@ -5,11 +5,15 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { Avatar } from "antd";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { historyPaymentUser } from "../../../../api/call_api/auth/fetchApiAuth";
+import {
+  historyPaymentUser,
+  historyPromotionUser,
+} from "../../../../api/call_api/auth/fetchApiAuth";
 import { FormatDay2 } from "../../../../utils/FormDay";
 import _ from "lodash";
 import LoadingCash from "./LoadingCash";
 import LoadingBanking from "./LoadingBanking";
+import HistoryPromotionUsers from "./HistoryPromotionUsers";
 
 const ModalHistoryUser = ({ show, setShow, item }) => {
   const [data, setData] = useState([]);
@@ -17,6 +21,11 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   const [listZaloPay, setListZaloPay] = useState({});
   const [isSelectDate, setIsSelectDate] = useState("");
   const [isDataTime, setIsDataTime] = useState([]);
+  const [listDataHistoryPromotion, setListDataHistoryPromotion] = useState([]);
+  const [dataSuccessHistoryPromotions, setDataSuccessHistoryPromotions] =
+    useState([]);
+  const [selectCode, setSelectCode] = useState("");
+  const [dataSelect, setDataSelect] = useState([]);
 
   /**********************************GET DATA*************************** */
   const getApiHistoryPayment = useCallback(async () => {
@@ -30,8 +39,6 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
   useEffect(() => {
     getApiHistoryPayment();
   }, [getApiHistoryPayment]);
-
-  console.log(data, "check data");
 
   /**********************************LAY NGAY*************************** */
   const dateTime = useMemo(() => {
@@ -84,10 +91,51 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
     ),
   ];
 
+  /***********************************LAY HISTORY PROMOTION************************************* */
+  useEffect(() => {
+    getHistoryPromotion();
+  }, []);
+
+  const getHistoryPromotion = async () => {
+    await historyPromotionUser(setListDataHistoryPromotion);
+  };
+  useEffect(() => {
+    if (listDataHistoryPromotion && listDataHistoryPromotion.length > 0) {
+      let newData = [];
+      let newDataSelectCode = [];
+      for (let i = 0; i < listDataHistoryPromotion.length; i++) {
+        for (let j = 0; j < listDataHistoryPromotion[i].users.length; j++) {
+          let user = listDataHistoryPromotion[i].users[j];
+          let id = user.userId;
+          if (id === item._id) {
+            newDataSelectCode.push(listDataHistoryPromotion[i]);
+          }
+        }
+        if (listDataHistoryPromotion[i].code === selectCode) {
+          newData.push(listDataHistoryPromotion[i]);
+        }
+      }
+      setDataSuccessHistoryPromotions(newData);
+      if (newDataSelectCode && newDataSelectCode.length > 0 && show) {
+        let code = new Set(newDataSelectCode.map((item) => item.code));
+        if (code) {
+          setDataSelect([...code]);
+        }
+      }
+    }
+  }, [listDataHistoryPromotion, item._id, selectCode, show]);
+  useEffect(() => {
+    if (dataSelect && dataSelect.length > 0 && !selectCode && show) {
+      setSelectCode(dataSelect[0]);
+    }
+  }, [dataSelect, selectCode, show]);
+
   const handleClose = () => {
     setShow(false);
     setIsSelectDate("");
     setIsDataTime([]);
+    setSelectCode("");
+    setDataSelect([]);
   };
 
   return (
@@ -100,13 +148,11 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
         </Modal.Header>
         <Modal.Body>
           <Accordion defaultActiveKey="0">
+            {/* lich su thong tin */}
             <Accordion.Item eventKey="0">
               <Accordion.Header>Thông tin</Accordion.Header>
               <Accordion.Body>
-                <div
-                  className="text-center mb-3"
-                  // onClick={handleClickImage}
-                >
+                <div className="text-center mb-3">
                   <Avatar
                     size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
                     icon={
@@ -194,6 +240,7 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
                 </div>
               </Accordion.Body>
             </Accordion.Item>
+            {/* lich su dat mon */}
             <Accordion.Item eventKey="1">
               <Accordion.Header>Lịch sử đặt món</Accordion.Header>
               <Accordion.Body>
@@ -270,6 +317,59 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
                   </>
                 ) : (
                   <div className="text-center">Không có dữ liệu</div>
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
+            {/* lich su promotion */}
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>Lịch sử dùng mã khuyến mãi</Accordion.Header>
+              <Accordion.Body>
+                {dataSuccessHistoryPromotions.length === 0 ? (
+                  `Không có dữ liệu`
+                ) : (
+                  <>
+                    <FloatingLabel
+                      controlId="floatingPassword"
+                      label="Hiện đang sử dụng"
+                    >
+                      <Form.Control
+                        value={`${dataSelect.length} mã khuyến mãi`}
+                        readOnly
+                        type="text"
+                        placeholder="Password"
+                        disabled
+                      />
+                    </FloatingLabel>
+                    <FloatingLabel
+                      controlId="floatingSelectGrid"
+                      label="Mã"
+                      className="mt-3"
+                    >
+                      <Form.Select
+                        aria-label="Floating label select example"
+                        value={selectCode}
+                        onChange={(e) => setSelectCode(e.target.value)}
+                      >
+                        {dataSelect &&
+                          dataSelect.length > 0 &&
+                          dataSelect.map((item, index) => {
+                            return (
+                              <option value={item} key={index}>
+                                {item}
+                              </option>
+                            );
+                          })}
+                      </Form.Select>
+                    </FloatingLabel>
+                    {dataSuccessHistoryPromotions &&
+                    dataSuccessHistoryPromotions.length > 0 ? (
+                      dataSuccessHistoryPromotions.map((item, index) => (
+                        <HistoryPromotionUsers key={index} data={item} />
+                      ))
+                    ) : (
+                      <div>Không có dữ liệu</div>
+                    )}
+                  </>
                 )}
               </Accordion.Body>
             </Accordion.Item>

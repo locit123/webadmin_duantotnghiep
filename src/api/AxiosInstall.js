@@ -54,6 +54,7 @@ const api = {
     axiosInstance.post(`users/resend-verification`, { email }),
   updateUser: (id, data) =>
     axiosInstance.patch(`users/update-user/${id}`, data),
+  historyPromotions: () => axiosInstance.get(`statistics/promotion-statistics`),
 };
 //*******************************TABLES********************************* */
 
@@ -137,17 +138,7 @@ const apiStatistical = {
       return axiosInstance.get(`statistics/revenue-by-table?type=${type}`);
     }
   },
-  getApiMenuItemStatisticalBestSelling: (type, startDate, endDate) => {
-    if (startDate && endDate) {
-      return axiosInstance.get(
-        `statistics/best-selling-menu-item?type=day&startDate=${startDate}&endDate=${endDate}`
-      );
-    } else {
-      return axiosInstance.get(
-        `statistics/best-selling-menu-item?type=${type}`
-      );
-    }
-  },
+
   getApiMenuItemStatistical: (type, startDate, endDate) => {
     if (startDate && endDate) {
       return axiosInstance.get(
@@ -166,19 +157,10 @@ const apiStatistical = {
       return axiosInstance.get(`statistics/order-statistics?type=${type}`);
     }
   },
-  getApiAverageStatistical: (type, startDate, endDate) => {
-    if (startDate && endDate) {
-      return axiosInstance.get(
-        `statistics/average-order-value?type=day&startDate=${startDate}&endDate=${endDate}`
-      );
-    } else {
-      return axiosInstance.get(`statistics/average-order-value?type=${type}`);
-    }
-  },
   getApiDailyStatistical: () =>
     axiosInstance.get(`statistics/daily-statistics`),
-  getApiCustomerStatistical: (type) =>
-    axiosInstance.get(`statistics/most-valuable-customer?type=${type}`),
+  getApiCustomerStatistical: () =>
+    axiosInstance.get(`statistics/valuable-customer`),
 };
 
 const apiNotifications = {

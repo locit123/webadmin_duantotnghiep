@@ -3,10 +3,8 @@ import PaymentStatistics from "../../components/chart/PaymentStatistics/PaymentS
 import "./Statistical.scss";
 import TableStatistics from "../../components/chart/TableStatistics/TableStatistics";
 import RevenueStatistic from "../../components/chart/RevenueStatistics/RevenueStatistic";
-import MenuItemBestSelling from "../../components/chart/MenuItemBestSelling/MenuItemBestSelling";
 import MenuItemStatistical from "../../components/chart/MenuItemStatistical/MenuItemStatistical";
 import OrderStatistical from "../../components/chart/OrderStatistical/OrderStatistical";
-import AverageStatistical from "../../components/chart/AverageStatistical/AverageStatistical";
 import Accordion from "react-bootstrap/Accordion";
 import { useSelector } from "react-redux";
 import { getThemeState } from "../../store/selector";
@@ -42,12 +40,6 @@ const Statistical = () => {
               <RevenueStatistic />
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="3">
-            <Accordion.Header>Thống kê món ăn ngon</Accordion.Header>
-            <Accordion.Body>
-              <MenuItemBestSelling />
-            </Accordion.Body>
-          </Accordion.Item>
           <Accordion.Item eventKey="4">
             <Accordion.Header>Thống kê món ăn</Accordion.Header>
             <Accordion.Body>
@@ -58,12 +50,6 @@ const Statistical = () => {
             <Accordion.Header>Thống kê lượt đặt món</Accordion.Header>
             <Accordion.Body>
               <OrderStatistical />
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="6">
-            <Accordion.Header>Thống kê trung bình tổng tiền</Accordion.Header>
-            <Accordion.Body>
-              <AverageStatistical />
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="7">

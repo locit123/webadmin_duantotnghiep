@@ -278,6 +278,18 @@ const patchUpdateUser = async (id, fullName, role, dispatch, handleClose) => {
     toast.error(message || status);
   }
 };
+const historyPromotionUser = async (setListDataHistoryPromotion) => {
+  try {
+    let res = await api.historyPromotions();
+    if (res && res.data && res.data.status === "success") {
+      setListDataHistoryPromotion(res.data.data);
+    }
+  } catch (error) {
+    const status = error?.response?.data?.status;
+    const message = error?.response?.data?.message;
+    toast.error(message || status);
+  }
+};
 export {
   Login,
   getMe,
@@ -292,4 +304,5 @@ export {
   postVerifyAuthentication,
   postSendVerifyAuthentication,
   patchUpdateUser,
+  historyPromotionUser,
 };

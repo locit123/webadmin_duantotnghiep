@@ -77,32 +77,6 @@ const getTable = async (type, startDate, endDate, dispatch, setIsLoading) => {
   }
 };
 
-const getMenuitemBestSelling = async (
-  type,
-  startDate,
-  endDate,
-  setListMenuitem,
-  setIsLoading
-) => {
-  try {
-    setIsLoading(true);
-    const res = await apiStatistical.getApiMenuItemStatisticalBestSelling(
-      type,
-      startDate,
-      endDate
-    );
-    if (res && res.data && res.data.status === "success") {
-      setListMenuitem(res.data.data);
-      setIsLoading(false);
-    }
-  } catch (error) {
-    setIsLoading(false);
-    const status = error?.response?.data?.status;
-    const message = error?.response?.data?.message;
-    toast.error(status || message);
-  }
-};
-
 const getMenuItem = async (
   type,
   startDate,
@@ -155,36 +129,11 @@ const getOrder = async (
     toast.error(status || message);
   }
 };
-const getAverage = async (
-  type,
-  startDate,
-  endDate,
-  setListDataAverage,
-  setIsLoading
-) => {
-  try {
-    setIsLoading(true);
-    const res = await apiStatistical.getApiAverageStatistical(
-      type,
-      startDate,
-      endDate
-    );
-    if (res && res.data && res.data.status === "success") {
-      setIsLoading(false);
-      setListDataAverage(res.data.data);
-    }
-  } catch (error) {
-    setIsLoading(false);
 
-    const status = error?.response?.data?.status;
-    const message = error?.response?.data?.message;
-    toast.error(status || message);
-  }
-};
-const getCustomer = async (type, setListDataCustomer, setIsLoading) => {
+const getCustomer = async (setListDataCustomer, setIsLoading) => {
   try {
     setIsLoading(true);
-    const res = await apiStatistical.getApiCustomerStatistical(type);
+    const res = await apiStatistical.getApiCustomerStatistical();
     if (res && res.data && res.data.status === "success") {
       setListDataCustomer(res.data.data);
       setIsLoading(false);
@@ -198,13 +147,4 @@ const getCustomer = async (type, setListDataCustomer, setIsLoading) => {
   }
 };
 
-export {
-  getPayment,
-  getRevenue,
-  getTable,
-  getMenuitemBestSelling,
-  getMenuItem,
-  getOrder,
-  getAverage,
-  getCustomer,
-};
+export { getPayment, getRevenue, getTable, getMenuItem, getOrder, getCustomer };

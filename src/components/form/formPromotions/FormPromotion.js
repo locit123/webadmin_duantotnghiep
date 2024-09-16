@@ -95,7 +95,8 @@ const FormPromotion = ({
         setMinOrderValue,
         setEventKey,
         setIsLoading,
-        setValuePoint
+        setValuePoint,
+        setIsLoadingPromotion
       );
     }
   };

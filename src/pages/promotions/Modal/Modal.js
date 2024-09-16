@@ -8,6 +8,7 @@ import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { FormatDay } from "../../../utils/FormDay";
 import { Tag } from "antd";
+import { ConvertMoney } from "../../../utils/convertMoney";
 function ModalPromotion({
   show,
   setShow,
@@ -23,6 +24,7 @@ function ModalPromotion({
   setMaxUsage,
   setListDataPromotion,
   setIsLoadingPromotion,
+  setIsSelected,
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const getDataPromotion = useCallback(() => {
@@ -73,10 +75,13 @@ function ModalPromotion({
         setListDataPromotion,
         handleClose,
         setIsLoading,
-        setIsLoadingPromotion
+        setIsLoadingPromotion,
+        setIsSelected
       );
     }
   };
+  console.log(itemPromotion, "itemPromotion");
+
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop={"static"}>
@@ -119,6 +124,41 @@ function ModalPromotion({
                     readOnly
                   />
                 </FloatingLabel>
+                {itemPromotion?.item?.minOrderValue && (
+                  <FloatingLabel
+                    controlId="floatingInput"
+                    label="Số tiền tối thiểu"
+                    className="mb-3"
+                  >
+                    <Form.Control
+                      defaultValue={
+                        ConvertMoney(itemPromotion?.item?.minOrderValue) || ""
+                      }
+                      type="text"
+                      placeholder="name@example.com"
+                      disabled
+                      readOnly
+                    />
+                  </FloatingLabel>
+                )}
+
+                {itemPromotion?.item?.maxDiscount && (
+                  <FloatingLabel
+                    controlId="floatingInput"
+                    label="Số tiền tối đa"
+                    className="mb-3"
+                  >
+                    <Form.Control
+                      defaultValue={
+                        ConvertMoney(itemPromotion?.item?.maxDiscount) || ""
+                      }
+                      type="text"
+                      placeholder="name@example.com"
+                      disabled
+                      readOnly
+                    />
+                  </FloatingLabel>
+                )}
               </div>
 
               <div className="mt-3 mb-3">

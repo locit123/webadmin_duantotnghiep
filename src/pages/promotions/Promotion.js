@@ -8,7 +8,7 @@ import Tabs from "react-bootstrap/Tabs";
 import FormPromotion from "../../components/form/formPromotions/FormPromotion";
 import ModalPromotion from "./Modal/Modal";
 import { Helmet } from "react-helmet";
-function Promotion(props) {
+function Promotion() {
   console.log("render Promotion");
   const [listDataPromotion, setListDataPromotion] = useState([]);
   const [show, setShow] = useState(false);
@@ -26,6 +26,7 @@ function Promotion(props) {
   const [eventKey, setEventKey] = useState("khuyến mãi");
   const [isLoadingPromotion, setIsLoadingPromotion] = useState(false);
   const [valuePoint, setValuePoint] = useState("");
+  const [isSelected, setIsSelected] = useState("");
 
   const handleSelect = (key) => {
     if (key === "khuyến mãi") {
@@ -72,6 +73,8 @@ function Promotion(props) {
         setMaxUsage={setMaxUsage}
         setListDataPromotion={setListDataPromotion}
         setIsLoadingPromotion={setIsLoadingPromotion}
+        isSelected={isSelected}
+        setIsSelected={setIsSelected}
       />
       <Tabs
         activeKey={eventKey}
@@ -89,6 +92,8 @@ function Promotion(props) {
             setEventKey={setEventKey}
             setIsLoadingPromotion={setIsLoadingPromotion}
             isLoadingPromotion={isLoadingPromotion}
+            isSelected={isSelected}
+            setIsSelected={setIsSelected}
           />
         </Tab>
         <Tab

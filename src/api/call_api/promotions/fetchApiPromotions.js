@@ -1,4 +1,3 @@
-import { FormatDay, Regex } from "../../../utils/FormDay";
 import { apiPromotion } from "../../AxiosInstall";
 import { toast } from "react-toastify";
 const getPromotion = async (setListDataPromotion, setIsLoadingPromotion) => {
@@ -74,13 +73,15 @@ const deletePromotion = async (
   setListDataPromotion,
   handleClose,
   setIsLoading,
-  setIsLoadingPromotion
+  setIsLoadingPromotion,
+  setIsSelected
 ) => {
   try {
     setIsLoading(true);
     const res = await apiPromotion.deleteApiPromotion(id);
     if (res && res.data && res.data.status === "success") {
       toast.success(res.data.status);
+      setIsSelected("");
       handleClose();
       setIsLoading(false);
       await getPromotion(setListDataPromotion, setIsLoadingPromotion);
@@ -135,21 +136,14 @@ const patchStatusPromotion = async (
   try {
     const res = await apiPromotion.updateStatusPromotion(id);
     if (res && res.data && res.data.status === "success") {
-      toast.success(res.data.status);
       setIsSelected("");
+      toast.success(res.data.status);
       await getPromotion(setListDataPromotion, setIsLoadingPromotion);
     }
   } catch (error) {
     let mess = error?.response?.data?.message;
     let status = error?.response?.data?.status;
-    let newMess = mess?.match(Regex());
-    toast.error(
-      mess
-        ? `Khuyến mãi đã hết hạn vào ${FormatDay(
-            newMess[0]
-          )}.Vui lòng cập nhật ngày kết thúc`
-        : mess || status
-    );
+    toast.error(mess || status);
   }
 };
 
@@ -180,7 +174,8 @@ const createPromotionWithPoint = async (
   setMinOrderValue,
   setEventKey,
   setIsLoading,
-  setValuePoint
+  setValuePoint,
+  setIsLoadingPromotion
 ) => {
   try {
     const data = {
@@ -190,10 +185,8 @@ const createPromotionWithPoint = async (
       minOrderValue,
       maxDiscount,
     };
-    const res = await apiPromotion.postPromotionWithPoint(data);
-
     setIsLoading(true);
-
+    const res = await apiPromotion.postPromotionWithPoint(data);
     if (res && res.data && res.data.status === "success") {
       toast.success(res.data.status);
       setDiscountType("");
@@ -203,7 +196,32 @@ const createPromotionWithPoint = async (
       setMaxDiscount("");
       setIsLoading(false);
       setValuePoint("");
-      await getPromotion(setListDataPromotion);
+      await getPromotion(setListDataPromotion, setIsLoadingPromotion);
+    }
+  } catch (error) {
+    setIsLoading(false);
+    let mess = error?.response?.data?.message;
+    let status = error?.response?.data?.status;
+    toast.error(mess || status);
+  }
+};
+
+const updateVersion = async (
+  id,
+  setIsLoading,
+  setListDataPromotion,
+  setIsLoadingPromotion,
+  setShow
+) => {
+  try {
+    setIsLoading(true);
+
+    const res = await apiPromotion.updateVersionPromotion(id);
+    if (res && res.data && res.data.status === "success") {
+      setIsLoading(false);
+      toast.success(res.data.status);
+      setShow(false);
+      await getPromotion(setListDataPromotion, setIsLoadingPromotion);
     }
   } catch (error) {
     setIsLoading(false);
@@ -220,4 +238,5 @@ export {
   patchStatusPromotion,
   postResetAllPromotion,
   createPromotionWithPoint,
+  updateVersion,
 };

@@ -17,7 +17,6 @@ import { ConvertMoney } from "../../../utils/convertMoney";
 
 const LoadingLineChart = ({ dataTable, selectDate }) => {
   const theme = useSelector(getThemeState);
-  console.log(dataTable, "check dataTable");
 
   return (
     <>
@@ -30,24 +29,8 @@ const LoadingLineChart = ({ dataTable, selectDate }) => {
           >
             <ComposedChart data={dataTable} margin={{ top: 20 }}>
               <XAxis
-                dataKey={
-                  selectDate === "day" ||
-                  selectDate === "year" ||
-                  selectDate === "find"
-                    ? "tableNumber"
-                    : "timePeriod"
-                }
-                tickFormatter={(value) => {
-                  if (
-                    selectDate === "day" ||
-                    selectDate === "year" ||
-                    selectDate === "find"
-                  ) {
-                    return `Bàn: ${value}`;
-                  } else {
-                    return `Tháng: ${FormatDay5(value)}`;
-                  }
-                }}
+                dataKey={"tableNumber"}
+                tickFormatter={(value) => `Bàn:${value}`}
                 stroke={theme ? "white" : ""}
               />
               <YAxis
@@ -69,7 +52,7 @@ const LoadingLineChart = ({ dataTable, selectDate }) => {
               />
               <Tooltip
                 formatter={(value, name) => {
-                  if (name === "Tổng tiền bàn") {
+                  if (name === "Tổng tiền bàn thu được") {
                     return `${value.toLocaleString("vi-VN")} VND`;
                   }
                   return value;
@@ -95,14 +78,16 @@ const LoadingLineChart = ({ dataTable, selectDate }) => {
               <CartesianGrid stroke={theme ? "white" : "#e0e0e0"} />
               <Bar
                 yAxisId="left"
-                dataKey="Tổng tiền bàn"
+                dataKey="totalRevenue"
                 barSize={20}
                 fill="#413ea0"
+                name={"Tổng tiền bàn thu được"}
               />
               <Line
                 yAxisId="right"
                 type="monotone"
-                dataKey="Tổng lượt đặt bàn"
+                dataKey="totalOrders"
+                name="Tổng lượt ngồi bàn"
                 stroke="#ff7300"
               />
             </ComposedChart>

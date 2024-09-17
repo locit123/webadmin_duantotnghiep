@@ -133,9 +133,7 @@ const apiStatistical = {
   },
   getApiTableStatistical: (type, startDate, endDate) => {
     if (startDate && endDate) {
-      return axiosInstance.get(
-        `statistics/revenue-by-table?type=day&startDate=${startDate}&endDate=${endDate}`
-      );
+      return axiosInstance.get(`&startDate=${startDate}&endDate=${endDate}`);
     } else {
       return axiosInstance.get(`statistics/revenue-by-table?type=${type}`);
     }

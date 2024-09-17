@@ -34,6 +34,8 @@ const LoadingRevenue = ({ data, selectDate }) => {
                   return `Ngày:${formattedValue}`;
                 } else if (selectDate === "month") {
                   return `Tháng:${FormatDay5(value)}`;
+                } else if (selectDate === "find") {
+                  return `Ngày:${FormatDay7(value)}`;
                 } else {
                   return `Năm:${value}`;
                 }

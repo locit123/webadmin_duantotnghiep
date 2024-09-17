@@ -43,7 +43,7 @@ const LoadingPayment = ({ data, selectDate }) => {
                 } else if (selectDate === "year") {
                   return `Năm:${label}`;
                 } else {
-                  return `Ngày:${FormatDay2(label)}`;
+                  return `Ngày:${FormatDay7(label)}`;
                 }
               }}
               stroke={theme ? "white" : ""}

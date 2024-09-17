@@ -4,11 +4,8 @@ import LoadingLineChart from "./LoadingLineChart";
 import { getTable } from "../../../api/call_api/statistical/fetchApiStatistical";
 import { useDispatch, useSelector } from "react-redux";
 import { statisticalArrListTableState } from "../../../store/selector";
-import { FormatDay4, FormatDay5 } from "../../../utils/FormDay";
+import { FormatDay4, FormatDay5, FormatDay8 } from "../../../utils/FormDay";
 import { LoadingOutlined } from "@ant-design/icons";
-import { FcSearch } from "react-icons/fc";
-import FindStatistical from "../../findStatistical/FindStatistical";
-import { toast } from "react-toastify";
 
 const TableStatistics = () => {
   const dispatch = useDispatch();
@@ -18,21 +15,15 @@ const TableStatistics = () => {
   const [selectYear, setSelectYear] = useState("");
   const [selectMonth, setSelectMonth] = useState("");
   const [selectTableNumber, setSelectTableNumber] = useState("");
-  const [dataFind, setDataFind] = useState([]);
   const [dataTableStatistic, setDataTableStatistic] = useState([]);
   const [selectDate, setSelectDate] = useState("day");
   const [isLoading, setIsLoading] = useState(false);
-  const [starDate, setStarDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [runDate, setRunDate] = useState(false);
-  let start = new Date(starDate);
-  let end = new Date(endDate);
+  const [day, setDay] = useState("");
+  const [dataDay, setDataDay] = useState([]);
+  const [isBooleanDay, setIsBooleanDay] = useState(false);
   /***********************************************GET DATA TABLE****************** */
   const getTableApi = useCallback(async () => {
-    if (selectDate !== "find") {
-      setStarDate("");
-      setEndDate("");
-      setRunDate(false);
+    if (selectDate) {
       await getTable(selectDate, "", "", dispatch, setIsLoading);
     }
   }, [dispatch, selectDate]);
@@ -105,140 +96,94 @@ const TableStatistics = () => {
     }
   }, [dataTableNumber, selectTableNumber]);
 
-  /***********************************************Xu li Find AND REDUCE****************** */
-  const dataReduceFind = useCallback(() => {
+  /***********************************************SUCCESS DATA****************** */
+
+  const dataSuccess = useCallback(() => {
     if (
       getStateArr &&
       getStateArr.length > 0 &&
       selectMonth &&
-      selectTableNumber &&
-      selectYear
-    ) {
-      getStateArr.reduce((arr, curr) => {
-        let dataFind = arr.find(
-          (item) =>
-            FormatDay5(item.timePeriod) === FormatDay5(curr.timePeriod) &&
-            item.tableNumber === curr.tableNumber &&
-            FormatDay4(item.timePeriod) === FormatDay4(curr.timePeriod)
-        );
-        if (dataFind) {
-          dataFind.totalOrders += curr.totalOrders;
-          dataFind.totalRevenue += curr.totalRevenue;
-        } else {
-          arr.push({ ...curr });
-        }
-        //   const { tableNumber, totalRevenue, totalOrders, timePeriod } = curr;
-        //   if (!arr[timePeriod]) {
-        //     arr[timePeriod] = { timePeriod, totalOrders: 0 };
-        //   }
-        //   arr[timePeriod][tableNumber] = totalRevenue;
-        //   arr[timePeriod].totalOrders += totalOrders;
-        // }
-        // if (selectDate !== "month") {
-        // } else {
-        //   let result = Object.values(arr);
-        //   setDataFind(result);
-        // }
-        setDataFind(arr);
-        return arr;
-      }, []);
-    }
-  }, [getStateArr, selectMonth, selectTableNumber, selectYear]);
-
-  useEffect(() => {
-    dataReduceFind();
-  }, [dataReduceFind]);
-
-  /***********************************************SUCCESS DATA****************** */
-  const dataSuccess = useCallback(() => {
-    if (
-      dataFind &&
-      dataFind.length > 0 &&
-      selectMonth &&
       selectYear &&
       selectDate
     ) {
+      let newDataDay = [];
       let newData = [];
-      for (let i = 0; i < dataFind.length; i++) {
-        if (selectDate === "day") {
-          if (
-            FormatDay4(dataFind[i].timePeriod) === selectYear &&
-            FormatDay5(dataFind[i].timePeriod) === selectMonth
-          ) {
+      for (let i = 0; i < getStateArr.length; i++) {
+        if (
+          FormatDay5(getStateArr[i].timePeriod) === selectMonth &&
+          FormatDay4(getStateArr[i].timePeriod) === selectYear &&
+          selectDate === "day"
+        ) {
+          newDataDay.push(getStateArr[i].timePeriod);
+          if (FormatDay8(getStateArr[i].timePeriod) === day) {
+            const { tableNumber, totalRevenue, totalOrders, timePeriod } =
+              getStateArr[i];
             newData.push({
-              tableNumber: dataFind[i].tableNumber,
-              "Tổng tiền bàn": dataFind[i].totalRevenue,
-              "Tổng lượt đặt bàn": dataFind[i].totalOrders,
-              timePeriod: dataFind[i].timePeriod,
+              tableNumber,
+              timePeriod,
+              totalRevenue,
+              totalOrders,
             });
           }
         }
-        if (selectDate === "year") {
-          if (
-            FormatDay4(dataFind[i].timePeriod) === selectYear ||
-            dataFind[i].timePeriod === parseInt(selectYear)
-          ) {
-            newData.push({
-              tableNumber: dataFind[i].tableNumber,
-              "Tổng tiền bàn": dataFind[i].totalRevenue,
-              "Tổng lượt đặt bàn": dataFind[i].totalOrders,
-              timePeriod: dataFind[i].timePeriod,
-            });
-          }
-        }
-        if (selectDate === "month") {
-          if (FormatDay4(dataFind[i].timePeriod) === selectYear) {
-            newData.push({
-              tableNumber: dataFind[i].tableNumber,
-              "Tổng tiền bàn": dataFind[i].totalRevenue,
-              "Tổng lượt đặt bàn": dataFind[i].totalOrders,
-              timePeriod: dataFind[i].timePeriod,
-            });
-          }
-        }
-        if (selectDate === "find" && starDate && endDate && runDate) {
+        if (
+          FormatDay5(getStateArr[i].timePeriod) === selectMonth &&
+          FormatDay4(getStateArr[i].timePeriod) === selectYear &&
+          selectDate === "month"
+        ) {
+          const { tableNumber, totalRevenue, totalOrders, timePeriod } =
+            getStateArr[i];
           newData.push({
-            tableNumber: dataFind[i].tableNumber,
-            "Tổng tiền bàn": dataFind[i].totalRevenue,
-            "Tổng lượt đặt bàn": dataFind[i].totalOrders,
-            timePeriod: dataFind[i].timePeriod,
+            tableNumber,
+            timePeriod,
+            totalRevenue,
+            totalOrders,
+          });
+        }
+
+        if (
+          getStateArr[i].timePeriod === parseInt(selectYear) &&
+          selectDate === "year"
+        ) {
+          console.log(getStateArr[i]);
+
+          const { tableNumber, totalRevenue, totalOrders, timePeriod } =
+            getStateArr[i];
+          newData.push({
+            tableNumber,
+            timePeriod,
+            totalRevenue,
+            totalOrders,
           });
         }
       }
       setDataTableStatistic(newData);
+      if (newDataDay && newDataDay.length > 0) {
+        let dataSet = new Set(newDataDay.map((item) => FormatDay8(item)));
+        setDataDay([...dataSet].reverse());
+      }
     }
-  }, [
-    dataFind,
-    selectMonth,
-    selectYear,
-    selectDate,
-    starDate,
-    endDate,
-    runDate,
-  ]);
+  }, [getStateArr, selectMonth, selectYear, day, selectDate]);
 
   useEffect(() => {
     dataSuccess();
   }, [dataSuccess]);
 
-  // useEffect(() => {
-  //   if (
-  //     dataTableStatistic &&
-  //     dataTableStatistic.length > 0 &&
-  //     selectDate === "month"
-  //   ) {
-  //     dataTableStatistic.sort((a, b) => a - b);
-  //   }
-  // }, [dataTableStatistic, selectMonth, selectDate]);
-  /************************************FIND DATA******************************** */
-  const handleClickFind = async () => {
-    if (!starDate || !endDate) {
-      toast.error("Không để trống ngày bắt đầu và ngày kết thúc . Lỗi!");
-    } else {
-      setRunDate(true);
-      await getTable("day", starDate, endDate, dispatch, setIsLoading);
+  useEffect(() => {
+    if (dataDay && dataDay.length > 0 && !day) {
+      setDay(dataDay[0]);
     }
-  };
+  }, [day, dataDay]);
+
+  useEffect(() => {
+    if (isBooleanDay === true) {
+      setDay("");
+    } else {
+      setDay("");
+    }
+  }, [isBooleanDay]);
+
+  /************************************FIND DATA******************************** */
 
   return (
     <div className="layout-table-statistical">
@@ -251,12 +196,26 @@ const TableStatistics = () => {
             <option value={"day"}>Tìm kiếm theo ngày</option>
             <option value={"month"}>Tìm kiếm theo tháng</option>
             <option value={"year"}>Tìm kiếm trong năm</option>
-            <option value={"find"}>Tìm kiếm trong khoảng</option>
           </select>
+
           {selectDate === "day" && (
+            <select value={day} onChange={(e) => setDay(e.target.value)}>
+              {dataDay &&
+                dataDay.length > 0 &&
+                dataDay.map((day, index) => (
+                  <option key={index} value={day}>
+                    Ngày:{day}
+                  </option>
+                ))}
+            </select>
+          )}
+          {selectDate !== "year" && (
             <select
               value={selectMonth}
-              onChange={(e) => setSelectMonth(e.target.value)}
+              onChange={(e) => {
+                setSelectMonth(e.target.value);
+                setIsBooleanDay(!isBooleanDay);
+              }}
             >
               {dataMonth && dataMonth.length > 0 ? (
                 dataMonth.map((month, index) => {
@@ -271,35 +230,22 @@ const TableStatistics = () => {
               )}
             </select>
           )}
-          {selectDate !== "find" ? (
-            <select
-              value={selectYear}
-              onChange={(e) => setSelectYear(e.target.value)}
-            >
-              {dataYear && dataYear.length > 0 ? (
-                dataYear.map((year, index) => {
-                  return (
-                    <option key={index} value={year}>
-                      Năm:{year}
-                    </option>
-                  );
-                })
-              ) : (
-                <option>không có dữ liệu Năm</option>
-              )}
-            </select>
-          ) : (
-            <div className="box-find">
-              <FindStatistical
-                handleClickFind={handleClickFind}
-                valueStart={starDate}
-                onChangeStart={(e) => setStarDate(e.target.value)}
-                valueEnd={endDate}
-                disabled={end < start ? true : false}
-                onChangeEnd={(e) => setEndDate(e.target.value)}
-              />
-            </div>
-          )}
+          <select
+            value={selectYear}
+            onChange={(e) => setSelectYear(e.target.value)}
+          >
+            {dataYear && dataYear.length > 0 ? (
+              dataYear.map((year, index) => {
+                return (
+                  <option key={index} value={year}>
+                    Năm:{year}
+                  </option>
+                );
+              })
+            ) : (
+              <option>không có dữ liệu Năm</option>
+            )}
+          </select>
         </div>
       </div>
       <div className="containerStyle">
@@ -313,10 +259,7 @@ const TableStatistics = () => {
             selectDate={selectDate}
           />
         ) : (
-          <div className="text-center py-3 find">
-            Vui lòng nhập ngày bắt đầu và ngày kết thúc để bắt đầu tìm kiếm{" "}
-            <FcSearch size={20} />
-          </div>
+          <div className="text-center py-3 find">Không có dữ liệu</div>
         )}
       </div>
       {}

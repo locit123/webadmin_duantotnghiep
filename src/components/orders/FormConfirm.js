@@ -1,15 +1,36 @@
 import React from "react";
-import { Avatar } from "antd";
+import { Avatar, Tag } from "antd";
 import { FormatDay } from "../../utils/FormDay";
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import { ConvertMoney } from "../../utils/convertMoney";
 import Form from "react-bootstrap/Form";
-const FormConfirm = ({ item, handleClickConfirm }) => {
+
+const dataOption = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const FormConfirm = ({ item, handleClickConfirm, value, onChange }) => {
   return (
     <>
       <fieldset className="border rounded-3 p-3">
         <legend className="float-none w-auto px-3 legend">
           <span>{item.menuItemId.engName}</span>
+          {item.quantity === 1 ? (
+            <Tag color="cyan" style={{ marginLeft: "5px" }}>
+              Số lượng: {item.quantity}
+            </Tag>
+          ) : (
+            <select
+              style={{ marginLeft: "5px" }}
+              value={value}
+              onChange={onChange}
+            >
+              {dataOption.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             onClick={handleClickConfirm}
             className={

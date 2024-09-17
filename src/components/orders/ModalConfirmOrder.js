@@ -22,6 +22,7 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
   const [totalLoading, setTotalLoading] = useState("");
   const [totalFinished, setTotalFinished] = useState("");
   const [eventKey, setEventKey] = useState("1");
+  const [quantity, setQuantity] = useState(1);
   /***************************************XU LI DATA SUCCESS************************* */
   useEffect(() => {
     if (dataModal && dataModal.length > 0) {
@@ -99,13 +100,14 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
   }, [dataOrderSuccess]);
 
   /***************************************CONFIRM MENU ITEM************************* */
-  const handleClickConfirm = async (itemId, status) => {
+  const handleClickConfirm = async (itemId, status, quantity) => {
     try {
       if (status === "loading") {
         const res = await apiOrder.patchConfirmOrder(
           selectIdTableNumber,
           itemId,
-          "finished"
+          "finished",
+          quantity
         );
         if (res && res.data && res.data.status === "success") {
           toast.success(res.data.status);
@@ -115,7 +117,8 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
         const res = await apiOrder.patchConfirmOrder(
           selectIdTableNumber,
           itemId,
-          "loading"
+          "loading",
+          quantity
         );
         if (res && res.data && res.data.status === "success") {
           toast.success(res.data.status);
@@ -142,7 +145,8 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
       setEventKey("2");
     }
   };
-  console.log(totalLoading);
+
+  console.log(quantity, "quantity");
 
   return (
     <>
@@ -204,7 +208,12 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
                         key={index}
                         item={item}
                         handleClickConfirm={() =>
-                          handleClickConfirm(item.id, item.status)
+                          handleClickConfirm(
+                            item.id,
+                            item.status,
+                            item.quantity,
+                            item
+                          )
                         }
                       />
                     ))
@@ -236,8 +245,14 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
                       <FormUnConfirm
                         key={index}
                         item={item}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        value={quantity}
                         handleClickConfirm={() =>
-                          handleClickConfirm(item.id, item.status)
+                          handleClickConfirm(
+                            item.id,
+                            item.status,
+                            item.quantity
+                          )
                         }
                         totalFinished={totalFinished}
                       />

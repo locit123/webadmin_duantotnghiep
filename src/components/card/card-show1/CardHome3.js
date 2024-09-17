@@ -25,6 +25,7 @@ function CardHome3(props) {
     try {
       setIsLoading(true);
       const res = await apiStatistical.getApiDailyStatistical();
+
       if (res && res.data && res.data.status === "success") {
         dispatch(setDataDailyStatistics(res.data.data));
         setIsLoading(false);

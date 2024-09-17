@@ -20,7 +20,7 @@ const LoadingReviews = ({ data, index, offset, handleClickImage }) => {
       <td>
         <StarRating rating={data.rating} />
       </td>
-      <td>{data.comment}</td>
+      <td>{data.comment || "Ngon"}</td>
       <td>
         {FormatDay2(data.createdAt)} ~ {FormatTimeNow(data.createdAt)}
       </td>

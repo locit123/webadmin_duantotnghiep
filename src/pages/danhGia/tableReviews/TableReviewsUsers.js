@@ -60,7 +60,7 @@ const TableReviewsUsers = () => {
       if (resultDates && resultDates.length > 0) {
         date.push(resultDates[resultDates.length - 1]);
       }
-      return resultRating.concat(date);
+      return date.concat(resultRating);
     }
 
     return [];

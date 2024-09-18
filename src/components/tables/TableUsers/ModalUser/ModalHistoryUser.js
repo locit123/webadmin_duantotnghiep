@@ -271,7 +271,7 @@ const ModalHistoryUser = ({ show, setShow, item }) => {
                     <div className="row mt-3">
                       <div className="col-6">
                         <Accordion defaultActiveKey="0">
-                          <Accordion.Item eventKey="0">
+                          <Accordion.Item eventKey="1">
                             <Accordion.Header>
                               Thanh toán tiền mặt
                             </Accordion.Header>

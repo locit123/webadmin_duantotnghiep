@@ -56,7 +56,6 @@ const TableReview = () => {
       setCurrentPage(pageCount - 1);
     }
   }, [pageCount, currentPage]);
-  console.log(listDataEvent, "check");
 
   return (
     <>

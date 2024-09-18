@@ -79,8 +79,6 @@ const TableReviewsUsers = () => {
     if (listDataReviews && listDataReviews.length > 0 && select) {
       let newData = [];
       for (let i = 0; i < listDataReviews.length; i++) {
-        console.log(listDataReviews[i], "forrrrrrrrrrrr");
-
         if (listDataReviews[i].rating.toString() === select) {
           newData.push(listDataReviews[i]);
         }

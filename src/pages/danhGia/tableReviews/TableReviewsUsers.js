@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import { LoadingOutlined } from "@ant-design/icons";
 import Lightbox from "yet-another-react-lightbox";
 import Captions from "yet-another-react-lightbox/plugins/captions";
+import { FormatDay2 } from "../../../utils/FormDay";
 const TableReviewsUsers = () => {
   const [listDataReviews, setListDataReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -28,7 +29,6 @@ const TableReviewsUsers = () => {
       const res = await apiReviews.getAllReviews();
       if (res && res.data && res.data.status === "success") {
         setIsLoading(false);
-
         setListDataReviews(res.data.data);
       }
     } catch (error) {
@@ -46,7 +46,6 @@ const TableReviewsUsers = () => {
       const uniqueDates = new Set();
       const uniqueRating = new Set();
       let date = [];
-
       for (let i = 0; i < listDataReviews.length; i++) {
         if (listDataReviews[i].createdAt) {
           uniqueDates.add(listDataReviews[i].createdAt);
@@ -80,10 +79,13 @@ const TableReviewsUsers = () => {
     if (listDataReviews && listDataReviews.length > 0 && select) {
       let newData = [];
       for (let i = 0; i < listDataReviews.length; i++) {
+        console.log(listDataReviews[i], "forrrrrrrrrrrr");
+
         if (listDataReviews[i].rating.toString() === select) {
           newData.push(listDataReviews[i]);
         }
-        if (listDataReviews[i].createdAt === select) {
+
+        if (FormatDay2(listDataReviews[i].createdAt) === FormatDay2(select)) {
           newData.push(listDataReviews[i]);
         }
       }

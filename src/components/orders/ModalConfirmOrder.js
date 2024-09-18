@@ -23,6 +23,7 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
   const [totalFinished, setTotalFinished] = useState("");
   const [eventKey, setEventKey] = useState("1");
   const [quantity, setQuantity] = useState(1);
+  const [arrQuantity, setArrQuantity] = useState();
   /***************************************XU LI DATA SUCCESS************************* */
   useEffect(() => {
     if (dataModal && dataModal.length > 0) {
@@ -145,9 +146,6 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
       setEventKey("2");
     }
   };
-
-  console.log(quantity, "quantity");
-
   return (
     <>
       <Modal show={show} onHide={handleClose} backdrop={"static"} size="lg">
@@ -207,6 +205,10 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
                       <FormConfirm
                         key={index}
                         item={item}
+                        setArrQuantity={setArrQuantity}
+                        arrQuantity={arrQuantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                        value={quantity}
                         handleClickConfirm={() =>
                           handleClickConfirm(
                             item.id,
@@ -245,6 +247,8 @@ function ModalConfirmOrder({ show, setShow, dataModal, setDataModal }) {
                       <FormUnConfirm
                         key={index}
                         item={item}
+                        setArrQuantity={setArrQuantity}
+                        arrQuantity={arrQuantity}
                         onChange={(e) => setQuantity(e.target.value)}
                         value={quantity}
                         handleClickConfirm={() =>

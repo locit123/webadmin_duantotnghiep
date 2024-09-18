@@ -5,9 +5,21 @@ import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { ConvertMoney } from "../../utils/convertMoney";
 
-const dataOption = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const FormUnConfirm = ({
+  item,
+  handleClickConfirm,
+  value,
+  onChange,
+  setArrQuantity,
+  arrQuantity,
+}) => {
+  setArrQuantity(item.quantity);
 
-const FormUnConfirm = ({ item, handleClickConfirm, value, onChange }) => {
+  const arrOptions = Array.from(
+    { length: arrQuantity },
+    (_, index) => index + 1
+  );
+
   return (
     <>
       <fieldset className="border rounded-3 p-3">
@@ -23,7 +35,7 @@ const FormUnConfirm = ({ item, handleClickConfirm, value, onChange }) => {
               value={value}
               onChange={onChange}
             >
-              {dataOption.map((item) => (
+              {arrOptions.map((item) => (
                 <option key={item} value={item}>
                   {item}
                 </option>

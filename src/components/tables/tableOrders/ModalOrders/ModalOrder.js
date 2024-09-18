@@ -60,7 +60,7 @@ function ModalOrder({ show, setShow, listDataItem, setListDataItem, voucher }) {
                       fontWeight: "600",
                     }}
                   >
-                    {item.engName}:
+                    {item.name}
                   </legend>
                   <div className="row">
                     <div className="col-2">
